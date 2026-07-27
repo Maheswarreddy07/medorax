@@ -1,0 +1,38 @@
+.auth-header-content {
+  margin-bottom: 32px;
+}
+
+.auth-header-content.left {
+  text-align: left;
+}
+
+.auth-header-content.center {
+  text-align: center;
+}
+
+.auth-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.auth-subtitle {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+@media (max-width:768px){
+
+  .auth-title{
+      font-size:1.75rem;
+  }
+
+  .auth-subtitle{
+      font-size:.9rem;
+  }
+
+}

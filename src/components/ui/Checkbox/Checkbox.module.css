@@ -1,0 +1,53 @@
+.checkbox{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    user-select:none;
+}
+
+.input{
+    display:none;
+}
+
+.box{
+    width:20px;
+    height:20px;
+
+    border:2px solid var(--border);
+
+    border-radius:6px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:white;
+
+    transition:var(--transition);
+}
+
+.checkbox:hover .box{
+    border-color:var(--primary);
+}
+
+.input:checked + .box{
+    background:var(--primary);
+    border-color:var(--primary);
+    color:white;
+}
+
+.check{
+    width:14px;
+    height:14px;
+}
+
+.label{
+    color:var(--text);
+    font-size:15px;
+}
+
+.disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}

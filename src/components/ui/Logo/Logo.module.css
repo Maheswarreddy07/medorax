@@ -1,0 +1,98 @@
+.link{
+    display:inline-flex;
+    text-decoration:none;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    user-select:none;
+}
+
+.vertical{
+    flex-direction:column;
+    text-align:center;
+}
+
+.image{
+    display:block;
+    object-fit:contain;
+}
+
+.text{
+    display:flex;
+    flex-direction:column;
+    line-height:1.1;
+}
+
+.title{
+    color:var(--heading);
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:.8px;
+}
+
+.subtitle{
+    color:var(--primary);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* White Version */
+
+.white .title{
+    color:var(--white);
+}
+
+.white .subtitle{
+    color:var(--white);
+}
+
+/* Sizes */
+
+.sm .image{
+    width:36px;
+    height:36px;
+}
+
+.sm .title{
+    font-size:18px;
+}
+
+.sm .subtitle{
+    font-size:11px;
+}
+
+.md .image{
+    width:48px;
+    height:48px;
+}
+
+.lg .image{
+    width:64px;
+    height:64px;
+}
+
+.lg .title{
+    font-size:28px;
+}
+
+.lg .subtitle{
+    font-size:14px;
+}
+
+.xl .image{
+    width:90px;
+    height:90px;
+}
+
+.xl .title{
+    font-size:38px;
+}
+
+.xl .subtitle{
+    font-size:16px;
+}

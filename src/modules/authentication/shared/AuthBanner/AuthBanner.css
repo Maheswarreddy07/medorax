@@ -1,0 +1,64 @@
+.auth-banner{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:60px;
+
+    background:
+        radial-gradient(circle at center,
+        rgba(37,99,235,.08),
+        rgba(37,99,235,.02));
+
+}
+
+.auth-banner-card{
+
+    width:100%;
+
+    max-width:620px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:white;
+
+    box-shadow:
+        0 20px 60px rgba(15,23,42,.08);
+
+    transition:.35s ease;
+
+}
+
+.auth-banner-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 30px 80px rgba(15,23,42,.12);
+
+}
+
+.auth-banner-image{
+
+    width:100%;
+
+    display:block;
+
+    object-fit:cover;
+
+}
+
+@media(max-width:992px){
+
+.auth-banner{
+
+display:none;
+
+}
+
+}
