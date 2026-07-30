@@ -1,7 +1,7 @@
+import { Search, Download } from "lucide-react";
 import SupplierRow from "./SupplierRow";
 
 const SupplierTable = () => {
-  // Temporary hardcoded data
   const suppliers = [
     {
       id: 1,
@@ -34,8 +34,7 @@ const SupplierTable = () => {
       status: "Processing",
       avatarBg: "bg-cyan-100",
       avatarText: "text-cyan-700",
-      statusClass:
-        "border border-[#E2E8F0] bg-white text-[#0F172A]",
+      statusClass: "bg-amber-100 text-amber-700",
     },
     {
       id: 4,
@@ -44,38 +43,41 @@ const SupplierTable = () => {
       contact: "Michael Ross",
       balance: "$0.00",
       status: "Current",
-      avatarBg: "bg-blue-100",
-      avatarText: "text-blue-700",
+      avatarBg: "bg-violet-100",
+      avatarText: "text-violet-700",
       statusClass: "bg-emerald-100 text-emerald-700",
     },
   ];
 
   return (
-    <div className="overflow-hidden rounded-xl border border-[#E2E8F0] bg-white">
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
       {/* Header */}
-      <div className="flex flex-col gap-4 border-b border-[#E2E8F0] bg-[#F8FCFF] p-4 sm:flex-row sm:items-center sm:justify-between">
-        <h3 className="text-xl font-semibold text-[#0F172A]">
-          Supplier Directory
-        </h3>
+      <div className="flex flex-col gap-5 border-b border-slate-200 px-6 py-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <h2 className="text-xl font-bold text-slate-800">
+            Supplier Directory
+          </h2>
 
-        <div className="flex w-full items-center gap-2 sm:w-auto">
-          <div className="relative flex-1 sm:w-64">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] text-[20px]">
-              filter_list
-            </span>
+          <p className="mt-1 text-sm text-slate-500">
+            View and manage all registered suppliers.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="relative">
+            <Search
+              size={18}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+            />
 
             <input
-              type="text"
-              placeholder="Filter directory..."
-              className="w-full rounded-md border border-[#E2E8F0] bg-white py-2 pl-10 pr-3 text-sm outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
+              placeholder="Search suppliers..."
+              className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm outline-none transition focus:border-blue-500 focus:bg-white sm:w-72"
             />
           </div>
 
-          <button className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium text-[#2563EB] transition hover:border hover:border-[#2563EB] hover:bg-[#F8FCFF]">
-            <span className="material-symbols-outlined text-[18px]">
-              download
-            </span>
-
+          <button className="flex h-11 items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 text-sm font-medium text-white transition hover:bg-blue-700">
+            <Download size={17} />
             Export
           </button>
         </div>
@@ -83,18 +85,26 @@ const SupplierTable = () => {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-[800px] w-full border-collapse text-left">
-          <thead>
-            <tr className="border-b border-[#E2E8F0] bg-[#F8FCFF] text-sm text-[#475569]">
-              <th className="p-4 font-semibold">Supplier Name</th>
-              <th className="p-4 font-semibold">Contact Person</th>
-              <th className="p-4 text-right font-semibold">
-                Outstanding Balance
+        <table className="min-w-full">
+          <thead className="bg-slate-50">
+            <tr className="text-sm text-slate-500">
+              <th className="px-6 py-4 text-left font-semibold">
+                Supplier
               </th>
-              <th className="p-4 text-center font-semibold">
+
+              <th className="px-6 py-4 text-left font-semibold">
+                Contact
+              </th>
+
+              <th className="px-6 py-4 text-right font-semibold">
+                Outstanding
+              </th>
+
+              <th className="px-6 py-4 text-center font-semibold">
                 Status
               </th>
-              <th className="p-4 text-right font-semibold">
+
+              <th className="px-6 py-4 text-center font-semibold">
                 Action
               </th>
             </tr>

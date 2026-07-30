@@ -35,9 +35,10 @@ src/
 │   │   ├── dashboard/
 │   │   │   ├── DashboardHeader.jsx
 │   │   │   ├── KpiCards.jsx
-│   │   │   ├── SupplierTable.jsx
+│   │   │   ├── Sidebar.jsx
 │   │   │   ├── SupplierRow.jsx
-│   │   │   └── SearchBar.jsx
+│   │   │   ├── SupplierTable.jsx
+│   │   │   └── Topbar.jsx
 │   │   │
 │   │   ├── suppliers/
 │   │   ├── purchaseOrders/
@@ -54,6 +55,7 @@ src/
 ├── hooks/
 ├── utils/
 ├── routes/
+│   └── Router.jsx
 │
 ├── App.jsx
 ├── main.jsx
