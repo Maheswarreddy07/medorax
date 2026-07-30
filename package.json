@@ -17,11 +17,9 @@
   "build": {
     "appId": "com.medorax.erp",
     "productName": "MEDORAX ERP",
-
     "directories": {
       "output": "release"
     },
-
     "win": {
       "target": "nsis",
       "icon": "electron/assets/icon.ico"
