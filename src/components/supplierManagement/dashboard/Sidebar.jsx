@@ -8,7 +8,7 @@ import {
 
 const Sidebar = () => {
   return (
-    <aside className="fixed left-0 top-0 z-50 hidden h-screen w-[280px] flex-col bg-gradient-to-br from-[#2563EB] via-[#14B8A6] to-[#10B981] px-6 py-8 text-white shadow-2xl md:flex">
+    <aside className="fixed left-0 top-0 z-50 hidden h-screen w-70 flex-col bg-linear-to-br from-[#2563EB] via-[#14B8A6] to-[#10B981] px-6 py-8 text-white shadow-2xl md:flex">
       {/* Logo */}
       <div className="mb-12">
         <h1 className="text-[28px] font-extrabold tracking-tight">

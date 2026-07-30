@@ -56,7 +56,7 @@ const KpiCards = () => {
             className="relative overflow-hidden rounded-xl border border-[#E2E8F0] bg-white p-6"
           >
             {card.accent && (
-              <div className="absolute right-[-20%] top-[-20%] h-[150px] w-[150px] rounded-full bg-[#2563EB]/5 blur-3xl" />
+              <div className="absolute right-[-20%] top-[-20%] h-37.5 w-37.5 rounded-full bg-[#2563EB]/5 blur-3xl" />
             )}
 
             <div className="relative z-10 mb-4 flex items-start justify-between">
