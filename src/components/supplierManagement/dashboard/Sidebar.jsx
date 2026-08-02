@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   Users,
-  Settings,
 } from "lucide-react";
 
 const Sidebar = () => {
@@ -52,16 +51,6 @@ const Sidebar = () => {
           <span>Suppliers</span>
         </NavLink>
       </nav>
-
-      {/* Bottom Section */}
-      <div className="space-y-5">
-        <div className="border-t border-white/20 pt-4">
-          <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-[15px] font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white">
-            <Settings size={20} strokeWidth={2.2} />
-            <span>Settings</span>
-          </button>
-        </div>
-      </div>
     </aside>
   );
 };

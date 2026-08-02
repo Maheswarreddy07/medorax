@@ -1,5 +1,4 @@
 import {
-  Bell,
   Search,
   ChevronDown,
 } from "lucide-react";

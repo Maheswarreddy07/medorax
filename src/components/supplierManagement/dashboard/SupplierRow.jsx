@@ -1,42 +1,49 @@
+﻿import { Link } from "react-router-dom";
+import { Eye } from "lucide-react";
+
 const SupplierRow = ({ supplier, index }) => {
   return (
     <tr
-      className={`group border-b border-[#E2E8F0] transition-colors hover:bg-[#F8FCFF]/50 ${
-        index % 2 !== 0 ? "bg-[#F8FCFF]" : ""
+      className={`group border-b border-slate-100 transition-colors hover:bg-blue-50/30 ${
+        index % 2 !== 0 ? "bg-[#F8FCFF]/50" : ""
       }`}
     >
       <td className="p-4">
         <div className="flex items-center gap-3">
           <div
-            className={`flex h-8 w-8 items-center justify-center rounded-full font-bold text-sm ${supplier.avatarBg} ${supplier.avatarText}`}
+            className={`flex h-9 w-9 items-center justify-center rounded-xl text-sm font-bold shadow-sm ${supplier.avatarBg} ${supplier.avatarText}`}
           >
             {supplier.initial}
           </div>
 
-          <span className="font-medium">{supplier.name}</span>
+          <span className="font-semibold text-slate-800">{supplier.name}</span>
         </div>
       </td>
 
-      <td className="p-4 text-[#475569]">
+      <td className="p-4 text-sm text-slate-600">
         {supplier.contact}
       </td>
 
-      <td className="p-4 text-right font-mono">
+      <td className="p-4 text-right font-mono text-sm font-semibold text-slate-800">
         {supplier.balance}
       </td>
 
       <td className="p-4 text-center">
         <span
-          className={`inline-flex rounded-full px-2 py-1 text-[11px] font-medium ${supplier.statusClass}`}
+          className={`inline-flex rounded-full px-2.5 py-1 text-[11px] font-medium ${supplier.statusClass}`}
         >
           {supplier.status}
         </span>
       </td>
 
       <td className="p-4 text-right">
-        <button className="text-sm font-medium text-[#2563EB] opacity-0 transition-opacity group-hover:opacity-100 hover:text-blue-700">
-          View Details
-        </button>
+        <Link
+          to={`/suppliers/${supplier.id}`}
+          className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-teal-500 px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition hover:opacity-95 hover:shadow-md"
+        >
+          <Eye size={13} />
+          <span>View Details</span>
+        </Link>
       </td>
     </tr>
   );
