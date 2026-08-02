@@ -3,7 +3,6 @@ import {
   LayoutDashboard,
   Users,
   Settings,
-  Plus,
 } from "lucide-react";
 
 const Sidebar = () => {
@@ -56,11 +55,6 @@ const Sidebar = () => {
 
       {/* Bottom Section */}
       <div className="space-y-5">
-        <button className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-[15px] font-semibold backdrop-blur-md transition-all duration-200 hover:bg-white/20">
-          <Plus size={18} strokeWidth={2.5} />
-          <span>New Purchase Order</span>
-        </button>
-
         <div className="border-t border-white/20 pt-4">
           <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left text-[15px] font-medium text-white/80 transition-all duration-200 hover:bg-white/10 hover:text-white">
             <Settings size={20} strokeWidth={2.2} />

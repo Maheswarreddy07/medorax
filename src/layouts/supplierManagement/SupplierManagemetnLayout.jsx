@@ -1,6 +1,9 @@
 import { Outlet } from "react-router-dom";
-import Sidebar from "../../components/supplierManagement/dashboard/Sidebar"
+
+import Sidebar from "../../components/supplierManagement/dashboard/Sidebar";
+
 import Topbar from "../../components/supplierManagement/dashboard/Topbar";
+
 const SupplierManagemetnLayout = () => {
   return (
     <div className="flex min-h-screen bg-[#F8FCFF]">
