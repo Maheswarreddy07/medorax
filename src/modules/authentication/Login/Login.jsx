@@ -8,9 +8,16 @@ import SocialButton from '../../../components/ui/SocialButton';
 import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import bannerImage from '../../../assets/images/auth/login-banner.png';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    navigate('/search');     
+  };
 
   return (
     <div className="login-page">
@@ -54,7 +61,7 @@ export default function Login() {
               <p className="login-subtitle">Access your medical management dashboard</p>
             </div>
 
-            <form className="login-form">
+            <form className="login-form" onSubmit={handleLogin}>
               <div className="form-group">
                 <label className="form-label">Email or Mobile Number</label>
                 <Input 
