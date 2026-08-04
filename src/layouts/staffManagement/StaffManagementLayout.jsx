@@ -7,7 +7,7 @@ const StaffManagementLayout = () => {
     <div className="min-h-screen bg-[#F8FCFF]">
       <Sidebar />
       <Topbar />
-      <main className="ml-[260px] pt-16 min-h-screen p-8">
+      <main className="ml-[260px] pt-24 min-h-screen p-8">
         <div className="mx-auto max-w-[1440px]">
           <Outlet />
         </div>

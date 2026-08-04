@@ -10,6 +10,9 @@ import SupplierInformation from "../pages/SupplierManagement/SupplierInformation
 import StaffDashboard from "../pages/StaffManagement/dashboard/Dashboard";
 import Employee from "../pages/StaffManagement/employee/Employee";
 import StaffInformation from "../pages/StaffManagement/StaffInformation";
+import Attendance from "../pages/StaffManagement/attendance/Attendance";
+import ActivityLogs from "../pages/StaffManagement/activityLogs/ActivityLogs";
+import Kiosk from "../pages/StaffManagement/kiosk/Kiosk";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,18 @@ const router = createBrowserRouter([
       {
         path: "directory",
         element: <Employee />,
+      },
+      {
+        path: "attendance",
+        element: <Attendance />,
+      },
+      {
+        path: "kiosk",
+        element: <Kiosk />,
+      },
+      {
+        path: "activity-logs",
+        element: <ActivityLogs />,
       },
       {
         path: ":staffId",

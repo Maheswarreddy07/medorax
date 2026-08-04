@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Search } from "lucide-react";
 import StaffHeader from "../../../components/staffManagement/StaffHeader";
 import StaffCard from "../../../components/staffManagement/StaffCard";
 import StaffModal from "../../../components/staffManagement/StaffModal";
@@ -117,6 +118,7 @@ export const initialStaffData = [
 
 const Employee = () => {
   const [staff, setStaff] = useState(initialStaffData);
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedStaff, setSelectedStaff] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -193,12 +195,40 @@ const Employee = () => {
     setIsAddModalOpen(false);
   };
 
+  const filteredStaff = staff.filter((member) => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return true;
+
+    return (
+      member.name.toLowerCase().includes(query) ||
+      member.role.toLowerCase().includes(query) ||
+      member.department.toLowerCase().includes(query) ||
+      member.code.toLowerCase().includes(query) ||
+      member.email.toLowerCase().includes(query)
+    );
+  });
+
   return (
     <div className="space-y-6 pb-12">
       <StaffHeader onAddClick={handleOpenAdd} />
 
+      {/* Search */}
+      <div className="relative">
+        <Search
+          size={18}
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+        />
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search staff by name, role, department, or ID..."
+          className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-11 pr-4 text-sm text-slate-700 shadow-sm outline-none transition-all duration-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
+        />
+      </div>
+
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {staff.map((member) => (
+        {filteredStaff.map((member) => (
           <StaffCard
             key={member.id}
             staff={member}
@@ -206,6 +236,17 @@ const Employee = () => {
           />
         ))}
       </div>
+
+      {filteredStaff.length === 0 && (
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-12 text-center">
+          <p className="text-base font-semibold text-slate-600">
+            No staff members found
+          </p>
+          <p className="mt-1 text-sm text-slate-400">
+            Try adjusting your search query.
+          </p>
+        </div>
+      )}
 
       <StaffModal
         isOpen={isEditModalOpen}

@@ -2,11 +2,10 @@ import { NavLink } from "react-router-dom";
 import {
   LayoutDashboard,
   UserCheck,
-  Shield,
-  Settings,
-  User,
   LogOut,
-  Stethoscope
+  LogIn,
+  Stethoscope,
+  CalendarDays
 } from "lucide-react";
 
 const Sidebar = () => {
@@ -58,34 +57,37 @@ const Sidebar = () => {
           <span>Employee</span>
         </NavLink>
 
-        <a
-          href="#"
-          className="flex items-center gap-3 rounded-lg px-4 py-3 text-[15px] font-medium text-slate-200/80 transition-all duration-200 hover:bg-white/10 hover:text-white"
+        <NavLink
+          to="/staff/attendance"
+          className={({ isActive }) =>
+            `flex items-center gap-3 rounded-lg px-4 py-3 text-[15px] font-medium transition-all duration-200 ${
+              isActive
+                ? "bg-white/20 font-semibold text-white"
+                : "text-slate-200/80 hover:bg-white/10 hover:text-white"
+            }`
+          }
         >
-          <Shield size={20} strokeWidth={2.2} />
-          <span>Roles & Permissions</span>
-        </a>
+          <CalendarDays size={20} strokeWidth={2.2} />
+          <span>Attendance</span>
+        </NavLink>
+
+        <NavLink
+          to="/staff/kiosk"
+          className={({ isActive }) =>
+            `flex items-center gap-3 rounded-lg px-4 py-3 text-[15px] font-medium transition-all duration-200 ${
+              isActive
+                ? "bg-white/20 font-semibold text-white"
+                : "text-slate-200/80 hover:bg-white/10 hover:text-white"
+            }`
+          }
+        >
+          <LogIn size={20} strokeWidth={2.2} />
+          <span>Check In / Out</span>
+        </NavLink>
       </nav>
 
       {/* Bottom Section */}
       <div className="pt-6 mt-auto">
-        <div className="space-y-1">
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded-lg px-4 py-3 text-[15px] font-medium text-slate-200/80 transition-all duration-200 hover:bg-white/10 hover:text-white"
-          >
-            <Settings size={20} strokeWidth={2.2} />
-            <span>Settings</span>
-          </a>
-          <a
-            href="#"
-            className="flex items-center gap-3 rounded-lg px-4 py-3 text-[15px] font-medium text-slate-200/80 transition-all duration-200 hover:bg-white/10 hover:text-white"
-          >
-            <User size={20} strokeWidth={2.2} />
-            <span>My Profile</span>
-          </a>
-        </div>
-
         <div className="mt-4 border-t border-white/10 pt-4">
           <a
             href="#"

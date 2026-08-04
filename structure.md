@@ -80,7 +80,27 @@ src/
 │       ├── StaffHeader.jsx   # Header with title and "Add New Staff" action
 │       ├── StaffModal.jsx    # Reusable modal form for add/edit staff
 │       ├── StaffOverviewCards.jsx  # KPI metric cards for staff detail
-│       └── StaffProfileHeader.jsx  # Profile header for staff detail page
+│       ├── StaffProfileHeader.jsx  # Profile header for staff detail page
+│       ├── attendance/       # Attendance sub-components
+│       │   ├── AttendanceHeader.jsx
+│       │   ├── AttendanceFilters.jsx
+│       │   ├── AttendanceTable.jsx
+│       │   ├── AttendanceTableRow.jsx
+│       │   ├── AttendanceStatsCards.jsx
+│       │   └── AttendanceStatusBadge.jsx
+│       ├── activityLogs/     # Activity logs sub-components
+│       │   ├── ActivityLogsHeader.jsx
+│       │   ├── ActivityLogsFilters.jsx
+│       │   ├── ActivityLogsTable.jsx
+│       │   ├── ActivityLogsTableRow.jsx
+│       │   └── ActivityLogsStatsCards.jsx
+│       └── kiosk/            # Check In / Check Out kiosk components
+│           ├── ActionButtons.jsx
+│           ├── ConfirmationDisplay.jsx
+│           ├── EmployeeIdInput.jsx
+│           ├── KioskCard.jsx
+│           ├── KioskFooter.jsx
+│           └── LiveClock.jsx
 ├── hooks/                    # Custom React hooks — empty
 ├── layouts/                  # Layout components
 │   ├── supplierManagement/
@@ -95,7 +115,15 @@ src/
 │   └── StaffManagement/
 │       ├── Dashboard.jsx     # Staff Management dashboard page
 │       ├── Staff.jsx         # Staff listing page
-│       └── StaffInformation.jsx  # Staff information/detail page
+│       ├── StaffInformation.jsx  # Staff information/detail page
+│       ├── attendance/
+│       │   └── Attendance.jsx    # Attendance tracking page
+│       ├── activityLogs/
+│       │   └── ActivityLogs.jsx  # Activity logs page
+│       ├── employee/
+│       │   └── Employee.jsx      # Employee directory page
+│       └── kiosk/
+│           └── Kiosk.jsx         # Check In / Check Out kiosk page
 ├── routes/                   # Route definitions
 │   └── Router.jsx            # Main router configuration
 ├── services/                 # API/service layer — empty
@@ -117,6 +145,10 @@ src/
 | `StaffManagement/Dashboard.jsx` | Staff Management dashboard page (KPI cards, staff directory table) |
 | `StaffManagement/Staff.jsx` | Staff listing page (grid of staff cards with add/edit) |
 | `StaffManagement/StaffInformation.jsx` | Staff information/detail page (profile, KPIs, contact, documents) |
+| `StaffManagement/attendance/Attendance.jsx` | Attendance tracking page (records, filters, stats) |
+| `StaffManagement/activityLogs/ActivityLogs.jsx` | Activity logs page (logs, filters, stats) |
+| `StaffManagement/employee/Employee.jsx` | Employee directory page (staff cards grid with live search, add/edit modals) |
+| `StaffManagement/kiosk/Kiosk.jsx` | Check In / Check Out kiosk page (employee ID lookup, check-in/out actions, live clock) |
 
 ### Components (`src/components/`)
 
@@ -147,8 +179,8 @@ src/
 
 | File | Description |
 |------|-------------|
-| `Sidebar.jsx` | Sidebar navigation for the staff management module |
-| `Topbar.jsx` | Top navigation bar with search and user profile |
+| `Sidebar.jsx` | Sidebar navigation for the staff management module (Dashboard, Employee, Attendance, Check In/Out, Logout) |
+| `Topbar.jsx` | Top navigation bar with quick nav links (Attendance, Check In/Out, Logs) |
 | `StaffCard.jsx` | Staff card component for the listing grid |
 | `StaffContactCard.jsx` | Contact information panel for the staff detail page |
 | `StaffDocuments.jsx` | Documents table for the staff detail page |
@@ -156,6 +188,38 @@ src/
 | `StaffModal.jsx` | Reusable modal form for add/edit staff |
 | `StaffOverviewCards.jsx` | KPI metric cards (years of service, certifications, last shift, documents) |
 | `StaffProfileHeader.jsx` | Profile header with avatar, status, role, and edit action |
+
+#### `staffManagement/attendance/`
+
+| File | Description |
+|------|-------------|
+| `AttendanceHeader.jsx` | Header with title and export action |
+| `AttendanceFilters.jsx` | Filter controls for attendance records |
+| `AttendanceTable.jsx` | Attendance data table component |
+| `AttendanceTableRow.jsx` | Individual attendance record row |
+| `AttendanceStatsCards.jsx` | KPI metric cards for attendance |
+| `AttendanceStatusBadge.jsx` | Status badge (Present, Late, Absent) |
+
+#### `staffManagement/activityLogs/`
+
+| File | Description |
+|------|-------------|
+| `ActivityLogsHeader.jsx` | Header with title and export action |
+| `ActivityLogsFilters.jsx` | Filter controls for activity logs |
+| `ActivityLogsTable.jsx` | Activity logs data table component |
+| `ActivityLogsTableRow.jsx` | Individual activity log row |
+| `ActivityLogsStatsCards.jsx` | KPI metric cards for activity logs |
+
+#### `staffManagement/kiosk/`
+
+| File | Description |
+|------|-------------|
+| `ActionButtons.jsx` | Check In / Check Out action buttons with disabled states |
+| `ConfirmationDisplay.jsx` | Employee verification card (avatar, name, timestamp, status) |
+| `EmployeeIdInput.jsx` | Labeled employee ID input field with icon and focus states |
+| `KioskCard.jsx` | Glass-panel card composing input, actions, and confirmation |
+| `KioskFooter.jsx` | Footer with secure terminal branding |
+| `LiveClock.jsx` | Real-time clock updating every second with date display |
 
 ### Layouts (`src/layouts/`)
 
