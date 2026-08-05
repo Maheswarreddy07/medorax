@@ -1,9 +1,0 @@
-export { default as COLORS } from "./colors";
-export { default as TYPOGRAPHY } from "./typography";
-export { default as SPACING } from "./spacing";
-export { default as RADIUS } from "./radius";
-export { default as SHADOWS } from "./shadows";
-export { default as BREAKPOINTS } from "./breakpoints";
-export { default as ANIMATIONS } from "./animations";
-export { default as ZINDEX } from "./zIndex";
-export { default as COMPONENTS } from "./components";

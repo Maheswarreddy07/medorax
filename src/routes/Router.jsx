@@ -1,0 +1,68 @@
+import { createBrowserRouter } from "react-router-dom";
+
+import SupplierLayout from "../layouts/supplierManagement/SupplierManagemetnLayout";
+import StaffManagementLayout from "../layouts/staffManagement/StaffManagementLayout";
+
+import Dashboard from "../pages/SupplierManagement/Dashboard";
+import Suppliers from "../pages/SupplierManagement/Suppliers";
+import SupplierInformation from "../pages/SupplierManagement/SupplierInformation";
+
+import StaffDashboard from "../pages/StaffManagement/dashboard/Dashboard";
+import Employee from "../pages/StaffManagement/employee/Employee";
+import StaffInformation from "../pages/StaffManagement/StaffInformation";
+import Attendance from "../pages/StaffManagement/attendance/Attendance";
+import ActivityLogs from "../pages/StaffManagement/activityLogs/ActivityLogs";
+import Kiosk from "../pages/StaffManagement/kiosk/Kiosk";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <SupplierLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "suppliers",
+        element: <Suppliers />,
+      },
+      {
+        path: "suppliers/:supplierId",
+        element: <SupplierInformation />,
+      },
+    ],
+  },
+  {
+    path: "/staff",
+    element: <StaffManagementLayout />,
+    children: [
+      {
+        index: true,
+        element: <StaffDashboard />,
+      },
+      {
+        path: "directory",
+        element: <Employee />,
+      },
+      {
+        path: "attendance",
+        element: <Attendance />,
+      },
+      {
+        path: "kiosk",
+        element: <Kiosk />,
+      },
+      {
+        path: "activity-logs",
+        element: <ActivityLogs />,
+      },
+      {
+        path: ":staffId",
+        element: <StaffInformation />,
+      },
+    ],
+  },
+]);
+
+export default router;
