@@ -3,19 +3,28 @@ import {
   LayoutDashboard,
   Users,
 } from "lucide-react";
+import logo from "../../../assets/WhatsApp_Image_2026-06-22_at_5.25.21_PM-removebg-preview.png";
 
 const Sidebar = () => {
   return (
     <aside className="fixed left-0 top-0 z-50 hidden h-screen w-70 flex-col bg-linear-to-br from-[#2563EB] via-[#14B8A6] to-[#10B981] px-6 py-8 text-white shadow-2xl md:flex">
       {/* Logo */}
       <div className="mb-12">
-        <h1 className="text-[28px] font-extrabold tracking-tight">
-          Medorax
-        </h1>
-
-        <p className="mt-2 text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
-          Supplier Management
-        </p>
+        <div className="flex items-center gap-3">
+          <img
+            src={logo}
+            alt="MEDORAX Logo"
+            className="h-20 w-20 rounded-xl object-contain"
+          />
+          <div>
+            <h1 className="text-2xl font-extrabold tracking-tight">
+              Medorax
+            </h1>
+            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
+              Supplier Management
+            </p>
+          </div>
+        </div>
       </div>
 
       {/* Navigation */}

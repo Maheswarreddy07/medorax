@@ -3,11 +3,11 @@ import { useLocation, useParams, Navigate } from "react-router-dom";
 
 import { initialStaffData } from "./employee/Employee";
 
-import StaffProfileHeader from "../../components/staffManagement/StaffProfileHeader";
-import StaffOverviewCards from "../../components/staffManagement/StaffOverviewCards";
-import StaffContactCard from "../../components/staffManagement/StaffContactCard";
-import StaffDocuments from "../../components/staffManagement/StaffDocuments";
-import StaffModal from "../../components/staffManagement/StaffModal";
+import StaffProfileHeader from "../../components/staffManagement/employee/StaffProfileHeader";
+import StaffOverviewCards from "../../components/staffManagement/employee/StaffOverviewCards";
+import StaffContactCard from "../../components/staffManagement/employee/StaffContactCard";
+import StaffDocuments from "../../components/staffManagement/employee/StaffDocuments";
+import StaffModal from "../../components/staffManagement/employee/StaffModal";
 
 const StaffInformation = () => {
   const { staffId } = useParams();

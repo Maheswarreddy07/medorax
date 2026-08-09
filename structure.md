@@ -74,13 +74,14 @@ src/
 │   └── staffManagement/      # Staff Management domain components
 │       ├── Sidebar.jsx       # Staff management sidebar navigation
 │       ├── Topbar.jsx        # Staff management top navigation bar
-│       ├── StaffCard.jsx     # Staff card component for the listing grid
-│       ├── StaffContactCard.jsx  # Contact information panel for staff detail
-│       ├── StaffDocuments.jsx    # Documents table for staff detail page
-│       ├── StaffHeader.jsx   # Header with title and "Add New Staff" action
-│       ├── StaffModal.jsx    # Reusable modal form for add/edit staff
-│       ├── StaffOverviewCards.jsx  # KPI metric cards for staff detail
-│       ├── StaffProfileHeader.jsx  # Profile header for staff detail page
+│       ├── employee/         # Employee / staff directory components
+│       │   ├── StaffCard.jsx
+│       │   ├── StaffContactCard.jsx
+│       │   ├── StaffDocuments.jsx
+│       │   ├── StaffHeader.jsx
+│       │   ├── StaffModal.jsx
+│       │   ├── StaffOverviewCards.jsx
+│       │   └── StaffProfileHeader.jsx
 │       ├── attendance/       # Attendance sub-components
 │       │   ├── AttendanceHeader.jsx
 │       │   ├── AttendanceFilters.jsx
@@ -181,6 +182,11 @@ src/
 |------|-------------|
 | `Sidebar.jsx` | Sidebar navigation for the staff management module (Dashboard, Employee, Attendance, Check In/Out, Logout) |
 | `Topbar.jsx` | Top navigation bar with quick nav links (Attendance, Check In/Out, Logs) |
+
+#### `staffManagement/employee/`
+
+| File | Description |
+|------|-------------|
 | `StaffCard.jsx` | Staff card component for the listing grid |
 | `StaffContactCard.jsx` | Contact information panel for the staff detail page |
 | `StaffDocuments.jsx` | Documents table for the staff detail page |
