@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
-import StaffHeader from "../../../components/staffManagement/StaffHeader";
-import StaffCard from "../../../components/staffManagement/StaffCard";
-import StaffModal from "../../../components/staffManagement/StaffModal";
+import StaffHeader from "../../../components/staffManagement/employee/StaffHeader";
+import StaffCard from "../../../components/staffManagement/employee/StaffCard";
+import StaffModal from "../../../components/staffManagement/employee/StaffModal";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const initialStaffData = [

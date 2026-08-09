@@ -4,9 +4,9 @@ import {
   UserCheck,
   LogOut,
   LogIn,
-  Stethoscope,
   CalendarDays
 } from "lucide-react";
+import logo from "../../assets/WhatsApp_Image_2026-06-22_at_5.25.21_PM-removebg-preview.png";
 
 const Sidebar = () => {
   return (
@@ -14,9 +14,11 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="mb-12">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-[#004ac6] to-[#006b5f]">
-            <Stethoscope size={22} className="text-white" />
-          </div>
+          <img
+            src={logo}
+            alt="MEDORAX Logo"
+            className="h-20 w-20 rounded-xl object-contain"
+          />
           <div>
             <h1 className="text-2xl font-extrabold tracking-tight">MEDORAX</h1>
             <p className="text-xs uppercase tracking-widest text-slate-200/60">
