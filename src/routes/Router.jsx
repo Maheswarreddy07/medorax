@@ -28,6 +28,8 @@ import DamagedStock from "../pages/InventoryManagement/DamagedStock";
 import ExpiredStock from "../pages/InventoryManagement/ExpiredStock";
 import NearExpiry from "../pages/InventoryManagement/NearExpiry";
 import LowStockAlerts from "../pages/InventoryManagement/LowStockAlerts";
+import OverstockAlerts from "../pages/InventoryManagement/OverstockAlerts";
+import StockLedger from "../pages/InventoryManagement/StockLedger";
 
 const router = createBrowserRouter([
   {
@@ -134,7 +136,16 @@ const router = createBrowserRouter([
         path: "low-stock",
         element: <LowStockAlerts />,
       },
+      {
+        path: "overstock",
+        element: <OverstockAlerts />,
+      },
+      {
+        path: "stock-ledger",
+        element: <StockLedger />,
+      },
     ],
+
   },
 ]);
 
