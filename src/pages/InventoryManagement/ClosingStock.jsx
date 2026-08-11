@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TrendingUp, CheckCircle2, Info } from "lucide-react";
 
 import StatCard from "../../components/inventoryManagement/common/StatCard";
@@ -5,6 +6,8 @@ import FilterBar from "../../components/inventoryManagement/common/FilterBar";
 import DataTable from "../../components/inventoryManagement/common/DataTable";
 import Pagination from "../../components/inventoryManagement/common/Pagination";
 import StockTabs from "../../components/inventoryManagement/common/StockTabs";
+import EntryModal from "../../components/inventoryManagement/common/EntryModal";
+import { closingStockFields } from "../../components/inventoryManagement/common/entryModalConfigs";
 import {
   closingStockItems,
   categories,
@@ -59,6 +62,8 @@ const columns = [
 ];
 
 const ClosingStock = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <div className="mb-6">
@@ -102,13 +107,22 @@ const ClosingStock = () => {
           categories={categories}
           warehouses={warehouses}
           actionLabel="Add Closing Stock"
-          onAction={() => {}}
+          onAction={() => setIsModalOpen(true)}
         />
       </div>
 
       <DataTable columns={columns} rows={closingStockItems} />
 
       <Pagination />
+
+      <EntryModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Add Closing Stock"
+        submitLabel="Add Closing Stock"
+        fields={closingStockFields}
+        onSubmit={() => {}}
+      />
     </>
   );
 };

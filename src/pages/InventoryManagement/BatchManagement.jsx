@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Package, AlertTriangle, XCircle } from "lucide-react";
 
 import StatCard from "../../components/inventoryManagement/common/StatCard";
@@ -5,6 +6,8 @@ import FilterBar from "../../components/inventoryManagement/common/FilterBar";
 import DataTable from "../../components/inventoryManagement/common/DataTable";
 import Pagination from "../../components/inventoryManagement/common/Pagination";
 import StatusBadge from "../../components/inventoryManagement/common/StatusBadge";
+import EntryModal from "../../components/inventoryManagement/common/EntryModal";
+import { addBatchFields } from "../../components/inventoryManagement/common/entryModalConfigs";
 import {
   batchItems,
   categories,
@@ -80,6 +83,8 @@ const columns = [
 ];
 
 const BatchManagement = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <div className="mb-6">
@@ -123,13 +128,22 @@ const BatchManagement = () => {
           categories={categories}
           warehouses={warehouses}
           actionLabel="Add Batch"
-          onAction={() => {}}
+          onAction={() => setIsModalOpen(true)}
         />
       </div>
 
       <DataTable columns={columns} rows={batchItems} />
 
       <Pagination totalEntries={1248} totalPages={250} />
+
+      <EntryModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Add New Batch"
+        submitLabel="Add Batch"
+        fields={addBatchFields}
+        onSubmit={() => {}}
+      />
     </>
   );
 };
