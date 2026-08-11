@@ -9,10 +9,13 @@ import {
   CalendarX,
   AlertTriangle,
   TrendingDown,
+  PackageCheck,
+  Clock,
   Layers,
   Settings,
   LogOut,
 } from "lucide-react";
+
 import logo from "../../../assets/WhatsApp_Image_2026-06-22_at_5.25.21_PM-removebg-preview.png";
 
 const navSections = [
@@ -42,6 +45,8 @@ const navSections = [
       { to: "/inventory/expired", label: "Expired Stock", icon: CalendarX },
       { to: "/inventory/near-expiry", label: "Near Expiry", icon: AlertTriangle },
       { to: "/inventory/low-stock", label: "Low Stock Alerts", icon: TrendingDown },
+      { to: "/inventory/overstock", label: "Overstock Alerts", icon: PackageCheck },
+      { to: "/inventory/stock-ledger", label: "Stock Ledger", icon: Clock },
     ],
   },
 ];
