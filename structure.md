@@ -2,7 +2,7 @@
 
 ## Overview
 
-Medorax ERP is a cross-platform Enterprise Resource Planning (ERP) system built with **React 19** for the frontend, **Vite** as the build tool, and **Electron** for desktop packaging. The project includes the **Supplier Management** and **Staff Management** modules, with scaffolded directories for future modules (Authentication, Inventory, Billing, HR, etc.).
+Medorax ERP is a cross-platform Enterprise Resource Planning (ERP) system built with **React 19** for the frontend, **Vite** as the build tool, and **Electron** for desktop packaging. The project includes the **Supplier Management**, **Staff Management**, and **Inventory Management** modules, with scaffolded directories for future modules (Authentication, Billing, HR, etc.).
 
 ---
 
@@ -49,82 +49,119 @@ medorax-erp/
 src/
 ├── index.css                 # Global CSS (Tailwind directives)
 ├── main.jsx                  # Application entry point (renders <App /> into DOM)
-├── assets/                   # Static assets (images, icons) — empty
+├── assets/                   # Static assets (images, icons)
+│   └── WhatsApp_Image_2026-06-22_at_5.25.21_PM-removebg-preview.png  # Branding image
 ├── components/               # Reusable UI components
 │   ├── ui/                   # Global reusable UI components — empty
-│   └── supplierManagement/   # Supplier Management domain components
-│       ├── dashboard/        # Dashboard sub-components
-│       │   ├── DashboardHeader.jsx
-│       │   ├── KpiCards.jsx
-│       │   ├── Sidebar.jsx
-│       │   ├── SupplierRow.jsx
-│       │   ├── SupplierTable.jsx
-│       │   └── Topbar.jsx
-│       ├── payments/         # Payment components — empty
-│       ├── purchaseOrders/   # Purchase order components — empty
-│       ├── reports/          # Report components — empty
-│       └── suppliers/        # Supplier components
-│           ├── SupplierCard.jsx
-│           ├── SupplierContactCard.jsx
-│           ├── SupplierHeader.jsx
-│           ├── SupplierModal.jsx
-│           ├── SupplierOverviewCards.jsx
-│           ├── SupplierProfileHeader.jsx
-│           └── SupplierPurchaseOrders.jsx
-│   └── staffManagement/      # Staff Management domain components
-│       ├── Sidebar.jsx       # Staff management sidebar navigation
-│       ├── Topbar.jsx        # Staff management top navigation bar
-│       ├── employee/         # Employee / staff directory components
-│       │   ├── StaffCard.jsx
-│       │   ├── StaffContactCard.jsx
-│       │   ├── StaffDocuments.jsx
-│       │   ├── StaffHeader.jsx
-│       │   ├── StaffModal.jsx
-│       │   ├── StaffOverviewCards.jsx
-│       │   └── StaffProfileHeader.jsx
-│       ├── attendance/       # Attendance sub-components
-│       │   ├── AttendanceHeader.jsx
-│       │   ├── AttendanceFilters.jsx
-│       │   ├── AttendanceTable.jsx
-│       │   ├── AttendanceTableRow.jsx
-│       │   ├── AttendanceStatsCards.jsx
-│       │   └── AttendanceStatusBadge.jsx
-│       ├── activityLogs/     # Activity logs sub-components
-│       │   ├── ActivityLogsHeader.jsx
-│       │   ├── ActivityLogsFilters.jsx
-│       │   ├── ActivityLogsTable.jsx
-│       │   ├── ActivityLogsTableRow.jsx
-│       │   └── ActivityLogsStatsCards.jsx
-│       └── kiosk/            # Check In / Check Out kiosk components
-│           ├── ActionButtons.jsx
-│           ├── ConfirmationDisplay.jsx
-│           ├── EmployeeIdInput.jsx
-│           ├── KioskCard.jsx
-│           ├── KioskFooter.jsx
-│           └── LiveClock.jsx
+│   ├── supplierManagement/   # Supplier Management domain components
+│   │   ├── dashboard/        # Dashboard sub-components
+│   │   │   ├── DashboardHeader.jsx
+│   │   │   ├── KpiCards.jsx
+│   │   │   ├── Sidebar.jsx
+│   │   │   ├── SupplierRow.jsx
+│   │   │   ├── SupplierTable.jsx
+│   │   │   └── Topbar.jsx
+│   │   ├── payments/         # Payment components — empty
+│   │   ├── purchaseOrders/   # Purchase order components — empty
+│   │   ├── reports/          # Report components — empty
+│   │   └── suppliers/        # Supplier components
+│   │       ├── SupplierCard.jsx
+│   │       ├── SupplierContactCard.jsx
+│   │       ├── SupplierHeader.jsx
+│   │       ├── SupplierModal.jsx
+│   │       ├── SupplierOverviewCards.jsx
+│   │       ├── SupplierProfileHeader.jsx
+│   │       └── SupplierPurchaseOrders.jsx
+│   ├── staffManagement/      # Staff Management domain components
+│   │   ├── Sidebar.jsx       # Staff management sidebar navigation
+│   │   ├── Topbar.jsx        # Staff management top navigation bar
+│   │   ├── employee/         # Employee / staff directory components
+│   │   │   ├── StaffCard.jsx
+│   │   │   ├── StaffContactCard.jsx
+│   │   │   ├── StaffDocuments.jsx
+│   │   │   ├── StaffHeader.jsx
+│   │   │   ├── StaffModal.jsx
+│   │   │   ├── StaffOverviewCards.jsx
+│   │   │   └── StaffProfileHeader.jsx
+│   │   ├── attendance/       # Attendance sub-components
+│   │   │   ├── AttendanceHeader.jsx
+│   │   │   ├── AttendanceFilters.jsx
+│   │   │   ├── AttendanceTable.jsx
+│   │   │   ├── AttendanceTableRow.jsx
+│   │   │   ├── AttendanceStatsCards.jsx
+│   │   │   └── AttendanceStatusBadge.jsx
+│   │   ├── activityLogs/     # Activity logs sub-components
+│   │   │   ├── ActivityLogsHeader.jsx
+│   │   │   ├── ActivityLogsFilters.jsx
+│   │   │   ├── ActivityLogsTable.jsx
+│   │   │   ├── ActivityLogsTableRow.jsx
+│   │   │   └── ActivityLogsStatsCards.jsx
+│   │   └── kiosk/            # Check In / Check Out kiosk components
+│   │       ├── ActionButtons.jsx
+│   │       ├── ConfirmationDisplay.jsx
+│   │       ├── EmployeeIdInput.jsx
+│   │       ├── KioskCard.jsx
+│   │       ├── KioskFooter.jsx
+│   │       └── LiveClock.jsx
+│   └── inventoryManagement/  # Inventory Management domain components
+│       └── common/           # Shared inventory components
+│           ├── DataTable.jsx
+│           ├── EntryModal.jsx
+│           ├── entryModalConfigs.js
+│           ├── FilterBar.jsx
+│           ├── Pagination.jsx
+│           ├── Sidebar.jsx
+│           ├── StatCard.jsx
+│           ├── StatusBadge.jsx
+│           ├── StockTabs.jsx
+│           └── Topbar.jsx
+├── data/                     # Static/mock data
+│   ├── inventoryManagement/
+│   │   └── inventoryData.js
+│   └── staffManagement/
+│       ├── activityLogsData.js
+│       └── attendanceData.js
 ├── hooks/                    # Custom React hooks — empty
 ├── layouts/                  # Layout components
 │   ├── supplierManagement/
 │   │   └── SupplierManagemetnLayout.jsx   # Supplier Management layout wrapper
-│   └── staffManagement/
-│       └── StaffManagementLayout.jsx     # Staff Management layout wrapper
+│   ├── staffManagement/
+│   │   └── StaffManagementLayout.jsx     # Staff Management layout wrapper
+│   └── inventoryManagement/
+│       └── InventoryLayout.jsx           # Inventory Management layout wrapper
 ├── pages/                    # Page-level components
 │   ├── SupplierManagement/
 │   │   ├── Dashboard.jsx     # Supplier Management dashboard page
 │   │   ├── Suppliers.jsx     # Suppliers listing page
 │   │   └── SupplierInformation.jsx  # Supplier information/detail page
-│   └── StaffManagement/
-│       ├── Dashboard.jsx     # Staff Management dashboard page
-│       ├── Staff.jsx         # Staff listing page
-│       ├── StaffInformation.jsx  # Staff information/detail page
-│       ├── attendance/
-│       │   └── Attendance.jsx    # Attendance tracking page
-│       ├── activityLogs/
-│       │   └── ActivityLogs.jsx  # Activity logs page
-│       ├── employee/
-│       │   └── Employee.jsx      # Employee directory page
-│       └── kiosk/
-│           └── Kiosk.jsx         # Check In / Check Out kiosk page
+│   ├── StaffManagement/
+│   │   ├── dashboard/
+│   │   │   └── Dashboard.jsx # Staff Management dashboard page
+│   │   ├── employee/
+│   │   │   └── Employee.jsx  # Employee directory page
+│   │   ├── attendance/
+│   │   │   └── Attendance.jsx    # Attendance tracking page
+│   │   ├── activityLogs/
+│   │   │   └── ActivityLogs.jsx  # Activity logs page
+│   │   ├── kiosk/
+│   │   │   └── Kiosk.jsx         # Check In / Check Out kiosk page
+│   │   └── StaffInformation.jsx  # Staff information/detail page
+│   └── InventoryManagement/
+│       ├── CurrentStock.jsx       # Current stock overview page
+│       ├── OpeningStock.jsx       # Opening stock page
+│       ├── ClosingStock.jsx       # Closing stock page
+│       ├── AvailableStock.jsx     # Available stock page
+│       ├── ReservedStock.jsx      # Reserved stock page
+│       ├── BatchManagement.jsx    # Batch management page
+│       ├── StockAdjustment.jsx    # Stock adjustments page
+│       ├── StockTransfer.jsx      # Stock transfers page
+│       ├── PhysicalVerification.jsx  # Physical verification page
+│       ├── DamagedStock.jsx       # Damaged stock page
+│       ├── ExpiredStock.jsx       # Expired stock page
+│       ├── NearExpiry.jsx         # Near-expiry stock page
+│       ├── LowStockAlerts.jsx     # Low stock alerts page
+│       ├── OverstockAlerts.jsx    # Overstock alerts page
+│       └── StockLedger.jsx        # Stock ledger page
 ├── routes/                   # Route definitions
 │   └── Router.jsx            # Main router configuration
 ├── services/                 # API/service layer — empty
@@ -138,18 +175,44 @@ src/
 
 ### Pages (`src/pages/`)
 
+#### Supplier Management
+
 | File | Description |
 |------|-------------|
 | `SupplierManagement/Dashboard.jsx` | Supplier Management dashboard page |
 | `SupplierManagement/Suppliers.jsx` | Suppliers listing page |
 | `SupplierManagement/SupplierInformation.jsx` | Supplier information/detail page (profile, KPIs, contact, purchase orders) |
-| `StaffManagement/Dashboard.jsx` | Staff Management dashboard page (KPI cards, staff directory table) |
-| `StaffManagement/Staff.jsx` | Staff listing page (grid of staff cards with add/edit) |
-| `StaffManagement/StaffInformation.jsx` | Staff information/detail page (profile, KPIs, contact, documents) |
+
+#### Staff Management
+
+| File | Description |
+|------|-------------|
+| `StaffManagement/dashboard/Dashboard.jsx` | Staff Management dashboard page (KPI cards, staff directory table) |
+| `StaffManagement/employee/Employee.jsx` | Employee directory page (staff cards grid with live search, add/edit modals) |
 | `StaffManagement/attendance/Attendance.jsx` | Attendance tracking page (records, filters, stats) |
 | `StaffManagement/activityLogs/ActivityLogs.jsx` | Activity logs page (logs, filters, stats) |
-| `StaffManagement/employee/Employee.jsx` | Employee directory page (staff cards grid with live search, add/edit modals) |
 | `StaffManagement/kiosk/Kiosk.jsx` | Check In / Check Out kiosk page (employee ID lookup, check-in/out actions, live clock) |
+| `StaffManagement/StaffInformation.jsx` | Staff information/detail page (profile, KPIs, contact, documents) |
+
+#### Inventory Management
+
+| File | Description |
+|------|-------------|
+| `InventoryManagement/CurrentStock.jsx` | Current stock overview page |
+| `InventoryManagement/OpeningStock.jsx` | Opening stock page |
+| `InventoryManagement/ClosingStock.jsx` | Closing stock page |
+| `InventoryManagement/AvailableStock.jsx` | Available stock page |
+| `InventoryManagement/ReservedStock.jsx` | Reserved stock page |
+| `InventoryManagement/BatchManagement.jsx` | Batch management page |
+| `InventoryManagement/StockAdjustment.jsx` | Stock adjustments page |
+| `InventoryManagement/StockTransfer.jsx` | Stock transfers page |
+| `InventoryManagement/PhysicalVerification.jsx` | Physical verification page |
+| `InventoryManagement/DamagedStock.jsx` | Damaged stock page |
+| `InventoryManagement/ExpiredStock.jsx` | Expired stock page |
+| `InventoryManagement/NearExpiry.jsx` | Near-expiry stock page |
+| `InventoryManagement/LowStockAlerts.jsx` | Low stock alerts page |
+| `InventoryManagement/OverstockAlerts.jsx` | Overstock alerts page |
+| `InventoryManagement/StockLedger.jsx` | Stock ledger page |
 
 ### Components (`src/components/`)
 
@@ -227,12 +290,36 @@ src/
 | `KioskFooter.jsx` | Footer with secure terminal branding |
 | `LiveClock.jsx` | Real-time clock updating every second with date display |
 
+#### `inventoryManagement/common/`
+
+| File | Description |
+|------|-------------|
+| `DataTable.jsx` | Reusable enterprise data table |
+| `EntryModal.jsx` | Reusable modal form for add/edit entries |
+| `entryModalConfigs.js` | Modal field configuration definitions |
+| `FilterBar.jsx` | Filter controls for inventory tables |
+| `Pagination.jsx` | Pagination controls |
+| `Sidebar.jsx` | Sidebar navigation for the inventory module |
+| `StatCard.jsx` | KPI summary card component |
+| `StatusBadge.jsx` | Status badge component |
+| `StockTabs.jsx` | Tab navigation for stock views |
+| `Topbar.jsx` | Top navigation bar for the inventory module |
+
+### Data (`src/data/`)
+
+| File | Description |
+|------|-------------|
+| `inventoryManagement/inventoryData.js` | Mock inventory data |
+| `staffManagement/activityLogsData.js` | Mock activity logs data |
+| `staffManagement/attendanceData.js` | Mock attendance data |
+
 ### Layouts (`src/layouts/`)
 
 | File | Description |
 |------|-------------|
 | `supplierManagement/SupplierManagemetnLayout.jsx` | Layout wrapper for Supplier Management pages (note: "Managemetn" typo in filename) |
 | `staffManagement/StaffManagementLayout.jsx` | Layout wrapper for Staff Management pages |
+| `inventoryManagement/InventoryLayout.jsx` | Layout wrapper for Inventory Management pages |
 
 ### Routing (`src/routes/`)
 
@@ -250,13 +337,24 @@ src/
 
 ---
 
+## Routing Overview
+
+The application is organized into three primary route groups, each wrapped in a module-specific layout:
+
+| Base Path | Layout | Routes |
+|-----------|--------|--------|
+| `/` | Supplier Management | Dashboard (index), `suppliers`, `suppliers/:supplierId` |
+| `/staff` | Staff Management | Dashboard (index), `directory`, `attendance`, `kiosk`, `activity-logs`, `:staffId` |
+| `/inventory` | Inventory Management | Current Stock (index), `opening`, `closing`, `available`, `reserved`, `batches`, `adjustments`, `transfers`, `verification`, `damaged`, `expired`, `near-expiry`, `low-stock`, `overstock`, `stock-ledger` |
+
+---
+
 ## Empty / Scaffolded Directories
 
 The following directories exist but are currently empty, serving as placeholders for future development:
 
 | Directory | Planned Purpose |
 |-----------|-----------------|
-| `src/assets/` | Static assets (images, icons, fonts) |
 | `src/components/ui/` | Global reusable UI components (Button, Card, Input, Modal, etc.) |
 | `src/components/supplierManagement/payments/` | Payment-related components |
 | `src/components/supplierManagement/purchaseOrders/` | Purchase order components |
