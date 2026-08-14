@@ -1,13 +1,3 @@
-import {
-  salesData,
-  profitData,
-  purchaseData,
-  inventoryData,
-  gstData,
-  customerData,
-  supplierData,
-} from "./mockData";
-
 export const TABS = [
   { key: "sales", label: "Sales" },
   { key: "purchase", label: "Purchase" },
@@ -30,13 +20,12 @@ export const STAT_LABELS = {
 
 export const ROWS_PER_PAGE = 5;
 
-// Re-export all data
-export {
+export { 
   salesData,
   profitData,
   purchaseData,
   inventoryData,
   gstData,
   customerData,
-  supplierData,
-};
+  supplierData
+} from "./mockData";

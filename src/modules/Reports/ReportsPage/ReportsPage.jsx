@@ -1,15 +1,14 @@
-// reports/ReportsPage.jsx
 import React, { useState, useMemo } from "react";
 import { Search, Download, RefreshCw } from "lucide-react";
 import { TABS, ROWS_PER_PAGE } from "./data";
-import { StatCard, Pagination, Th, Td, gradientBg } from "../components/Shared";
-import SalesTab from "../components/SalesTab";
-import PurchaseTab from "../components/PurchaseTab";
-import InventoryTab from "../components/InventoryTab";
-import GSTTab from "../components/GSTTab";
-import ProfitTab from "../components/ProfitTab";
-import CustomerTab from "../components/CustomerTab";
-import SupplierTab from "../components/SupplierTab";
+import { StatCard, Pagination, Th, Td } from "../components/Shared";
+import SalesTab, { SalesStats, SalesTable } from "../components/SalesTab";
+import PurchaseTab, { PurchaseStats, PurchaseTable } from "../components/PurchaseTab";
+import InventoryTab, { InventoryStats, InventoryTable } from "../components/InventoryTab";
+import GSTTab, { GSTStats, GSTTable } from "../components/GSTTab";
+import ProfitTab, { ProfitStats, ProfitTable } from "../components/ProfitTab";
+import CustomerTab, { CustomerStats, CustomerTable } from "../components/CustomerTab";
+import SupplierTab, { SupplierStats, SupplierTable } from "../components/SupplierTab";
 
 export default function ReportsPage() {
   const [activeTab, setActiveTab] = useState("sales");
@@ -39,41 +38,248 @@ export default function ReportsPage() {
     if (tab === "supplier") setSupplierFilter("All Suppliers");
   };
 
-  const renderActiveTab = () => {
-    const commonProps = {
-      page,
-      setPage,
-      search,
-    };
+  // Render filters based on active tab
+  const renderFilters = () => {
+    const commonFilterClass = "px-3 py-2 border border-[#c2c6d3] rounded focus:ring-2 focus:ring-[#d6e3ff] focus:border-[#004287] outline-none bg-white text-[#121c2a] text-sm";
 
     switch (activeTab) {
       case "sales":
-        return <SalesTab {...commonProps} period={period} branch={branch} setPeriod={setPeriod} setBranch={setBranch} />;
+        return (
+          <>
+            <select
+              value={period}
+              onChange={(e) => {
+                setPeriod(e.target.value);
+                setPage(1);
+              }}
+              className={`${commonFilterClass} w-full md:w-32`}
+            >
+              <option value="Daily">Daily</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
+            <select
+              value={branch}
+              onChange={(e) => {
+                setBranch(e.target.value);
+                setPage(1);
+              }}
+              className={`${commonFilterClass} w-full md:w-40`}
+            >
+              <option value="All Branches">All Branches</option>
+              <option value="Branch 1">Branch 1</option>
+              <option value="Branch 2">Branch 2</option>
+            </select>
+          </>
+        );
       case "purchase":
-        return <PurchaseTab {...commonProps} status={status} supplier={supplier} setStatus={setStatus} setSupplier={setSupplier} />;
+        return (
+          <>
+            <select
+              value={status}
+              onChange={(e) => {
+                setStatus(e.target.value);
+                setPage(1);
+              }}
+              className={`${commonFilterClass} w-full md:w-36`}
+            >
+              <option value="All Status">All Status</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Pending">Pending</option>
+              <option value="Shipped">Shipped</option>
+            </select>
+            <select
+              value={supplier}
+              onChange={(e) => {
+                setSupplier(e.target.value);
+                setPage(1);
+              }}
+              className={`${commonFilterClass} w-full md:w-40`}
+            >
+              <option value="All Suppliers">All Suppliers</option>
+              <option value="Global Pharma">Global Pharma</option>
+              <option value="MedLife Solutions">MedLife Solutions</option>
+              <option value="BioCare Dist.">BioCare Dist.</option>
+              <option value="HealthLink">HealthLink</option>
+              <option value="Reliant Pharma">Reliant Pharma</option>
+            </select>
+          </>
+        );
       case "inventory":
-        return <InventoryTab {...commonProps} inventorySubtype={inventorySubtype} setInventorySubtype={setInventorySubtype} />;
+        return (
+          <div className="flex border border-[#c2c6d3] rounded overflow-hidden">
+            <button
+              onClick={() => {
+                setInventorySubtype("Stock Movement");
+                setPage(1);
+              }}
+              className={`px-4 py-2 text-sm font-medium transition-colors ${
+                inventorySubtype === "Stock Movement"
+                  ? "bg-[#004287] text-white"
+                  : "bg-white text-[#121c2a] hover:bg-[#eff4ff]"
+              }`}
+            >
+              Stock Movement
+            </button>
+            <button
+              onClick={() => {
+                setInventorySubtype("Expiry Reports");
+                setPage(1);
+              }}
+              className={`px-4 py-2 text-sm font-medium transition-colors border-l border-[#c2c6d3] ${
+                inventorySubtype === "Expiry Reports"
+                  ? "bg-[#004287] text-white"
+                  : "bg-white text-[#121c2a] hover:bg-[#eff4ff]"
+              }`}
+            >
+              Expiry Reports
+            </button>
+          </div>
+        );
       case "gst":
-        return <GSTTab {...commonProps} gstFromDate={gstFromDate} gstToDate={gstToDate} setGstFromDate={setGstFromDate} setGstToDate={setGstToDate} />;
+        return (
+          <div className="flex items-center gap-2">
+            <input
+              type="date"
+              value={gstFromDate}
+              onChange={(e) => {
+                setGstFromDate(e.target.value);
+                setPage(1);
+              }}
+              className={`${commonFilterClass} w-full md:w-36`}
+            />
+            <span className="text-[#424751] text-sm">to</span>
+            <input
+              type="date"
+              value={gstToDate}
+              onChange={(e) => {
+                setGstToDate(e.target.value);
+                setPage(1);
+              }}
+              className={`${commonFilterClass} w-full md:w-36`}
+            />
+          </div>
+        );
       case "profit":
-        return <ProfitTab {...commonProps} period={period} profitProduct={profitProduct} setPeriod={setPeriod} setProfitProduct={setProfitProduct} />;
+        return (
+          <>
+            <select
+              value={period}
+              onChange={(e) => {
+                setPeriod(e.target.value);
+                setPage(1);
+              }}
+              className={`${commonFilterClass} w-full md:w-32`}
+            >
+              <option value="Daily">Daily</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
+            <select
+              value={profitProduct}
+              onChange={(e) => {
+                setProfitProduct(e.target.value);
+                setPage(1);
+              }}
+              className={`${commonFilterClass} w-full md:w-44`}
+            >
+              <option value="All Products">All Products</option>
+              <option value="Paracetamol">Paracetamol</option>
+              <option value="Amoxicillin">Amoxicillin</option>
+              <option value="Ibuprofen">Ibuprofen</option>
+              <option value="Azithromycin">Azithromycin</option>
+            </select>
+          </>
+        );
       case "customer":
-        return <CustomerTab {...commonProps} customerType={customerType} setCustomerType={setCustomerType} />;
+        return (
+          <select
+            value={customerType}
+            onChange={(e) => {
+              setCustomerType(e.target.value);
+              setPage(1);
+            }}
+            className={`${commonFilterClass} w-full md:w-44`}
+          >
+            <option value="All Customers">All Customers</option>
+            <option value="Repeat">Repeat</option>
+            <option value="One-Time">One-Time</option>
+          </select>
+        );
       case "supplier":
-        return <SupplierTab {...commonProps} supplierFilter={supplierFilter} setSupplierFilter={setSupplierFilter} />;
+        return (
+          <select
+            value={supplierFilter}
+            onChange={(e) => {
+              setSupplierFilter(e.target.value);
+              setPage(1);
+            }}
+            className={`${commonFilterClass} w-full md:w-44`}
+          >
+            <option value="All Suppliers">All Suppliers</option>
+            <option value="Has Outstanding">Has Outstanding</option>
+            <option value="Fully Paid">Fully Paid</option>
+          </select>
+        );
+      default:
+        return null;
+    }
+  };
+
+  // Render stats based on active tab
+  const renderStats = () => {
+    switch (activeTab) {
+      case "sales":
+        return <SalesStats period={period} />;
+      case "purchase":
+        return <PurchaseStats />;
+      case "inventory":
+        return <InventoryStats />;
+      case "gst":
+        return <GSTStats />;
+      case "profit":
+        return <ProfitStats period={period} />;
+      case "customer":
+        return <CustomerStats />;
+      case "supplier":
+        return <SupplierStats />;
+      default:
+        return null;
+    }
+  };
+
+  // Render table based on active tab
+  const renderTable = () => {
+    switch (activeTab) {
+      case "sales":
+        return <SalesTable period={period} branch={branch} page={page} setPage={setPage} search={search} />;
+      case "purchase":
+        return <PurchaseTable status={status} supplier={supplier} page={page} setPage={setPage} search={search} />;
+      case "inventory":
+        return <InventoryTable inventorySubtype={inventorySubtype} page={page} setPage={setPage} search={search} />;
+      case "gst":
+        return <GSTTable gstFromDate={gstFromDate} gstToDate={gstToDate} page={page} setPage={setPage} search={search} />;
+      case "profit":
+        return <ProfitTable period={period} profitProduct={profitProduct} page={page} setPage={setPage} search={search} />;
+      case "customer":
+        return <CustomerTable customerType={customerType} page={page} setPage={setPage} search={search} />;
+      case "supplier":
+        return <SupplierTable supplierFilter={supplierFilter} page={page} setPage={setPage} search={search} />;
       default:
         return null;
     }
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#F8FAFC]">
+    <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#f8f9ff]">
       <main className="flex-1 overflow-y-auto p-6 space-y-6 pt-0">
         {/* Tab Navigation */}
-        <div className="bg-white border-b border-[rgba(115,118,134,0.3)] sticky top-0 z-20 mt-4">
+        <div className="bg-white border-b border-[#c2c6d3] sticky top-0 z-20 mt-4">
           <div className="flex overflow-x-auto no-scrollbar gap-8 py-2 whitespace-nowrap px-6">
             <div className="flex flex-col gap-2">
-              <span className="text-[12px] font-bold text-[#004ac6] uppercase tracking-wider opacity-60 px-1">
+              <span className="text-[12px] font-bold text-[#004287] uppercase tracking-wider opacity-60 px-1">
                 Reports
               </span>
               <div className="flex gap-4 overflow-y-hidden pb-2">
@@ -81,16 +287,15 @@ export default function ReportsPage() {
                   <a
                     key={t.key}
                     onClick={() => changeTab(t.key)}
-                    className={`text-[16px] text-[#004ac6] relative px-1 cursor-pointer transition-opacity ${
+                    className={`text-[16px] text-[#004287] relative px-1 cursor-pointer transition-opacity ${
                       activeTab === t.key ? "font-bold opacity-100" : "opacity-80 hover:opacity-100"
                     }`}
                   >
                     {t.label}
                     <div
                       className={`absolute -bottom-[10px] left-0 right-0 h-1 rounded-t-full ${
-                        activeTab === t.key ? "" : "hidden"
+                        activeTab === t.key ? "bg-[#004287]" : "hidden"
                       }`}
-                      style={gradientBg}
                     ></div>
                   </a>
                 ))}
@@ -99,35 +304,39 @@ export default function ReportsPage() {
           </div>
         </div>
 
-        <div className="md:hidden font-bold text-2xl tracking-tight text-[#0d1c2e] mb-4">Reports</div>
+        <div className="md:hidden font-bold text-2xl tracking-tight text-[#121c2a] mb-4">Reports</div>
 
-        {/* Global Search and Export Bar */}
-        <div className="bg-white rounded-xs p-4 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] border border-[#E2E8F0] flex flex-col md:flex-row gap-4 items-center justify-between">
-          <div className="relative flex-1 w-full md:w-auto">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+        {/* 1. Stats Cards */}
+        {renderStats()}
+
+        {/* 2. Search Box with Filters, Refresh & Export */}
+        <div className="bg-white rounded border border-[#c2c6d3] p-4 flex flex-col md:flex-row gap-4 items-center justify-between">
+          <div className="relative flex-1 w-full md:w-auto min-w-[200px]">
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#424751] pointer-events-none" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search reports..."
-              className="w-full h-9 pl-9 pr-3 rounded-xs border border-slate-300 bg-white text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-colors focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+              placeholder="Search records..."
+              className="w-full h-9 pl-9 pr-3 rounded border border-[#c2c6d3] bg-white text-sm text-[#121c2a] placeholder:text-[#424751] outline-none transition-colors focus:border-[#004287] focus:ring-2 focus:ring-[#d6e3ff]"
             />
           </div>
 
-          {renderActiveTab()?.props.children}
+          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            {renderFilters()}
+          </div>
 
-          <div className="flex items-center gap-3 md:ml-4">
+          <div className="flex items-center gap-3">
             <button
               onClick={() => setPage(1)}
-              className="p-2 border border-[#c3c6d7] rounded-xs hover:bg-[#e6eeff] hover:text-teal-accent transition-colors flex items-center justify-center text-[#434655]"
+              className="p-2 border border-[#c2c6d3] rounded hover:bg-[#eff4ff] transition-colors flex items-center justify-center text-[#424751]"
               title="Refresh"
             >
               <RefreshCw size={18} />
             </button>
             <button
               onClick={() => alert("Export CSV")}
-              className="flex items-center gap-2 px-4 py-2 border font-bold transition-colors hover:bg-[rgba(15,82,186,0.05)]"
-              style={{ border: "1px solid #0F52BA", color: "#0F52BA" }}
+              className="flex items-center gap-2 px-4 py-2 bg-[#004287] text-white font-bold rounded transition-colors hover:bg-[#235eac]"
             >
               <Download size={18} />
               <span>Export CSV</span>
@@ -135,7 +344,8 @@ export default function ReportsPage() {
           </div>
         </div>
 
-        {renderActiveTab()}
+        {/* 3. Table */}
+        {renderTable()}
       </main>
     </div>
   );
