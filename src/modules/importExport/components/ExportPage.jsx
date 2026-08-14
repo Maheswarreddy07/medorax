@@ -49,9 +49,9 @@ export default function ExportPage({ onToast }) {
         {/* Left: Configuration */}
         <div className="lg:col-span-2 space-y-6">
           {/* Data Type Selection */}
-          <div className="bg-white rounded-xs border border-[#E2E8F0] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] p-6">
-            <h3 className="font-semibold text-[#0F172A] mb-4 flex items-center gap-2">
-              <Layers size={18} className="text-[#004ac6]" />
+          <div className="bg-white rounded border border-[#c2c6d3] p-6">
+            <h3 className="font-semibold text-[#121c2a] mb-4 flex items-center gap-2">
+              <Layers size={18} className="text-[#004287]" />
               Select Data Type
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -69,9 +69,9 @@ export default function ExportPage({ onToast }) {
                       defaultChecked={type.key === "medicines"}
                       className="peer sr-only"
                     />
-                    <div className="p-4 rounded-xs border-2 border-[#c3c6d7] peer-checked:border-[#004ac6] peer-checked:bg-[#e6eeff]/30 transition flex flex-col items-center text-center gap-2 hover:bg-[#F8FAFC]">
-                      <Icon size={28} className="text-[#004ac6]" />
-                      <span className="font-medium text-sm">{type.label}</span>
+                    <div className="p-4 rounded border-2 border-[#c2c6d3] peer-checked:border-[#004287] peer-checked:bg-[#d6e3ff] transition flex flex-col items-center text-center gap-2 hover:bg-[#f8f9ff]">
+                      <Icon size={28} className="text-[#004287]" />
+                      <span className="font-medium text-sm text-[#121c2a]">{type.label}</span>
                     </div>
                   </label>
                 );
@@ -79,13 +79,13 @@ export default function ExportPage({ onToast }) {
             </div>
           </div>
 
-          <div className="bg-white rounded-xs border border-[#E2E8F0] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] p-6">
-            <h3 className="font-semibold text-[#0F172A] mb-4 flex items-center gap-2">
-              <Filter size={18} className="text-[#004ac6]" />
+          <div className="bg-white rounded border border-[#c2c6d3] p-6">
+            <h3 className="font-semibold text-[#121c2a] mb-4 flex items-center gap-2">
+              <Filter size={18} className="text-[#004287]" />
               Format &amp; Columns
             </h3>
             <div className="mb-6">
-              <label className="block text-sm font-medium text-[#64748B] mb-2">Export Format</label>
+              <label className="block text-sm font-medium text-[#424751] mb-2">Export Format</label>
               <div className="flex gap-4 flex-wrap">
                 {[
                   { key: "csv", label: "CSV (.csv)", icon: FileSpreadsheet },
@@ -99,9 +99,9 @@ export default function ExportPage({ onToast }) {
                         type="radio"
                         name="format"
                         defaultChecked={format.key === "csv"}
-                        className="text-[#004ac6] focus:ring-[#004ac6] h-4 w-4"
+                        className="text-[#004287] focus:ring-[#004287] h-4 w-4"
                       />
-                      <span className="text-sm flex items-center gap-1">
+                      <span className="text-sm text-[#121c2a] flex items-center gap-1">
                         <Icon size={14} />
                         {format.label}
                       </span>
@@ -110,21 +110,21 @@ export default function ExportPage({ onToast }) {
                 })}
               </div>
             </div>
-            <div className="border-t border-outline-variant/30 pt-4">
+            <div className="border-t border-[#c2c6d3] pt-4">
               <div className="flex justify-between items-center mb-3">
-                <label className="block text-sm font-medium text-[#64748B]">Select Columns</label>
-                <button onClick={toggleAllColumns} className="text-xs text-[#004ac6] font-medium hover:underline">
+                <label className="block text-sm font-medium text-[#424751]">Select Columns</label>
+                <button onClick={toggleAllColumns} className="text-xs text-[#004287] font-medium hover:underline">
                   {selectedColumns.every((c) => c.checked) ? "Deselect All" : "Select All"}
                 </button>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 {selectedColumns.map((col, idx) => (
-                  <label key={idx} className="flex items-center gap-2 text-sm cursor-pointer hover:text-[#0F172A]">
+                  <label key={idx} className="flex items-center gap-2 text-sm text-[#424751] cursor-pointer hover:text-[#121c2a]">
                     <input
                       type="checkbox"
                       checked={col.checked}
                       onChange={() => toggleColumn(idx)}
-                      className="text-[#004ac6] rounded focus:ring-[#004ac6]"
+                      className="text-[#004287] rounded focus:ring-[#004287]"
                     />
                     {col.name}
                   </label>
@@ -136,36 +136,36 @@ export default function ExportPage({ onToast }) {
 
         {/* Right: Summary */}
         <div className="space-y-6">
-          <div className="bg-white rounded-xs border border-[#E2E8F0] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] p-6 flex flex-col h-full">
-            <h3 className="font-semibold text-[#0F172A] mb-4">Export Summary</h3>
+          <div className="bg-white rounded border border-[#c2c6d3] p-6 flex flex-col h-full">
+            <h3 className="font-semibold text-[#121c2a] mb-4">Export Summary</h3>
             <div className="space-y-3 flex-1">
-              <div className="flex justify-between text-sm pb-2 border-b border-outline-variant/30">
-                <span className="text-[#64748B]">Data Source</span>
-                <span className="font-medium text-[#0F172A]">Medicines Inventory</span>
+              <div className="flex justify-between text-sm pb-2 border-b border-[#c2c6d3]">
+                <span className="text-[#424751]">Data Source</span>
+                <span className="font-medium text-[#121c2a]">Medicines Inventory</span>
               </div>
-              <div className="flex justify-between text-sm pb-2 border-b border-outline-variant/30">
-                <span className="text-[#64748B]">Columns Selected</span>
-                <span className="font-medium text-[#0F172A]">
+              <div className="flex justify-between text-sm pb-2 border-b border-[#c2c6d3]">
+                <span className="text-[#424751]">Columns Selected</span>
+                <span className="font-medium text-[#121c2a]">
                   {selectedColumns.filter((c) => c.checked).length} of {selectedColumns.length}
                 </span>
               </div>
-              <div className="flex justify-between text-sm pb-2 border-b border-outline-variant/30">
-                <span className="text-[#64748B]">Est. Row Count</span>
-                <span className="font-medium text-[#0F172A]">~15,420</span>
+              <div className="flex justify-between text-sm pb-2 border-b border-[#c2c6d3]">
+                <span className="text-[#424751]">Est. Row Count</span>
+                <span className="font-medium text-[#121c2a]">~15,420</span>
               </div>
-              <div className="mt-4 relative rounded-xs border border-[#E2E8F0] overflow-hidden bg-[#F8FAFC] h-24">
+              <div className="mt-4 relative rounded border border-[#c2c6d3] overflow-hidden bg-[#f8f9ff] h-24">
                 <div className="absolute inset-0 bg-white/50 backdrop-blur-[2px] z-10 flex items-center justify-center">
-                  <span className="text-xs font-medium text-[#64748B] flex items-center gap-1">
+                  <span className="text-xs font-medium text-[#424751] flex items-center gap-1">
                     <EyeOff size={14} />
                     Preview Blurred
                   </span>
                 </div>
-                <table className="w-full text-[8px] text-[#64748B] opacity-50">
+                <table className="w-full text-[8px] text-[#424751] opacity-50">
                   <tbody>
-                    <tr className="border-b border-[#E2E8F0]">
-                      <th className="p-1">SKU</th>
-                      <th className="p-1">Name</th>
-                      <th className="p-1">Cat</th>
+                    <tr className="border-b border-[#c2c6d3]">
+                      <th className="p-1 text-[#424751]">SKU</th>
+                      <th className="p-1 text-[#424751]">Name</th>
+                      <th className="p-1 text-[#424751]">Cat</th>
                     </tr>
                     <tr>
                       <td className="p-1">M-01</td>
@@ -184,10 +184,7 @@ export default function ExportPage({ onToast }) {
             <button
               onClick={handleExport}
               disabled={isExporting}
-              className="mt-6 w-full py-3 text-white font-bold rounded-xs shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 disabled:opacity-70"
-              style={{
-                background: "linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(20, 184, 166) 55%, rgb(16, 185, 129) 100%)",
-              }}
+              className="mt-6 w-full py-3 bg-[#004287] text-white font-bold rounded hover:bg-[#235eac] transition-all flex items-center justify-center gap-2 disabled:opacity-70"
             >
               {isExporting ? (
                 <>

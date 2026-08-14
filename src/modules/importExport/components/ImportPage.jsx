@@ -31,7 +31,7 @@ export default function ImportPage({ onToast }) {
     const rowEl = document.getElementById(`preview-row-${data.errorRowIdx}`);
     if (rowEl) {
       rowEl.classList.add("animate-pulse");
-      rowEl.style.backgroundColor = "#FEF2F2";
+      rowEl.style.backgroundColor = "#ffdad6";
       setTimeout(() => {
         rowEl.classList.remove("animate-pulse");
         rowEl.style.backgroundColor = "";
@@ -69,36 +69,30 @@ export default function ImportPage({ onToast }) {
     const data = getData();
     return (
       <table className="w-full text-left text-sm whitespace-nowrap">
-        <thead className="bg-[#F8FAFC] text-[#0F172A] font-bold">
+        <thead className="bg-[#eff4ff] text-[#121c2a] font-bold">
           <tr>
             {data.headers.map((h, i) => (
               <Th key={i}>{h}</Th>
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-outline-variant/20 text-[#475569]">
+        <tbody className="divide-y divide-[#c2c6d3] text-[#424751]">
           {data.rows.map((row, idx) => {
             const isError = idx === data.errorRowIdx;
             return (
               <tr
                 key={idx}
                 id={`preview-row-${idx}`}
-                className={`transition-colors ${idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"} ${
-                  isError ? "border-l-2 border-red-500" : ""
-                } hover:bg-slate-50`}
+                className={`transition-colors ${idx % 2 === 0 ? "bg-white" : "bg-[#f8f9ff]"} ${
+                  isError ? "border-l-2 border-[#ba1a1a]" : ""
+                } hover:bg-[#eff4ff]`}
               >
                 {row.slice(0, data.headers.length).map((cell, cellIdx) => {
+                  // Only show error icon on the first cell of the error row
                   const isErrorCell = isError && cellIdx === 0;
                   return (
                     <Td key={cellIdx} isError={isErrorCell}>
-                      {isErrorCell ? (
-                        <span className="flex items-center gap-1">
-                          <AlertCircle size={14} className="text-red-500" />
-                          {cell}
-                        </span>
-                      ) : (
-                        cell
-                      )}
+                      {cell}
                     </Td>
                   );
                 })}
@@ -113,7 +107,7 @@ export default function ImportPage({ onToast }) {
   return (
     <div className="space-y-6 animate-in fade-in duration-200">
       {/* Sub-tabs & Actions */}
-      <div className="bg-white rounded-xs p-4 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] border border-[#E2E8F0] flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="bg-white rounded border border-[#c2c6d3] p-4 flex flex-col md:flex-row gap-4 items-center justify-between">
         <div className="flex gap-2 bg-transparent">
           {[
             { key: "medicines", label: "Medicines", icon: Package },
@@ -127,13 +121,13 @@ export default function ImportPage({ onToast }) {
                 key={s.key}
                 onClick={() => setActiveSubTab(s.key)}
                 className={`pb-2 px-3 text-sm font-medium relative transition-colors flex items-center gap-1.5 ${
-                  isActive ? "text-[#004ac6] font-bold" : "text-[#64748B] hover:text-[#0F172A]"
+                  isActive ? "text-[#004287] font-bold" : "text-[#424751] hover:text-[#121c2a]"
                 }`}
               >
                 <Icon size={16} />
                 {s.label}
                 {isActive && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r from-[#2563eb] via-[#14b8a6] to-[#10b981]"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#004287]"></div>
                 )}
               </button>
             );
@@ -141,8 +135,7 @@ export default function ImportPage({ onToast }) {
         </div>
         <button
           onClick={handleDownloadTemplate}
-          className="px-4 py-1.5 text-sm font-medium rounded-xs transition flex items-center gap-2"
-          style={{ border: "1px solid #0F52BA", color: "#0F52BA", background: "transparent" }}
+          className="px-4 py-1.5 text-sm font-medium rounded transition flex items-center gap-2 border border-[#004287] text-[#004287] hover:bg-[#eff4ff]"
         >
           <Download size={16} />
           Template
@@ -151,33 +144,33 @@ export default function ImportPage({ onToast }) {
 
       {!isUploaded ? (
         <div
-          className="border-2 border-dashed border-[#c3c6d7] rounded-xs p-12 text-center bg-white transition-colors hover:border-[#13B8A7]/50 cursor-pointer flex flex-col items-center justify-center min-h-75"
+          className="border-2 border-dashed border-[#c2c6d3] rounded p-12 text-center bg-white transition-colors hover:border-[#004287] cursor-pointer flex flex-col items-center justify-center min-h-75"
           onClick={handleUpload}
         >
-          <Upload size={48} className="text-[#004ac6] mb-4 opacity-60" />
-          <h3 className="font-headline-md text-[#0F172A] mb-2">Drag &amp; Drop file to import</h3>
-          <p className="text-[#64748B] text-sm mb-6">Supported formats: .csv, .xlsx (Max 50MB)</p>
-          <button className="px-6 py-2 bg-white border border-[#E2E8F0] rounded-xs font-medium text-[#004ac6] shadow-sm hover:bg-[#F8FAFC] transition">
+          <Upload size={48} className="text-[#004287] mb-4 opacity-60" />
+          <h3 className="font-headline-md text-[#121c2a] mb-2">Drag &amp; Drop file to import</h3>
+          <p className="text-[#424751] text-sm mb-6">Supported formats: .csv, .xlsx (Max 50MB)</p>
+          <button className="px-6 py-2 bg-white border border-[#c2c6d3] rounded font-medium text-[#004287] hover:bg-[#f8f9ff] transition">
             Browse File
           </button>
         </div>
       ) : (
-        <div className="bg-white rounded-xs border border-[#E2E8F0] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col">
-          <div className="p-4 border-b border-outline-variant/30 flex justify-between items-center bg-[#F8FAFC]">
-            <h3 className="font-semibold text-[#0F172A] flex items-center gap-2">
-              <Table size={18} className="text-[#004ac6]" />
+        <div className="bg-white rounded border border-[#c2c6d3] overflow-hidden flex flex-col">
+          <div className="p-4 border-b border-[#c2c6d3] flex justify-between items-center bg-[#eff4ff]">
+            <h3 className="font-semibold text-[#121c2a] flex items-center gap-2">
+              <Table size={18} className="text-[#004287]" />
               Data Preview (<span className="font-normal">{activeSubTab.charAt(0).toUpperCase() + activeSubTab.slice(1)}.csv</span>)
             </h3>
-            <button onClick={handleResetUpload} className="text-[#64748B] hover:text-[#0F172A] transition">
+            <button onClick={handleResetUpload} className="text-[#424751] hover:text-[#121c2a] transition">
               <X size={18} />
             </button>
           </div>
           <div className="overflow-x-auto">{renderPreviewTable()}</div>
-          <div className="p-4 bg-[#F8FAFC] border-t border-outline-variant/30 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <div className="p-4 bg-[#eff4ff] border-t border-[#c2c6d3] flex flex-col sm:flex-row justify-between items-center gap-3">
             <div className="flex items-center gap-2 text-sm">
-              <span className="px-2 py-1 bg-[#e6eeff] rounded text-[#004ac6] font-medium">24 rows ready</span>
-              <span className="text-[#64748B]">•</span>
-              <span className="px-2 py-1 bg-red-50 text-red-600 rounded font-medium flex items-center gap-1">
+              <span className="px-2 py-1 bg-[#d6e3ff] rounded text-[#004287] font-medium">24 rows ready</span>
+              <span className="text-[#424751]">•</span>
+              <span className="px-2 py-1 bg-[#ffdad6] text-[#ba1a1a] rounded font-medium flex items-center gap-1">
                 <AlertCircle size={14} />
                 1 error found
               </span>
@@ -185,16 +178,13 @@ export default function ImportPage({ onToast }) {
             <div className="flex gap-3">
               <button
                 onClick={handleFixErrors}
-                className="px-4 py-2 text-red-600 font-medium border border-red-200 rounded-xs hover:bg-red-50 transition text-sm"
+                className="px-4 py-2 text-[#ba1a1a] font-medium border border-[#ffdad6] rounded hover:bg-[#ffdad6] transition text-sm"
               >
                 Fix Errors
               </button>
               <button
                 onClick={handleImportAnyway}
-                className="px-4 py-2 text-white font-medium rounded-xs hover:shadow-md transition text-sm"
-                style={{
-                  background: "linear-gradient(135deg, rgb(37, 99, 235) 0%, rgb(20, 184, 166) 55%, rgb(16, 185, 129) 100%)",
-                }}
+                className="px-4 py-2 bg-[#004287] text-white font-medium rounded hover:bg-[#235eac] transition text-sm"
               >
                 Import Anyway
               </button>
@@ -203,21 +193,21 @@ export default function ImportPage({ onToast }) {
         </div>
       )}
 
-      <div className="bg-white rounded-xs border border-[#E2E8F0] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)]">
+      <div className="bg-white rounded border border-[#c2c6d3]">
         <button
           onClick={() => setShowHistory(!showHistory)}
-          className="w-full p-4 flex justify-between items-center bg-[#F8FAFC] rounded-t-xs hover:bg-[#e6eeff]/50 transition"
+          className="w-full p-4 flex justify-between items-center bg-[#eff4ff] rounded-t hover:bg-[#d6e3ff] transition"
         >
-          <h3 className="font-semibold text-[#0F172A] flex items-center gap-2">
-            <History size={18} className="text-[#004ac6]" />
+          <h3 className="font-semibold text-[#121c2a] flex items-center gap-2">
+            <History size={18} className="text-[#004287]" />
             Import History
           </h3>
           {showHistory ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
         </button>
         {showHistory && (
-          <div className="border-t border-outline-variant/30 overflow-x-auto">
+          <div className="border-t border-[#c2c6d3] overflow-x-auto">
             <table className="w-full text-left text-sm whitespace-nowrap">
-              <thead className="bg-[#F8FAFC] text-[#0F172A] font-bold">
+              <thead className="bg-[#eff4ff] text-[#121c2a] font-bold">
                 <tr>
                   <Th>Date</Th>
                   <Th>File Name</Th>
@@ -226,11 +216,11 @@ export default function ImportPage({ onToast }) {
                   <Th className="text-center">Status</Th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-outline-variant/20 text-[#475569]">
+              <tbody className="divide-y divide-[#c2c6d3] text-[#424751]">
                 {importHistory.map((item, idx) => (
-                  <tr key={idx} className={`${idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"} hover:bg-slate-50 transition-colors`}>
+                  <tr key={idx} className={`${idx % 2 === 0 ? "bg-white" : "bg-[#f8f9ff]"} hover:bg-[#eff4ff] transition-colors`}>
                     <Td>{item.date}</Td>
-                    <Td className="font-medium text-[#0F172A]">{item.file}</Td>
+                    <Td className="font-medium text-[#121c2a]">{item.file}</Td>
                     <Td>{item.type}</Td>
                     <Td className="text-right">{item.rows}</Td>
                     <td className="py-3 px-4 text-center">
