@@ -2,28 +2,25 @@ import { Bell, Menu } from 'lucide-react';
 
 export default function Navbar() {
   return (
-    <header
-      className="fixed top-0 left-0 md:left-[260px] right-0 py-1 bg-white flex items-center justify-between px-6 z-30"
-      style={{ borderBottom: '3px solid transparent', borderImage: 'linear-gradient(to right, #2563eb, #14b8a6) 1' }}
-    >
+    <header className="fixed top-0 left-0 md:left-64 right-0 h-14 bg-[#f8f9ff] border-b border-[#c2c6d3] flex items-center justify-between px-6 z-30">
       <div className="flex items-center gap-4">
-        <button className="md:hidden p-2 text-[#0F172A]">
+        <button className="md:hidden p-2 text-[#424751]">
           <Menu size={22} />
         </button>
-        <span className="font-bold text-lg text-[#0F172A] tracking-tight">Medorax</span>
+        <span className="font-bold text-[20px] text-[#004287] tracking-tight">MEDORAX</span>
       </div>
 
       <div className="flex items-center gap-4">
-        <button className="relative p-2 rounded-full hover:bg-slate-100 transition-colors text-[#0F172A]">
+        <button className="relative p-2 rounded-full hover:bg-[#eff4ff] transition-colors text-[#424751]">
           <Bell size={20} />
-          <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#ba1a1a] rounded-full"></span>
         </button>
 
-        <button className="flex items-center gap-2 hover:bg-slate-100 p-1  rounded-full transition-colors">
-          <div className="w-8 h-8 rounded-full bg-[#006a60] flex items-center justify-center text-white font-bold text-sm overflow-hidden">
-            U
+        <div className="flex items-center gap-2 hover:bg-[#eff4ff] p-1 rounded-full transition-colors cursor-pointer">
+          <div className="w-8 h-8 rounded-full bg-[#1e5aa8] flex items-center justify-center text-white font-bold text-sm overflow-hidden">
+            <span className="text-[14px] font-semibold">U</span>
           </div>
-        </button>
+        </div>
       </div>
     </header>
   );
