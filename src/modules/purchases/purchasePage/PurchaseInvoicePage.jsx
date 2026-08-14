@@ -10,7 +10,7 @@ import {
   Download,
   Search,
 } from "lucide-react";
-import { Toast, gradientBg } from "../components/Shared";
+import { Toast } from "../components/Shared";
 import ReceiveGoodsTab from "../components/ReceiveGoodsTab";
 import BatchEntryTab from "../components/BatchEntryTab";
 import ExpiryEntryTab from "../components/ExpiryEntryTab";
@@ -108,18 +108,18 @@ const PurchasePageInvoice = () => {
   );
 
   const calculateShelfLife = useCallback((expiryStr) => {
-    if (!expiryStr) return { months: 0, status: "UNKNOWN", badgeClass: "bg-slate-100 text-slate-500" };
+    if (!expiryStr) return { months: 0, status: "UNKNOWN", badgeClass: "bg-[#f8f9ff] text-[#424751]" };
     const now = new Date();
     const expiry = new Date(expiryStr + "-01");
     const months = (expiry.getFullYear() - now.getFullYear()) * 12 + (expiry.getMonth() - now.getMonth());
     let status = "OK";
-    let badgeClass = "bg-emerald-50 text-emerald-600 border border-emerald-200";
+    let badgeClass = "bg-[#94f7b9] text-[#006d40] border border-[#006d40]";
     if (months <= 0) {
       status = "EXPIRED";
-      badgeClass = "bg-red-50 text-red-600 border border-red-200";
+      badgeClass = "bg-[#ffdad6] text-[#ba1a1a] border border-[#ba1a1a]";
     } else if (months <= 6) {
       status = "NEAR EXPIRY";
-      badgeClass = "bg-orange-50 text-orange-600 border border-orange-200";
+      badgeClass = "bg-[#ffdad6] text-[#ba1a1a] border border-[#ba1a1a]";
     }
     return { months, status, badgeClass };
   }, []);
@@ -205,16 +205,16 @@ const PurchasePageInvoice = () => {
   const TabIcon = tabConfig.icon;
 
   return (
-    <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#F8FAFC]">
+    <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#f8f9ff]">
       {toast && (
         <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />
       )}
 
       <main className="flex-1 overflow-y-auto p-6 space-y-6 pt-0">
-        <div className="bg-white border-b border-[rgba(115,118,134,0.3)] sticky top-0 z-20 mt-4">
+        <div className="bg-white border-b border-[#c2c6d3] sticky top-0 z-20 mt-4">
           <div className="flex overflow-x-auto no-scrollbar gap-8 py-2 whitespace-nowrap px-6">
             <div className="flex flex-col gap-2">
-              <span className="text-[12px] font-bold text-[#004ac6] uppercase tracking-wider opacity-60 px-1">
+              <span className="text-[12px] font-bold text-[#004287] uppercase tracking-wider opacity-60 px-1">
                 Purchase Invoice
               </span>
               <div className="flex gap-4 overflow-y-hidden pb-2">
@@ -224,14 +224,13 @@ const PurchasePageInvoice = () => {
                     <button
                       key={tab.key}
                       onClick={() => switchTab(tab.key)}
-                      className={`text-[16px] text-[#004ac6] relative px-1 cursor-pointer transition-opacity flex items-center gap-1.5 ${
+                      className={`text-[16px] text-[#004287] relative px-1 cursor-pointer transition-opacity flex items-center gap-1.5 ${
                         isActive ? "font-bold opacity-100" : "opacity-80 hover:opacity-100"
                       }`}
                     >
                       {tab.label}
                       <div
-                        className={`absolute -bottom-[10px] left-0 right-0 h-1 rounded-t-full ${isActive ? "" : "hidden"}`}
-                        style={gradientBg}
+                        className={`absolute -bottom-[10px] left-0 right-0 h-1 rounded-t-full ${isActive ? "bg-[#004287]" : "hidden"}`}
                       ></div>
                     </button>
                   );
@@ -241,34 +240,33 @@ const PurchasePageInvoice = () => {
           </div>
         </div>
 
-        <h2 className="font-headline-lg-mobile md:hidden text-[#0F172A] mb-4 mt-4 font-bold tracking-tight">
+        <h2 className="font-headline-lg-mobile md:hidden text-[#121c2a] mb-4 mt-4 font-bold tracking-tight">
           {tabConfig.title}
         </h2>
 
-        <div className="bg-white rounded-xs p-4 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)] border border-[#E2E8F0] flex flex-col md:flex-row gap-4 items-center justify-between">
+        <div className="bg-white rounded border border-[#c2c6d3] p-4 flex flex-col md:flex-row gap-4 items-center justify-between">
           <div className="relative flex-1 w-full md:w-auto">
-            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+            <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#424751] pointer-events-none" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search..."
-              className="w-full h-9 pl-9 pr-3 rounded-xs border border-slate-300 bg-white text-sm text-slate-800 placeholder:text-slate-400 outline-none transition-colors focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+              className="w-full h-9 pl-9 pr-3 rounded border border-[#c2c6d3] bg-white text-sm text-[#121c2a] placeholder:text-[#424751] outline-none transition-colors focus:border-[#004287] focus:ring-2 focus:ring-[#d6e3ff]"
             />
           </div>
 
           <div className="flex items-center gap-3 md:ml-4">
             <button
               onClick={() => setPage(1)}
-              className="p-2 border border-[#c3c6d7] rounded-xs hover:bg-[#e6eeff] hover:text-teal-accent transition-colors flex items-center justify-center text-[#434655]"
+              className="p-2 border border-[#c2c6d3] rounded hover:bg-[#eff4ff] transition-colors flex items-center justify-center text-[#424751]"
               title="Refresh"
             >
               <RefreshCw size={18} />
             </button>
             <button
               onClick={() => alert("Export CSV")}
-              className="flex items-center gap-2 px-4 py-2 border font-bold transition-colors hover:bg-[rgba(15,82,186,0.05)]"
-              style={{ border: "1px solid #0F52BA", color: "#0F52BA" }}
+              className="flex items-center gap-2 px-4 py-2 border border-[#004287] text-[#004287] font-bold rounded transition-colors hover:bg-[#eff4ff]"
             >
               <Download size={18} />
               <span>Export</span>
@@ -340,15 +338,14 @@ const PurchasePageInvoice = () => {
         )}
       </main>
 
-      <div className="bg-white border-t border-[#E2E8F0] p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-20 flex justify-between items-center fixed bottom-0 left-0 md:left-64 right-0">
-        <button className="px-6 py-2 text-[#64748B] font-label-md hover:bg-slate-50 border border-transparent hover:border-[#E2E8F0] rounded-xs transition-all">
+      <div className="bg-white border-t border-[#c2c6d3] p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-20 flex justify-between items-center fixed bottom-0 left-0 md:left-64 right-0">
+        <button className="px-6 py-2 text-[#424751] font-label-md hover:bg-[#eff4ff] border border-transparent hover:border-[#c2c6d3] rounded transition-all">
           Cancel
         </button>
         <div className="flex gap-3">
           <button
             onClick={handleSaveDraft}
-            className="px-6 py-2 border rounded-xs font-label-md transition-colors hover:bg-[rgba(15,82,186,0.05)] hidden sm:flex items-center gap-2"
-            style={{ border: "1px solid #0F52BA", color: "#0F52BA" }}
+            className="px-6 py-2 border border-[#004287] text-[#004287] rounded font-label-md transition-colors hover:bg-[#eff4ff] hidden sm:flex items-center gap-2"
           >
             <Save size={16} />
             Save Draft
@@ -356,8 +353,7 @@ const PurchasePageInvoice = () => {
           <button
             onClick={handleConfirm}
             disabled={isSubmitting}
-            className="px-8 py-2 rounded-xs font-label-md shadow-sm flex items-center gap-2 text-white hover:opacity-90 transition-opacity disabled:opacity-70"
-            style={gradientBg}
+            className="px-8 py-2 rounded font-label-md shadow-sm flex items-center gap-2 text-white bg-[#004287] hover:bg-[#235eac] transition-colors disabled:opacity-70"
           >
             {isSubmitting ? (
               <>

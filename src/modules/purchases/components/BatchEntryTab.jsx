@@ -18,15 +18,15 @@ export default function BatchEntryTab({
 
   return (
     <div className="space-y-6">
-      <div className="bg-white rounded-xs p-6 border border-[#E2E8F0] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)]">
+      <div className="bg-white rounded border border-[#c2c6d3] p-6">
         <div className="flex flex-col md:flex-row md:items-end gap-4 mb-6">
           <div className="flex-1">
-            <label className="block font-label-md text-[#0F172A] mb-1.5">Select Received Item</label>
+            <label className="block font-label-md text-[#121c2a] mb-1.5">Select Received Item</label>
             <div className="relative">
               <select
                 value={currentBatchItemId || ""}
                 onChange={(e) => setCurrentBatchItemId(parseInt(e.target.value) || null)}
-                className="w-full bg-white border border-[#E2E8F0] rounded-xs px-4 py-2.5 font-body-md focus:ring-2 focus:ring-[#004ac6]/20 focus:border-[#004ac6] outline-none transition-all appearance-none"
+                className="w-full bg-white border border-[#c2c6d3] rounded px-4 py-2.5 font-body-md focus:ring-2 focus:ring-[#d6e3ff] focus:border-[#004287] outline-none transition-all appearance-none text-[#121c2a]"
               >
                 <option value="">Select an item to enter batches...</option>
                 {receivedItems.map((item) => (
@@ -35,12 +35,12 @@ export default function BatchEntryTab({
                   </option>
                 ))}
               </select>
-              <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#737686] pointer-events-none" />
+              <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#424751] pointer-events-none" />
             </div>
           </div>
-          <div className="bg-slate-50 px-4 py-2.5 rounded-xs border border-[#E2E8F0] flex flex-col min-w-[140px]">
-            <span className="text-[10px] uppercase text-[#64748B] font-bold tracking-wider">Total Received</span>
-            <span className="text-xl font-bold text-[#0F172A]">{selectedItem?.received || "-"}</span>
+          <div className="bg-[#f8f9ff] px-4 py-2.5 rounded border border-[#c2c6d3] flex flex-col min-w-[140px]">
+            <span className="text-[10px] uppercase text-[#424751] font-bold tracking-wider">Total Received</span>
+            <span className="text-xl font-bold text-[#121c2a]">{selectedItem?.received || "-"}</span>
           </div>
         </div>
 
@@ -49,7 +49,7 @@ export default function BatchEntryTab({
             <div className="overflow-x-auto mb-4">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="text-left border-b border-[#E2E8F0] font-label-md text-[#64748B] uppercase tracking-wider text-[11px]">
+                  <tr className="text-left border-b border-[#c2c6d3] font-label-md text-[#424751] uppercase tracking-wider text-[11px]">
                     <Th className="w-12">#</Th>
                     <Th>Batch Number</Th>
                     <Th className="w-48 text-right">Quantity</Th>
@@ -58,15 +58,15 @@ export default function BatchEntryTab({
                 </thead>
                 <tbody>
                   {batches.map((batch, idx) => (
-                    <tr key={idx} className={`${idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"} border-b border-[#E2E8F0] hover:bg-slate-50/50 transition-colors`}>
-                      <Td className="text-[#64748B]">{idx + 1}</Td>
+                    <tr key={idx} className={`${idx % 2 === 0 ? "bg-white" : "bg-[#f8f9ff]"} border-b border-[#c2c6d3] hover:bg-[#eff4ff] transition-colors`}>
+                      <Td className="text-[#424751]">{idx + 1}</Td>
                       <Td>
                         <input
                           type="text"
                           value={batch.batchNo}
                           onChange={(e) => updateBatchValue(selectedItem.id, idx, "batchNo", e.target.value)}
                           placeholder="Enter Batch #"
-                          className="w-full bg-white border border-[#E2E8F0] rounded-xs px-3 py-2 font-body-md outline-none focus:border-[#13B8A7]"
+                          className="w-full bg-white border border-[#c2c6d3] rounded px-3 py-2 font-body-md outline-none focus:border-[#004287] focus:ring-2 focus:ring-[#d6e3ff] text-[#121c2a]"
                         />
                       </Td>
                       <Td>
@@ -74,11 +74,11 @@ export default function BatchEntryTab({
                           type="number"
                           value={batch.qty}
                           onChange={(e) => updateBatchValue(selectedItem.id, idx, "qty", e.target.value)}
-                          className="w-full text-right bg-white border border-[#E2E8F0] rounded-xs px-3 py-2 font-body-md outline-none focus:border-[#13B8A7]"
+                          className="w-full text-right bg-white border border-[#c2c6d3] rounded px-3 py-2 font-body-md outline-none focus:border-[#004287] focus:ring-2 focus:ring-[#d6e3ff] text-[#121c2a]"
                         />
                       </Td>
                       <Td className="text-center">
-                        <button onClick={() => removeBatchRow(selectedItem.id, idx)} className="text-[#94A3B8] hover:text-red-600 transition-colors">
+                        <button onClick={() => removeBatchRow(selectedItem.id, idx)} className="text-[#424751] hover:text-[#ba1a1a] transition-colors">
                           <Trash2 size={16} />
                         </button>
                       </Td>
@@ -86,17 +86,17 @@ export default function BatchEntryTab({
                   ))}
                 </tbody>
                 <tfoot>
-                  <tr className="bg-slate-50/50">
+                  <tr className="bg-[#f8f9ff]">
                     <td className="py-3 px-4" colSpan="2">
-                      <button onClick={() => addBatchRow(selectedItem.id)} className="flex items-center gap-2 text-[#004ac6] font-bold text-label-md hover:underline">
+                      <button onClick={() => addBatchRow(selectedItem.id)} className="flex items-center gap-2 text-[#004287] font-bold text-label-md hover:underline">
                         <Plus size={16} />
                         Add Batch Row
                       </button>
                     </td>
                     <td className="py-3 px-4 text-right">
                       <div className="flex flex-col items-end">
-                        <span className="text-[10px] text-[#64748B] font-bold uppercase tracking-wider">Total Entered</span>
-                        <span className="text-lg font-bold text-[#0F172A]">{batchTotal}</span>
+                        <span className="text-[10px] text-[#424751] font-bold uppercase tracking-wider">Total Entered</span>
+                        <span className="text-lg font-bold text-[#121c2a]">{batchTotal}</span>
                       </div>
                     </td>
                     <td></td>
@@ -105,12 +105,12 @@ export default function BatchEntryTab({
               </table>
             </div>
             <div
-              className={`flex items-center gap-3 p-4 rounded-xs border ${
+              className={`flex items-center gap-3 p-4 rounded border ${
                 batchTotal === selectedItem.received
-                  ? "bg-emerald-50 border-emerald-200 text-emerald-700"
+                  ? "bg-[#94f7b9] border-[#006d40] text-[#006d40]"
                   : batchTotal > selectedItem.received
-                  ? "bg-red-50 border-red-200 text-red-700"
-                  : "bg-blue-50 border-blue-200 text-blue-700"
+                  ? "bg-[#ffdad6] border-[#ba1a1a] text-[#ba1a1a]"
+                  : "bg-[#d6e3ff] border-[#004287] text-[#004287]"
               }`}
             >
               {batchTotal === selectedItem.received ? (

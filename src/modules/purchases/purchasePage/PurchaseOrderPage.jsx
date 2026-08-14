@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { Send } from "lucide-react";
-import { Toast, gradientBg } from "../components/Shared";
+import { Toast } from "../components/Shared";
 import OrderDetailsSection from "../components/OrderDetailsSection";
 import LineItemsTable from "../components/LineItemsTable";
 import NotesAndSummary from "../components/NotesAndSummary";
@@ -86,12 +86,12 @@ export default function PurchaseOrderPage() {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#F8FAFC]">
+    <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#f8f9ff]">
       {toast && <Toast type={toast.type} message={toast.message} onClose={() => setToast(null)} />}
 
       <main className="flex-1 overflow-y-auto p-6 pb-32">
         <div className="max-w-7xl mx-auto space-y-6">
-          <h2 className="font-headline-lg-mobile md:hidden text-[#0F172A] mb-4 font-bold tracking-tight">
+          <h2 className="font-headline-lg-mobile md:hidden text-[#121c2a] mb-4 font-bold tracking-tight">
             Create Purchase Order
           </h2>
 
@@ -121,23 +121,21 @@ export default function PurchaseOrderPage() {
         </div>
       </main>
 
-      <div className="bg-white border-t border-[#E2E8F0] p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-20 flex justify-between items-center fixed bottom-0 left-0 md:left-64 right-0">
-        <button className="px-6 py-2 text-[#64748B] font-label-md hover:bg-slate-50 border border-transparent hover:border-[#E2E8F0] rounded-xs transition-all">
+      <div className="bg-white border-t border-[#c2c6d3] p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-20 flex justify-between items-center fixed bottom-0 left-0 md:left-64 right-0">
+        <button className="px-6 py-2 text-[#424751] font-label-md hover:bg-[#eff4ff] border border-transparent hover:border-[#c2c6d3] rounded transition-all">
           Cancel
         </button>
         <div className="flex gap-3">
           <button
             onClick={handleSaveDraft}
-            className="px-6 py-2 border rounded-xs font-label-md transition-colors hover:bg-[rgba(15,82,186,0.05)] hidden sm:block"
-            style={{ border: "1px solid #0F52BA", color: "#0F52BA" }}
+            className="px-6 py-2 border rounded font-label-md transition-colors hover:bg-[#eff4ff] hidden sm:block border-[#004287] text-[#004287]"
           >
             Save as Draft
           </button>
           <button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="px-8 py-2 rounded-xs font-label-md shadow-sm flex items-center gap-2 text-white hover:opacity-90 transition-opacity disabled:opacity-70"
-            style={gradientBg}
+            className="px-8 py-2 rounded font-label-md shadow-sm flex items-center gap-2 text-white bg-[#004287] hover:bg-[#235eac] transition-colors disabled:opacity-70"
           >
             {isSubmitting ? (
               <>

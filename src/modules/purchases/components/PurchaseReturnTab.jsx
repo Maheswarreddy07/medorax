@@ -22,19 +22,19 @@ export default function PurchaseReturnTab({
 
   return (
     <div className="space-y-6 pb-20">
-      <div className="bg-white rounded-xs p-6 border border-[#E2E8F0] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.05)]">
-        <h3 className="font-semibold text-[#0F172A] mb-4 pb-2 border-b border-[#E2E8F0] flex items-center gap-2">
-          <Undo2 size={18} className="text-[#004ac6]" />
+      <div className="bg-white rounded border border-[#c2c6d3] p-6">
+        <h3 className="font-semibold text-[#121c2a] mb-4 pb-2 border-b border-[#c2c6d3] flex items-center gap-2">
+          <Undo2 size={18} className="text-[#004287]" />
           Return Details
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
           <div className="flex flex-col gap-1.5">
-            <label className="font-label-md text-[#0F172A]">Reason for Return</label>
+            <label className="font-label-md text-[#121c2a]">Reason for Return</label>
             <div className="relative">
               <select
                 value={returnReason}
                 onChange={(e) => setReturnReason(e.target.value)}
-                className="w-full bg-white border border-[#E2E8F0] rounded-xs px-3 py-2 text-[#0F172A] appearance-none focus:border-[#13B8A7] focus:ring-1 focus:ring-[#13B8A7] font-body-md shadow-sm outline-none"
+                className="w-full bg-white border border-[#c2c6d3] rounded px-3 py-2 text-[#121c2a] appearance-none focus:ring-2 focus:ring-[#d6e3ff] focus:border-[#004287] font-body-md outline-none"
               >
                 {returnReasons.map((reason) => (
                   <option key={reason} value={reason}>
@@ -42,25 +42,25 @@ export default function PurchaseReturnTab({
                   </option>
                 ))}
               </select>
-              <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#737686] pointer-events-none" />
+              <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#424751] pointer-events-none" />
             </div>
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="font-label-md text-[#0F172A]">Return Date</label>
+            <label className="font-label-md text-[#121c2a]">Return Date</label>
             <input
               type="date"
               value={returnDate}
               onChange={(e) => setReturnDate(e.target.value)}
-              className="w-full bg-white border border-[#E2E8F0] rounded-xs px-3 py-2 text-[#0F172A] focus:border-[#13B8A7] focus:ring-1 focus:ring-[#13B8A7] font-body-md shadow-sm outline-none"
+              className="w-full bg-white border border-[#c2c6d3] rounded px-3 py-2 text-[#121c2a] focus:ring-2 focus:ring-[#d6e3ff] focus:border-[#004287] font-body-md outline-none"
             />
           </div>
         </div>
 
-        <h3 className="font-semibold text-[#0F172A] mb-4 pb-2 border-b border-[#E2E8F0]">Items to Return</h3>
+        <h3 className="font-semibold text-[#121c2a] mb-4 pb-2 border-b border-[#c2c6d3]">Items to Return</h3>
         <div className="overflow-x-auto mb-6">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-[#F8FAFC] font-label-md text-[#0F172A] border-b border-outline-variant/20 uppercase tracking-wider text-[11px]">
+              <tr className="bg-[#eff4ff] font-label-md text-[#121c2a] border-b border-[#c2c6d3] uppercase tracking-wider text-[11px]">
                 <Th>Item Name</Th>
                 <Th>Batch No.</Th>
                 <Th className="text-right">Received Qty</Th>
@@ -68,15 +68,15 @@ export default function PurchaseReturnTab({
                 <Th className="text-center">Status</Th>
               </tr>
             </thead>
-            <tbody className="font-body-md text-[#475569] divide-y divide-[#E2E8F0]">
+            <tbody className="font-body-md text-[#424751] divide-y divide-[#c2c6d3]">
               {pagedItems.map((item, idx) => {
                 const returnQty = returnQuantities[item.id] || 0;
                 const isReturning = returnQty > 0;
                 return (
-                  <tr key={item.id} className={`${idx % 2 === 0 ? "bg-white" : "bg-slate-50/50"} hover:bg-slate-50 transition-colors border-b border-[#E2E8F0]`}>
-                    <Td className="font-medium text-[#0F172A]">{item.name}</Td>
-                    <Td className="text-[#64748B]">{item.batch}</Td>
-                    <Td className="text-right text-[#64748B]">{item.received}</Td>
+                  <tr key={item.id} className={`${idx % 2 === 0 ? "bg-white" : "bg-[#f8f9ff]"} hover:bg-[#eff4ff] transition-colors border-b border-[#c2c6d3]`}>
+                    <Td className="font-medium text-[#121c2a]">{item.name}</Td>
+                    <Td className="text-[#424751]">{item.batch}</Td>
+                    <Td className="text-right text-[#424751]">{item.received}</Td>
                     <Td>
                       <input
                         type="number"
@@ -84,15 +84,15 @@ export default function PurchaseReturnTab({
                         max={item.received}
                         value={returnQty}
                         onChange={(e) => updateReturnQuantity(item.id, e.target.value)}
-                        className="w-full text-right bg-white border border-[#E2E8F0] rounded p-1.5 outline-none focus:border-[#13B8A7]"
+                        className="w-full text-right bg-white border border-[#c2c6d3] rounded p-1.5 outline-none focus:ring-2 focus:ring-[#d6e3ff] focus:border-[#004287] text-[#121c2a]"
                       />
                     </Td>
                     <Td className="text-center">
                       <span
                         className={`inline-flex px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${
                           isReturning
-                            ? "bg-red-50 text-red-600 border border-red-200"
-                            : "bg-slate-100 text-[#64748B] border border-[#E2E8F0]"
+                            ? "bg-[#ffdad6] text-[#ba1a1a] border border-[#ba1a1a]"
+                            : "bg-[#f8f9ff] text-[#424751] border border-[#c2c6d3]"
                         }`}
                       >
                         {isReturning ? "RETURN" : "NO RETURN"}
@@ -105,9 +105,9 @@ export default function PurchaseReturnTab({
           </table>
         </div>
         <Pagination page={safePage} totalRows={totalRows} onPageChange={setPage} />
-        <div className="bg-slate-50 p-4 rounded-xs border border-[#E2E8F0] flex justify-between items-center">
-          <span className="font-body-md text-[#64748B] font-medium">Estimated Credit Amount</span>
-          <span className="font-headline-md font-bold text-[#004ac6]">₹{estimatedCredit.toFixed(2)}</span>
+        <div className="bg-[#f8f9ff] p-4 rounded border border-[#c2c6d3] flex justify-between items-center">
+          <span className="font-body-md text-[#424751] font-medium">Estimated Credit Amount</span>
+          <span className="font-headline-md font-bold text-[#004287]">₹{estimatedCredit.toFixed(2)}</span>
         </div>
       </div>
     </div>
