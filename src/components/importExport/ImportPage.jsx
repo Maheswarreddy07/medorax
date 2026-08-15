@@ -14,7 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { Th, Td, StatusBadge } from "./Shared";
-import { tabData, importHistory } from "../importExportPage/data";
+import { tabData, importHistory } from "../../data/importExport/data";
 
 export default function ImportPage({ onToast }) {
   const [activeSubTab, setActiveSubTab] = useState("medicines");

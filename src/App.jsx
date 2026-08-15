@@ -1,11 +1,11 @@
 import {Routes, Route } from "react-router-dom";
 import Login from "@/modules/authentication/Login/Login";
-import SearchPage from "./modules/search/SearchPage/SearchPage";
-import DashboardLayout from "./layouts/DashboardLayout";
-import PurchaseOrderPage from "./modules/purchases/purchasePage/PurchaseOrderPage";
-import PurchaseInvoicePage from "./modules/purchases/purchasePage/PurchaseInvoicePage";
-import ImportExportPage from "./modules/importExport/importExportPage/ImportExportPage";
-import ReportsPage from "./modules/Reports/ReportsPage/ReportsPage";
+import SearchPage from "./pages/Search/SearchPage";
+import DashboardLayout from "./layouts/dashboard/DashboardLayout";
+import PurchaseOrderPage from "./pages/Purchases/PurchaseOrderPage";
+import PurchaseInvoicePage from "./pages/Purchases/PurchaseInvoicePage";
+import ImportExportPage from "./pages/ImportExport/ImportExportPage";
+import ReportsPage from "./pages/Reports/ReportsPage";
 
 
 function App() {

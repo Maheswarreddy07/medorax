@@ -1,15 +1,15 @@
 import React, { useMemo } from "react";
-import { supplierData, STAT_LABELS, ROWS_PER_PAGE } from "../ReportsPage/data";
+import { gstData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
 // Stats Component
-export function SupplierStats() {
-  const [label1, label2, label3] = STAT_LABELS.supplier;
+export function GSTStats() {
+  const [label1, label2, label3] = STAT_LABELS.gst;
 
   const stats = [
-    { value: supplierData.stats.totalSuppliers, icon: "arrow_upward", text: "Active suppliers", cls: "text-[#006d40]" },
-    { value: supplierData.stats.outstanding, icon: "trending_up", text: "needs settlement", cls: "text-[#006d40]" },
-    { value: supplierData.stats.deliveryRate, icon: "info", text: "Delivery performance", cls: "text-[#424751]" },
+    { value: gstData.stats.taxable, icon: "arrow_upward", text: "4.2% vs last period", cls: "text-[#006d40]" },
+    { value: gstData.stats.collected, icon: "trending_up", text: "steady", cls: "text-[#006d40]" },
+    { value: gstData.stats.invoices, icon: "info", text: "Total filed", cls: "text-[#424751]" },
   ];
 
   return (
@@ -22,23 +22,23 @@ export function SupplierStats() {
 }
 
 // Table Component
-export function SupplierTable({ supplierFilter, page, setPage, search }) {
+export function GSTTable({ gstFromDate, gstToDate, page, setPage, search }) {
   const filteredRows = useMemo(() => {
-    let rows = supplierData.rows;
-    if (supplierFilter !== "All Suppliers") {
-      if (supplierFilter === "Has Outstanding") {
-        rows = rows.filter((r) => r.outstanding !== "₹0");
-      } else if (supplierFilter === "Fully Paid") {
-        rows = rows.filter((r) => r.outstanding === "₹0");
-      }
-    }
+    const from = new Date(gstFromDate);
+    const to = new Date(gstToDate);
+    let rows = gstData.rows.filter((r) => {
+      const d = new Date(r.date);
+      return d >= from && d <= to;
+    });
     if (search) {
       rows = rows.filter((r) => 
-        r.name.toLowerCase().includes(search.toLowerCase())
+        r.invoice.toLowerCase().includes(search.toLowerCase()) ||
+        r.gstin.toLowerCase().includes(search.toLowerCase()) ||
+        r.type.toLowerCase().includes(search.toLowerCase())
       );
     }
     return rows;
-  }, [supplierFilter, search]);
+  }, [gstFromDate, gstToDate, search]);
 
   const totalRows = filteredRows.length;
   const pagedRows = filteredRows.slice((page - 1) * ROWS_PER_PAGE, page * ROWS_PER_PAGE);
@@ -49,26 +49,27 @@ export function SupplierTable({ supplierFilter, page, setPage, search }) {
         <table className="w-full min-w-[900px] text-left border-collapse">
           <thead>
             <tr className="bg-[#eff4ff] text-[#121c2a] font-bold">
-              <Th>Supplier Name</Th><Th>Total Supplied</Th><Th>Last Order</Th><Th>Outstanding Amount</Th>
+              <Th>Invoice No.</Th><Th>Date</Th><Th>GSTIN</Th><Th>Taxable Value</Th><Th>GST Amount</Th><Th>Type</Th>
             </tr>
           </thead>
           <tbody className="text-[14px] text-[#424751]">
             {pagedRows.length > 0 ? (
               pagedRows.map((row, idx) => {
                 const bg = idx % 2 === 0 ? "bg-white" : "bg-[#f8f9ff]";
-                const outstandingColor = row.outstanding === "₹0" ? "text-[#006d40]" : "text-[#ba1a1a]";
                 return (
                   <tr key={idx} className={`hover:bg-[#eff4ff] transition-colors border-b border-[#c2c6d3] ${bg}`}>
-                    <Td className="text-[#121c2a]">{row.name}</Td>
-                    <Td>{row.totalSupplied}</Td>
-                    <Td>{row.lastOrder}</Td>
-                    <Td className={`font-bold ${outstandingColor}`}>{row.outstanding}</Td>
+                    <Td className="text-[#121c2a]">{row.invoice}</Td>
+                    <Td>{row.date}</Td>
+                    <Td>{row.gstin}</Td>
+                    <Td className="font-bold text-[#121c2a]">{row.taxable}</Td>
+                    <Td className="font-bold text-[#006d40]">{row.amount}</Td>
+                    <Td>{row.type}</Td>
                   </tr>
                 );
               })
             ) : (
               <tr>
-                <td colSpan={4} className="py-8 text-center text-[#424751]">No records found.</td>
+                <td colSpan={6} className="py-8 text-center text-[#424751]">No records found.</td>
               </tr>
             )}
           </tbody>
@@ -80,11 +81,11 @@ export function SupplierTable({ supplierFilter, page, setPage, search }) {
 }
 
 // Main default export
-export default function SupplierTab({ supplierFilter, setSupplierFilter, page, setPage, search }) {
+export default function GSTTab({ gstFromDate, gstToDate, setGstFromDate, setGstToDate, page, setPage, search }) {
   return (
     <>
-      <SupplierStats />
-      <SupplierTable supplierFilter={supplierFilter} page={page} setPage={setPage} search={search} />
+      <GSTStats />
+      <GSTTable gstFromDate={gstFromDate} gstToDate={gstToDate} page={page} setPage={setPage} search={search} />
     </>
   );
 }

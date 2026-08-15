@@ -1,14 +1,14 @@
 import React, { useState, useMemo } from "react";
 import { Search, Download, RefreshCw } from "lucide-react";
-import { TABS, ROWS_PER_PAGE } from "./data";
-import { StatCard, Pagination, Th, Td } from "../components/Shared";
-import SalesTab, { SalesStats, SalesTable } from "../components/SalesTab";
-import PurchaseTab, { PurchaseStats, PurchaseTable } from "../components/PurchaseTab";
-import InventoryTab, { InventoryStats, InventoryTable } from "../components/InventoryTab";
-import GSTTab, { GSTStats, GSTTable } from "../components/GSTTab";
-import ProfitTab, { ProfitStats, ProfitTable } from "../components/ProfitTab";
-import CustomerTab, { CustomerStats, CustomerTable } from "../components/CustomerTab";
-import SupplierTab, { SupplierStats, SupplierTable } from "../components/SupplierTab";
+import { TABS, ROWS_PER_PAGE } from "../../data/reports/data";
+import { StatCard, Pagination, Th, Td } from "../../components/reports/Shared";
+import SalesTab, { SalesStats, SalesTable } from "../../components/reports/SalesTab";
+import PurchaseTab, { PurchaseStats, PurchaseTable } from "../../components/reports/PurchaseTab";
+import InventoryTab, { InventoryStats, InventoryTable } from "../../components/reports/InventoryTab";
+import GSTTab, { GSTStats, GSTTable } from "../../components/reports/GSTTab";
+import ProfitTab, { ProfitStats, ProfitTable } from "../../components/reports/ProfitTab";
+import CustomerTab, { CustomerStats, CustomerTable } from "../../components/reports/CustomerTab";
+import SupplierTab, { SupplierStats, SupplierTable } from "../../components/reports/SupplierTab";
 
 export default function ReportsPage() {
   const [activeTab, setActiveTab] = useState("sales");

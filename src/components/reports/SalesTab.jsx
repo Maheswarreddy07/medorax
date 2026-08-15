@@ -1,17 +1,18 @@
 import React, { useMemo } from "react";
-import { profitData, STAT_LABELS, ROWS_PER_PAGE } from "../ReportsPage/data";
+import { MoreVertical } from "lucide-react";
+import { salesData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
 // Stats Component
-export function ProfitStats({ period }) {
-  const [label1, label2, label3] = STAT_LABELS.profit;
-
+export function SalesStats({ period }) {
+  const [label1, label2, label3] = STAT_LABELS.sales;
+  
   const stats = useMemo(() => {
-    const s = profitData[period].stats;
+    const s = salesData[period].stats;
     return [
-      { value: s.total, icon: "arrow_upward", text: "2.1% vs previous period", cls: "text-[#006d40]" },
-      { value: s.margin, icon: "trending_up", text: "improving", cls: "text-[#006d40]" },
-      { value: s.topProduct, icon: "info", text: "Highest margin contributor", cls: "text-[#424751]" },
+      { value: s.sales, icon: "arrow_upward", text: s.salesTrend, cls: "text-[#006d40]" },
+      { value: s.revenue, icon: "trending_up", text: s.revenueTrend, cls: "text-[#006d40]" },
+      { value: s.transactions, icon: "info", text: "Aggregated transactions", cls: "text-[#424751]" },
     ];
   }, [period]);
 
@@ -25,19 +26,16 @@ export function ProfitStats({ period }) {
 }
 
 // Table Component
-export function ProfitTable({ period, profitProduct, page, setPage, search }) {
+export function SalesTable({ period, branch, page, setPage, search }) {
   const filteredRows = useMemo(() => {
-    let rows = profitData[period].rows || [];
-    if (profitProduct !== "All Products") {
-      rows = rows.filter((r) => r.product.startsWith(profitProduct));
-    }
-    if (search) {
-      rows = rows.filter((r) => 
-        r.product.toLowerCase().includes(search.toLowerCase())
-      );
-    }
+    let rows = salesData[period].rows;
+    if (branch !== "All Branches") rows = rows.filter((r) => r.branch === branch);
+    if (search) rows = rows.filter((r) => 
+      r.date.toLowerCase().includes(search.toLowerCase()) ||
+      r.branch.toLowerCase().includes(search.toLowerCase())
+    );
     return rows;
-  }, [period, profitProduct, search]);
+  }, [period, branch, search]);
 
   const totalRows = filteredRows.length;
   const pagedRows = filteredRows.slice((page - 1) * ROWS_PER_PAGE, page * ROWS_PER_PAGE);
@@ -48,7 +46,8 @@ export function ProfitTable({ period, profitProduct, page, setPage, search }) {
         <table className="w-full min-w-[900px] text-left border-collapse">
           <thead>
             <tr className="bg-[#eff4ff] text-[#121c2a] font-bold">
-              <Th>Date</Th><Th>Product</Th><Th>Cost</Th><Th>Sale Price</Th><Th>Margin %</Th>
+              <Th>Date</Th><Th>Branch</Th><Th>Total Sales</Th><Th>Transactions</Th><Th>Revenue</Th>
+              <Th className="text-center">Actions</Th>
             </tr>
           </thead>
           <tbody className="text-[14px] text-[#424751]">
@@ -58,16 +57,21 @@ export function ProfitTable({ period, profitProduct, page, setPage, search }) {
                 return (
                   <tr key={idx} className={`hover:bg-[#eff4ff] transition-colors border-b border-[#c2c6d3] ${bg}`}>
                     <Td className="text-[#121c2a]">{row.date}</Td>
-                    <Td>{row.product}</Td>
-                    <Td>{row.cost}</Td>
-                    <Td className="font-bold text-[#121c2a]">{row.sale}</Td>
-                    <Td className="font-bold text-[#006d40]">{row.margin}</Td>
+                    <Td>{row.branch}</Td>
+                    <Td>{row.sales}</Td>
+                    <Td>{row.trans}</Td>
+                    <Td className="font-bold text-[#121c2a]">{row.rev}</Td>
+                    <td className="py-3 px-4 text-center">
+                      <button className="text-[#004287] hover:text-[#235eac] transition-colors p-1">
+                        <MoreVertical size={18} />
+                      </button>
+                    </td>
                   </tr>
                 );
               })
             ) : (
               <tr>
-                <td colSpan={5} className="py-8 text-center text-[#424751]">No records found.</td>
+                <td colSpan={6} className="py-8 text-center text-[#424751]">No records found.</td>
               </tr>
             )}
           </tbody>
@@ -78,12 +82,12 @@ export function ProfitTable({ period, profitProduct, page, setPage, search }) {
   );
 }
 
-// Main default export
-export default function ProfitTab({ period, profitProduct, setPeriod, setProfitProduct, page, setPage, search }) {
+// Main default export (for backward compatibility)
+export default function SalesTab({ period, branch, setPeriod, setBranch, page, setPage, search }) {
   return (
     <>
-      <ProfitStats period={period} />
-      <ProfitTable period={period} profitProduct={profitProduct} page={page} setPage={setPage} search={search} />
+      <SalesStats period={period} />
+      <SalesTable period={period} branch={branch} page={page} setPage={setPage} search={search} />
     </>
   );
 }

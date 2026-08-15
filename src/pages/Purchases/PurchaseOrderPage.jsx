@@ -1,10 +1,10 @@
 import React, { useState, useCallback, useMemo } from "react";
 import { Send } from "lucide-react";
-import { Toast } from "../components/Shared";
-import OrderDetailsSection from "../components/OrderDetailsSection";
-import LineItemsTable from "../components/LineItemsTable";
-import NotesAndSummary from "../components/NotesAndSummary";
-import { initialOrderItems, productOptions } from "./data";
+import { Toast } from "../../components/purchases/Shared";
+import OrderDetailsSection from "../../components/purchases/OrderDetailsSection";
+import LineItemsTable from "../../components/purchases/LineItemsTable";
+import NotesAndSummary from "../../components/purchases/NotesAndSummary";
+import { initialOrderItems, productOptions } from "../../data/purchases/data";
 
 export default function PurchaseOrderPage() {
   const [poNumber] = useState("PO-2026-0142");

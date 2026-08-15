@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Upload, Download } from "lucide-react";
-import { Toast } from "../components/Shared";
-import ImportPage from "../components/ImportPage";
-import ExportPage from "../components/ExportPage";
+import { Toast } from "../../components/importExport/Shared";
+import ImportPage from "../../components/importExport/ImportPage";
+import ExportPage from "../../components/importExport/ExportPage";
 
 export default function ImportExportPage() {
   const [activeTab, setActiveTab] = useState("import");

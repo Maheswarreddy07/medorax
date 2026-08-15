@@ -10,13 +10,13 @@ import {
   Download,
   Search,
 } from "lucide-react";
-import { Toast } from "../components/Shared";
-import ReceiveGoodsTab from "../components/ReceiveGoodsTab";
-import BatchEntryTab from "../components/BatchEntryTab";
-import ExpiryEntryTab from "../components/ExpiryEntryTab";
-import PurchaseReturnTab from "../components/PurchaseReturnTab";
-import CreditNotesTab from "../components/CreditNotesTab";
-import { initialReceivedItems } from "./data";
+import { Toast } from "../../components/purchases/Shared";
+import ReceiveGoodsTab from "../../components/purchases/ReceiveGoodsTab";
+import BatchEntryTab from "../../components/purchases/BatchEntryTab";
+import ExpiryEntryTab from "../../components/purchases/ExpiryEntryTab";
+import PurchaseReturnTab from "../../components/purchases/PurchaseReturnTab";
+import CreditNotesTab from "../../components/purchases/CreditNotesTab";
+import { initialReceivedItems } from "../../data/purchases/data";
 
 const TAB_LIST = [
   { key: "receive-goods", label: "Receive Goods"  },

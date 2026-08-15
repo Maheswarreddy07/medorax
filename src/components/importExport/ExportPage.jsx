@@ -12,7 +12,7 @@ import {
   RefreshCw,
   CheckCircle,
 } from "lucide-react";
-import { exportColumns } from "../importExportPage/data";
+import { exportColumns } from "../../data/importExport/data";
 
 export default function ExportPage({ onToast }) {
   const [isExporting, setIsExporting] = useState(false);

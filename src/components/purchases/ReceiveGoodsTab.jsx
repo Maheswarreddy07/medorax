@@ -1,7 +1,7 @@
 import React from "react";
 import { ChevronDown, Plus, Package, FileText } from "lucide-react";
 import { Th, Td, Pagination } from "./Shared";
-import { poOptions } from "../purchasePage/data";
+import { poOptions } from "../../data/purchases/data";
 
 export default function ReceiveGoodsTab({
   selectedPO,

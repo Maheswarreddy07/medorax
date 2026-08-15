@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { inventoryData, STAT_LABELS, ROWS_PER_PAGE } from "../ReportsPage/data";
+import { inventoryData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
 // Stats Component
