@@ -9,8 +9,12 @@ import {
   Tag,
   CreditCard,
   Banknote,
+  CheckCircle,
+  Pause,
+  Play,
 } from "lucide-react";
 
+import { useCart } from "../../hooks/useCart";
 import { quickProducts } from "../../data/billing/billingData";
 
 const TAX_RATE = 0.085;
@@ -18,26 +22,42 @@ const TAX_RATE = 0.085;
 const categories = ["All Items", "Medicine", "OTC", "First Aid", "Vitamins"];
 
 const QuickBilling = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Amoxicillin 500mg",
-      description: "Capsules • 30ct (Rx)",
-      price: 12.5,
-      quantity: 2,
-      total: 25.0,
-    },
-    {
-      id: 2,
-      name: "Ibuprofen 200mg",
-      description: "Tablets • 100ct",
-      price: 8.99,
-      quantity: 1,
-      total: 8.99,
-    },
-  ]);
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All Items");
+  const [showReceipt, setShowReceipt] = useState(false);
+  const {
+    cartItems,
+    setCartItems,
+    isHeld,
+    holdBill,
+    resumeBill,
+    paymentMethod,
+    setPaymentMethod,
+    updateQuantity,
+    removeItem,
+    clearCart,
+    subtotal,
+    tax,
+    total,
+  } = useCart(
+    [
+      {
+        id: 1,
+        name: "Amoxicillin 500mg",
+        description: "Capsules • 30ct (Rx)",
+        price: 12.5,
+        quantity: 2,
+      },
+      {
+        id: 2,
+        name: "Ibuprofen 200mg",
+        description: "Tablets • 100ct",
+        price: 8.99,
+        quantity: 1,
+      },
+    ],
+    TAX_RATE
+  );
 
   const filteredProducts = useMemo(() => {
     const normalizedQuery = searchQuery.trim().toLowerCase();
@@ -56,11 +76,7 @@ const QuickBilling = () => {
       if (existingItem) {
         return prevItems.map((item) =>
           item.id === product.id
-            ? {
-                ...item,
-                quantity: item.quantity + 1,
-                total: (item.quantity + 1) * item.price,
-              }
+            ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
@@ -72,50 +88,35 @@ const QuickBilling = () => {
           description: product.category,
           price: product.price,
           quantity: 1,
-          total: product.price,
         },
       ];
     });
   };
 
-  const updateQuantity = (id, delta) => {
-    setCartItems((prevItems) =>
-      prevItems
-        .map((item) => {
-          const newQuantity = Math.max(0, item.quantity + delta);
-          return { ...item, quantity: newQuantity, total: newQuantity * item.price };
-        })
-        .filter((item) => item.quantity > 0)
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
-
-  const clearCart = () => {
-    setCartItems([]);
-  };
-
-  const { subtotal, tax, total } = useMemo(() => {
-    const rawSubtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
-    const computedTax = rawSubtotal * TAX_RATE;
-    return {
-      subtotal: rawSubtotal,
-      tax: computedTax,
-      total: rawSubtotal + computedTax,
-    };
-  }, [cartItems]);
-
   const handleCharge = () => {
-    alert("Payment processed successfully!");
+    if (cartItems.length === 0) {
+      alert("Cart is empty. Click on items to add them.");
+      return;
+    }
+    if (isHeld) {
+      alert("Bill is on hold. Resume before charging.");
+      return;
+    }
+    setShowReceipt(true);
+  };
+
+  const handleConfirmCharge = () => {
+    alert(
+      `Charge of $${total.toFixed(2)} via ${paymentMethod.toUpperCase()} processed successfully!`
+    );
+    setShowReceipt(false);
+    clearCart();
   };
 
   return (
     <div className="flex h-[calc(100vh-80px)] gap-6 overflow-hidden">
       {/* LEFT PANEL: Products & Categories */}
       <section className="flex min-w-0 flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white">
-        {/* Filter / Search Header */}
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-200 bg-slate-50 p-4">
           <div className="no-scrollbar flex flex-1 space-x-2 overflow-x-auto pb-1">
             {categories.map((category) => (
@@ -148,7 +149,6 @@ const QuickBilling = () => {
           </div>
         </div>
 
-        {/* Product Grid */}
         <div className="flex-1 overflow-y-auto bg-white p-4">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             {filteredProducts.length === 0 ? (
@@ -202,7 +202,6 @@ const QuickBilling = () => {
 
       {/* RIGHT PANEL: Cart & Summary */}
       <section className="flex w-[380px] shrink-0 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white">
-        {/* Cart Header */}
         <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 p-4">
           <div className="flex items-center">
             <ShoppingCart size={18} className="mr-2 text-[#0F52BA]" />
@@ -220,23 +219,36 @@ const QuickBilling = () => {
           )}
         </div>
 
-        {/* Patient Info */}
         <div className="group flex cursor-pointer items-center justify-between border-b border-slate-200 bg-white px-4 py-3 transition-colors hover:bg-slate-50">
           <div className="flex items-center">
             <div className="mr-3 flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-xs font-bold text-blue-800">
               JD
             </div>
             <div>
-              <p className="m-0 text-sm font-medium leading-tight text-slate-900">
-                John Doe
-              </p>
+              <p className="m-0 text-sm font-medium leading-tight text-slate-900">John Doe</p>
               <p className="m-0 text-xs text-slate-500">ID: PT-8842</p>
             </div>
           </div>
           <ChevronRight size={18} className="text-slate-300 transition-colors group-hover:text-[#0F52BA]" />
         </div>
 
-        {/* Cart Items List */}
+        {isHeld && (
+          <div className="flex items-center justify-between border-b border-amber-200 bg-amber-50 px-4 py-3">
+            <div className="flex items-center gap-2">
+              <Pause size={16} className="text-amber-600" />
+              <span className="text-sm font-semibold text-amber-700">Bill is on hold</span>
+            </div>
+            <button
+              type="button"
+              onClick={resumeBill}
+              className="flex items-center gap-1 rounded bg-amber-600 px-3 py-1 text-xs font-bold text-white transition hover:bg-amber-700"
+            >
+              <Play size={14} />
+              Resume
+            </button>
+          </div>
+        )}
+
         <div className="flex-1 overflow-y-auto bg-white">
           <ul className="divide-y divide-slate-200 border-b border-slate-200">
             {cartItems.length === 0 ? (
@@ -255,7 +267,7 @@ const QuickBilling = () => {
                         {item.name}
                       </h4>
                       <span className="ml-2 text-sm font-medium text-[#0F52BA]">
-                        ${item.total.toFixed(2)}
+                        ${(item.quantity * item.price).toFixed(2)}
                       </span>
                     </div>
                     <p className="m-0 mb-2 text-xs text-slate-500">{item.description}</p>
@@ -297,10 +309,10 @@ const QuickBilling = () => {
             )}
           </ul>
 
-          {/* Add Discount / Notes */}
           <div className="p-4">
             <button
               type="button"
+              onClick={() => alert("Coupon code input opened.")}
               className="flex w-full items-center justify-center rounded border border-dashed border-slate-300 py-2 text-sm text-slate-600 transition-colors hover:border-[#0F52BA] hover:text-[#0F52BA]"
             >
               <Tag size={16} className="mr-2" />
@@ -309,7 +321,6 @@ const QuickBilling = () => {
           </div>
         </div>
 
-        {/* Summary & Checkout Footer */}
         <div className="shrink-0 border-t border-slate-200 bg-slate-50 p-4">
           <div className="mb-4 space-y-2">
             <div className="flex justify-between text-sm text-slate-600">
@@ -326,19 +337,41 @@ const QuickBilling = () => {
             </div>
           </div>
 
-          <div className="mb-3 grid grid-cols-2 gap-2">
+          <div className="mb-3 grid grid-cols-3 gap-2">
             <button
               type="button"
-              className="flex items-center justify-center rounded border border-slate-400 px-4 py-2 text-xs font-bold text-slate-800 transition-colors hover:bg-slate-100"
+              onClick={isHeld ? resumeBill : holdBill}
+              className={`flex items-center justify-center rounded border px-2 py-2 text-xs font-bold transition-colors ${
+                isHeld
+                  ? "border-amber-300 bg-amber-50 text-amber-700"
+                  : "border-slate-400 text-slate-800 hover:bg-slate-100"
+              }`}
             >
-              <CreditCard size={16} className="mr-1" />
+              {isHeld ? <Play size={14} className="mr-1" /> : <Pause size={14} className="mr-1" />}
+              {isHeld ? "Resume" : "Hold"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setPaymentMethod("card")}
+              className={`flex items-center justify-center rounded border px-2 py-2 text-xs font-bold transition-colors ${
+                paymentMethod === "card"
+                  ? "border-[#0F52BA] bg-blue-50 text-[#0F52BA]"
+                  : "border-slate-400 text-slate-800 hover:bg-slate-100"
+              }`}
+            >
+              <CreditCard size={14} className="mr-1" />
               Card
             </button>
             <button
               type="button"
-              className="flex items-center justify-center rounded border border-slate-400 px-4 py-2 text-xs font-bold text-slate-800 transition-colors hover:bg-slate-100"
+              onClick={() => setPaymentMethod("cash")}
+              className={`flex items-center justify-center rounded border px-2 py-2 text-xs font-bold transition-colors ${
+                paymentMethod === "cash"
+                  ? "border-[#0F52BA] bg-blue-50 text-[#0F52BA]"
+                  : "border-slate-400 text-slate-800 hover:bg-slate-100"
+              }`}
             >
-              <Banknote size={16} className="mr-1" />
+              <Banknote size={14} className="mr-1" />
               Cash
             </button>
           </div>
@@ -353,6 +386,62 @@ const QuickBilling = () => {
           </button>
         </div>
       </section>
+
+      {/* Payment Confirmation Modal */}
+      {showReceipt && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl">
+            <div className="mb-4 flex items-center justify-between">
+              <h3 className="text-lg font-bold text-slate-900">Confirm Charge</h3>
+              <button
+                type="button"
+                onClick={() => setShowReceipt(false)}
+                className="rounded-full p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+                aria-label="Close"
+              >
+                <Trash2 size={18} />
+              </button>
+            </div>
+
+            <div className="mb-4 space-y-2 rounded-lg bg-slate-50 p-4 text-sm">
+              <div className="flex justify-between text-slate-600">
+                <span>Subtotal</span>
+                <span>${subtotal.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between text-slate-600">
+                <span>Tax (8.5%)</span>
+                <span>${tax.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between border-t border-slate-200 pt-2 text-base font-bold text-slate-900">
+                <span>Total</span>
+                <span>${total.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between text-slate-600">
+                <span>Payment Method</span>
+                <span className="font-semibold uppercase">{paymentMethod}</span>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => setShowReceipt(false)}
+                className="flex-1 rounded-lg border border-slate-200 py-3 text-sm font-bold text-slate-600 transition hover:bg-slate-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmCharge}
+                className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-linear-to-br from-[#2563EB] to-[#10B981] py-3 text-sm font-bold text-white shadow-md transition hover:brightness-110"
+              >
+                <CheckCircle size={18} />
+                Confirm Charge
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
