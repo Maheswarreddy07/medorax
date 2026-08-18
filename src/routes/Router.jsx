@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import SupplierLayout from "../layouts/supplierManagement/SupplierManagemetnLayout";
 import StaffManagementLayout from "../layouts/staffManagement/StaffManagementLayout";
 import InventoryLayout from "../layouts/inventoryManagement/InventoryLayout";
+import BillingLayout from "../layouts/billing/BillingLayout";
 
 import Dashboard from "../pages/SupplierManagement/Dashboard";
 import Suppliers from "../pages/SupplierManagement/Suppliers";
@@ -30,6 +31,11 @@ import NearExpiry from "../pages/InventoryManagement/NearExpiry";
 import LowStockAlerts from "../pages/InventoryManagement/LowStockAlerts";
 import OverstockAlerts from "../pages/InventoryManagement/OverstockAlerts";
 import StockLedger from "../pages/InventoryManagement/StockLedger";
+
+import BarcodeBilling from "../pages/Billing/BarcodeBilling";
+import ManualBilling from "../pages/Billing/ManualBilling";
+import QuickBilling from "../pages/Billing/QuickBilling";
+import PrescriptionBilling from "../pages/Billing/PrescriptionBilling";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +83,32 @@ const router = createBrowserRouter([
       {
         path: ":staffId",
         element: <StaffInformation />,
+      },
+    ],
+  },
+  {
+    path: "/billing",
+    element: <BillingLayout />,
+    children: [
+      {
+        index: true,
+        element: <BarcodeBilling />,
+      },
+      {
+        path: "barcode",
+        element: <BarcodeBilling />,
+      },
+      {
+        path: "manual",
+        element: <ManualBilling />,
+      },
+      {
+        path: "quick",
+        element: <QuickBilling />,
+      },
+      {
+        path: "prescription",
+        element: <PrescriptionBilling />,
       },
     ],
   },
