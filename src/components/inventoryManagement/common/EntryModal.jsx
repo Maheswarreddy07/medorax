@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 const baseInput =
@@ -19,12 +19,15 @@ const EntryModal = ({ open, onClose, title, submitLabel = "Save", fields = [], o
   const [submitting, setSubmitting] = useState(false);
   const [feedback, setFeedback] = useState(null);
 
+  const prevOpenRef = useRef(false);
+
   useEffect(() => {
-    if (open) {
+    if (!prevOpenRef.current && open) {
       setValues(Object.fromEntries(fields.map((f) => [f.name, f.defaultValue ?? ""])));
       setErrors({});
       setFeedback(null);
     }
+    prevOpenRef.current = open;
   }, [open, fields]);
 
   useEffect(() => {
