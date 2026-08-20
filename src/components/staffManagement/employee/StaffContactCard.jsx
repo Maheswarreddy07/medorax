@@ -14,25 +14,25 @@ const StaffContactCard = ({ staff }) => {
       icon: User,
       label: "Full Name",
       value: staff.name,
-      iconColor: "text-blue-500"
+      iconColor: "text-primary"
     },
     {
       icon: Mail,
       label: "Email Address",
       value: staff.email,
-      iconColor: "text-blue-500"
+      iconColor: "text-primary"
     },
     {
       icon: Phone,
       label: "Phone Number",
       value: staff.phone,
-      iconColor: "text-blue-500"
+      iconColor: "text-primary"
     },
     {
       icon: Stethoscope,
       label: "Department",
       value: staff.department,
-      iconColor: "text-emerald-500"
+      iconColor: "text-secondary"
     },
     {
       icon: Shield,
@@ -44,23 +44,23 @@ const StaffContactCard = ({ staff }) => {
       icon: Calendar,
       label: "License Number",
       value: staff.license,
-      iconColor: "text-amber-500"
+      iconColor: "text-tertiary"
     },
     {
       icon: MapPin,
       label: "Address",
       value: staff.address,
-      iconColor: "text-slate-500"
+      iconColor: "text-on-surface-variant"
     }
   ];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <div className="border-b border-slate-200 px-6 py-5">
-        <h2 className="text-base font-bold text-slate-900">
+    <div className="overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+      <div className="border-b border-outline-variant px-6 py-5">
+        <h2 className="text-base font-bold text-on-background">
           Contact Information
         </h2>
-        <p className="mt-0.5 text-sm text-slate-500">
+        <p className="mt-0.5 text-sm text-on-surface-variant">
           Primary contact details for {staff.name}
         </p>
       </div>
@@ -72,14 +72,14 @@ const StaffContactCard = ({ staff }) => {
 
             return (
               <div key={index} className="flex items-start gap-3">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 ring-1 ring-slate-100">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface-container-low ring-1 ring-slate-100">
                   <Icon size={14} className={item.iconColor} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-outline">
                     {item.label}
                   </p>
-                  <p className="mt-0.5 text-sm text-slate-700 break-words">
+                  <p className="mt-0.5 text-sm text-on-surface-variant break-words">
                     {item.value}
                   </p>
                 </div>

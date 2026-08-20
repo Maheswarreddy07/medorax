@@ -106,10 +106,10 @@ const PrescriptionBilling = () => {
   return (
     <div className="flex h-[calc(100vh-80px)] flex-col gap-6 overflow-hidden">
       <header className="shrink-0">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Prescription Billing
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Add items from uploaded prescriptions and process secure medical
           transactions.
         </p>
@@ -119,13 +119,13 @@ const PrescriptionBilling = () => {
         {/* LEFT PANEL: Prescription & Cart */}
         <div className="flex flex-1 flex-col gap-6 overflow-hidden">
           {/* Upload/Attach Prescription Section */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
-              <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-900">
-                <FileText size={20} className="text-[#0F52BA]" />
+              <h3 className="flex items-center gap-2 text-lg font-semibold text-on-background">
+                <FileText size={20} className="text-primary" />
                 Prescription Attachment
               </h3>
-              <span className="rounded bg-emerald-50 px-2 py-1 text-xs font-bold text-teal-700">
+              <span className="rounded bg-secondary-container px-2 py-1 text-xs font-bold text-teal-700">
                 SECURE UPLOAD
               </span>
             </div>
@@ -135,23 +135,23 @@ const PrescriptionBilling = () => {
               onDrop={handleDrop}
               className={`flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-10 transition-colors ${
                 isDragging
-                  ? "border-[#0F52BA] bg-blue-50"
-                  : "border-slate-300 bg-slate-50 hover:border-[#0F52BA] hover:bg-slate-100"
+                  ? "border-primary bg-primary-fixed"
+                  : "border-outline bg-surface-container-low hover:border-primary hover:bg-surface-container"
               }`}
             >
-              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 transition-transform group-hover:scale-110">
-                <CloudUpload size={36} className="text-[#0F52BA]" />
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary-fixed transition-transform group-hover:scale-110">
+                <CloudUpload size={36} className="text-primary" />
               </div>
-              <p className="text-base font-semibold text-slate-900">
+              <p className="text-base font-semibold text-on-background">
                 Drop prescription PDF or image here
               </p>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-on-surface-variant">
                 Maximum file size 10MB (JPG, PNG, PDF)
               </p>
               <button
                 type="button"
                 onClick={handleUpload}
-                className="mt-6 rounded-lg border border-[#0F52BA] px-6 py-2 text-sm text-[#0F52BA] transition-all hover:bg-[#0F52BA] hover:text-white"
+                className="mt-6 rounded-lg border border-primary px-6 py-2 text-sm text-primary transition-all hover:bg-primary hover:text-on-primary"
               >
                 Browse Files
               </button>
@@ -159,53 +159,53 @@ const PrescriptionBilling = () => {
           </div>
 
           {/* Product Search & Cart Table */}
-          <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-            <div className="border-b border-slate-200 p-6">
+          <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+            <div className="border-b border-outline-variant p-6">
               <div className="relative">
                 <Pill
                   size={20}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#0F52BA]"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-primary"
                 />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
                   placeholder="Search for prescribed medicine (e.g. Amoxicillin, Paracetamol)..."
-                  className="w-full rounded-lg border border-slate-200 bg-slate-50 py-3 pl-12 pr-4 text-base transition-all focus:border-[#0F52BA] focus:outline-none focus:ring-2 focus:ring-blue-100"
+                  className="w-full rounded-lg border border-outline-variant bg-surface-container-low py-3 pl-12 pr-4 text-base transition-all focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary-fixed"
                 />
               </div>
             </div>
 
             <div className="flex-1 overflow-auto">
               <table className="w-full border-collapse text-left">
-                <thead className="sticky top-0 z-10 bg-slate-100">
+                <thead className="sticky top-0 z-10 bg-surface-container">
                   <tr>
-                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">
                       Medicine Name
                     </th>
-                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">
                       Batch
                     </th>
-                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">
                       Price
                     </th>
-                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">
                       Qty
                     </th>
-                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-on-surface-variant">
                       Total
                     </th>
-                    <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-slate-600">
+                    <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-on-surface-variant">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200">
+                <tbody className="divide-y divide-outline-variant">
                   {cartItems.length === 0 ? (
                     <tr>
                       <td colSpan={6} className="px-6 py-16 text-center">
                         <Pill size={28} className="mx-auto mb-2 text-slate-300" />
-                        <p className="text-sm italic text-slate-500">
+                        <p className="text-sm italic text-on-surface-variant">
                           Search above to add more medicines from the
                           prescription...
                         </p>
@@ -213,29 +213,29 @@ const PrescriptionBilling = () => {
                     </tr>
                   ) : (
                     cartItems.map((item) => (
-                      <tr key={item.id} className="transition-colors hover:bg-slate-50">
+                      <tr key={item.id} className="transition-colors hover:bg-surface-container-low">
                         <td className="px-6 py-4">
                           <div className="flex flex-col">
-                            <span className="text-sm font-bold text-slate-900">
+                            <span className="text-sm font-bold text-on-background">
                               {item.name}
                             </span>
-                            <span className="text-xs italic text-slate-500">
+                            <span className="text-xs italic text-on-surface-variant">
                               {item.category}
                             </span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-500">
+                        <td className="px-6 py-4 text-sm text-on-surface-variant">
                           {item.batch}
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-900">
+                        <td className="px-6 py-4 text-sm text-on-background">
                           ${item.price.toFixed(2)}
                         </td>
                         <td className="px-6 py-4">
-                          <div className="flex w-fit items-center overflow-hidden rounded-lg border border-slate-200">
+                          <div className="flex w-fit items-center overflow-hidden rounded-lg border border-outline-variant">
                             <button
                               type="button"
                               onClick={() => updateQuantity(item.id, -1)}
-                              className="bg-slate-100 px-2 py-1 text-slate-700 transition-colors hover:bg-slate-200"
+                              className="bg-surface-container px-2 py-1 text-on-surface-variant transition-colors hover:bg-surface-container-high"
                             >
                               <Minus size={14} />
                             </button>
@@ -248,20 +248,20 @@ const PrescriptionBilling = () => {
                             <button
                               type="button"
                               onClick={() => updateQuantity(item.id, 1)}
-                              className="bg-slate-100 px-2 py-1 text-slate-700 transition-colors hover:bg-slate-200"
+                              className="bg-surface-container px-2 py-1 text-on-surface-variant transition-colors hover:bg-surface-container-high"
                             >
                               <Plus size={14} />
                             </button>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-sm font-bold text-[#0F52BA]">
+                        <td className="px-6 py-4 text-sm font-bold text-primary">
                           ${item.total.toFixed(2)}
                         </td>
                         <td className="px-6 py-4 text-right">
                           <button
                             type="button"
                             onClick={() => removeItem(item.id)}
-                            className="rounded-lg p-2 text-rose-500 transition-colors hover:bg-rose-50"
+                            className="rounded-lg p-2 text-error transition-colors hover:bg-error-container"
                             aria-label={`Remove ${item.name}`}
                           >
                             <Trash2 size={18} />
@@ -275,16 +275,16 @@ const PrescriptionBilling = () => {
             </div>
 
             {cartItems.length > 0 && (
-              <div className="flex items-center justify-between border-t border-slate-200 p-6">
+              <div className="flex items-center justify-between border-t border-outline-variant p-6">
                 <button
                   type="button"
                   onClick={clearCart}
-                  className="flex items-center gap-2 text-sm font-semibold text-rose-600 transition hover:underline"
+                  className="flex items-center gap-2 text-sm font-semibold text-error transition hover:underline"
                 >
                   <Trash2 size={16} />
                   Clear All
                 </button>
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-on-surface-variant">
                   {cartItems.length} item{cartItems.length !== 1 ? "s" : ""} in
                   cart
                 </p>
@@ -296,39 +296,39 @@ const PrescriptionBilling = () => {
         {/* RIGHT PANEL: Summary & Checkout */}
         <div className="flex w-[380px] shrink-0 flex-col gap-6 overflow-y-auto">
           {/* Order Summary */}
-          <div className="relative overflow-hidden rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="absolute right-0 top-0 h-32 w-32 -translate-y-16 translate-x-16 rounded-full bg-linear-to-br from-[#2563EB] to-[#10B981] opacity-10" />
-            <h3 className="relative z-10 mb-6 text-lg font-semibold text-slate-900">
+          <div className="relative overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm">
+            <div className="absolute right-0 top-0 h-32 w-32 -translate-y-16 translate-x-16 rounded-full bg-linear-to-br from-primary to-secondary opacity-10" />
+            <h3 className="relative z-10 mb-6 text-lg font-semibold text-on-background">
               Order Summary
             </h3>
             <div className="relative z-10 space-y-4">
-              <div className="flex items-center justify-between text-sm text-slate-600">
+              <div className="flex items-center justify-between text-sm text-on-surface-variant">
                 <span>Subtotal ({cartItems.length} items)</span>
-                <span className="font-semibold text-slate-900">
+                <span className="font-semibold text-on-background">
                   ${subtotal.toFixed(2)}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-sm text-slate-600">
+              <div className="flex items-center justify-between text-sm text-on-surface-variant">
                 <span>Prescription Validation Fee</span>
-                <span className="font-semibold text-emerald-600">$0.00</span>
+                <span className="font-semibold text-secondary">$0.00</span>
               </div>
-              <div className="flex items-center justify-between text-sm text-slate-600">
+              <div className="flex items-center justify-between text-sm text-on-surface-variant">
                 <span>Insurance Copay</span>
-                <span className="font-semibold text-emerald-600">
+                <span className="font-semibold text-secondary">
                   -${savedOnInsurance.toFixed(2)}
                 </span>
               </div>
-              <div className="flex items-center justify-between text-sm text-slate-600">
+              <div className="flex items-center justify-between text-sm text-on-surface-variant">
                 <span>Sales Tax (8%)</span>
-                <span className="font-semibold text-slate-900">
+                <span className="font-semibold text-on-background">
                   ${tax.toFixed(2)}
                 </span>
               </div>
-              <div className="flex items-center justify-between border-t border-dashed border-slate-300 pt-4">
-                <span className="text-base font-semibold text-slate-900">
+              <div className="flex items-center justify-between border-t border-dashed border-outline pt-4">
+                <span className="text-base font-semibold text-on-background">
                   Grand Total
                 </span>
-                <span className="text-xl font-bold text-[#0F52BA]">
+                <span className="text-xl font-bold text-primary">
                   ${total.toFixed(2)}
                 </span>
               </div>
@@ -336,8 +336,8 @@ const PrescriptionBilling = () => {
           </div>
 
           {/* Payment Methods */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+          <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm">
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
               Payment Method
             </h3>
             <div className="grid grid-cols-3 gap-3">
@@ -355,8 +355,8 @@ const PrescriptionBilling = () => {
                     onClick={() => setPaymentMethod(method.id)}
                     className={`flex flex-col items-center gap-2 rounded-xl p-4 transition-all ${
                       isSelected
-                        ? "border-2 border-[#0F52BA] bg-blue-50 text-[#0F52BA]"
-                        : "border-2 border-slate-200 hover:border-[#0F52BA]/50"
+                        ? "border-2 border-primary bg-primary-fixed text-primary"
+                        : "border-2 border-outline-variant hover:border-primary/50"
                     }`}
                   >
                     <Icon size={22} />
@@ -370,44 +370,44 @@ const PrescriptionBilling = () => {
           </div>
 
           {/* Billing Options */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+          <div className="rounded-xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm">
+            <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant">
               Billing Options
             </h3>
             <div className="space-y-3">
-              <label className="flex cursor-pointer items-center justify-between rounded-lg border border-slate-200 p-3 transition-colors hover:bg-slate-50">
+              <label className="flex cursor-pointer items-center justify-between rounded-lg border border-outline-variant p-3 transition-colors hover:bg-surface-container-low">
                 <div className="flex items-center gap-3">
-                  <ShieldCheck size={20} className="text-emerald-600" />
+                  <ShieldCheck size={20} className="text-secondary" />
                   <span className="text-sm font-medium">Apply Insurance</span>
                 </div>
                 <input
                   type="checkbox"
                   checked={isInsuranceApplied}
                   onChange={(event) => setIsInsuranceApplied(event.target.checked)}
-                  className="h-5 w-5 rounded text-[#0F52BA] focus:ring-[#0F52BA]"
+                  className="h-5 w-5 rounded text-primary focus:ring-primary"
                 />
               </label>
 
               <button
                 type="button"
-                className="flex w-full cursor-pointer items-center justify-between rounded-lg border border-slate-200 p-3 text-left transition-colors hover:bg-slate-50"
+                className="flex w-full cursor-pointer items-center justify-between rounded-lg border border-outline-variant p-3 text-left transition-colors hover:bg-surface-container-low"
               >
                 <div className="flex items-center gap-3">
-                  <Tag size={20} className="text-slate-500" />
+                  <Tag size={20} className="text-on-surface-variant" />
                   <span className="text-sm font-medium">Add Discount</span>
                 </div>
-                <ChevronRight size={18} className="text-slate-400" />
+                <ChevronRight size={18} className="text-outline" />
               </button>
 
               <button
                 type="button"
-                className="flex w-full cursor-pointer items-center justify-between rounded-lg border border-slate-200 p-3 text-left transition-colors hover:bg-slate-50"
+                className="flex w-full cursor-pointer items-center justify-between rounded-lg border border-outline-variant p-3 text-left transition-colors hover:bg-surface-container-low"
               >
                 <div className="flex items-center gap-3">
-                  <Receipt size={20} className="text-slate-500" />
+                  <Receipt size={20} className="text-on-surface-variant" />
                   <span className="text-sm font-medium">Invoice Settings</span>
                 </div>
-                <Settings size={18} className="text-slate-400" />
+                <Settings size={18} className="text-outline" />
               </button>
             </div>
           </div>
@@ -416,7 +416,7 @@ const PrescriptionBilling = () => {
           <button
             type="button"
             onClick={() => alert("Payment processed successfully!")}
-            className="flex items-center justify-center gap-3 rounded-xl bg-linear-to-br from-[#2563EB] via-[#14B8A6] to-[#10B981] py-5 text-base font-bold text-white shadow-lg transition-all hover:scale-[1.02] active:scale-100"
+            className="flex items-center justify-center gap-3 rounded-xl bg-linear-to-br from-primary via-primary-container to-secondary py-5 text-base font-bold text-on-primary shadow-lg transition-all hover:scale-[1.02] active:scale-100"
           >
             <CheckCircle size={22} />
             <span>Pay Now</span>

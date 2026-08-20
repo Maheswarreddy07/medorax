@@ -1,7 +1,7 @@
 const ActivityLogsTableRow = ({ log }) => {
   return (
     <tr className="group transition-all duration-200 hover:bg-gradient-to-r hover:from-indigo-50/60 hover:to-cyan-50/40">
-      <td className="px-8 py-4 font-mono text-sm text-slate-400">
+      <td className="px-8 py-4 font-mono text-sm text-outline">
         {log.id}
       </td>
 
@@ -17,13 +17,13 @@ const ActivityLogsTableRow = ({ log }) => {
               />
             </div>
           ) : (
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 text-sm font-semibold text-white shadow-md shadow-indigo-200">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-cyan-500 text-sm font-semibold text-on-primary shadow-md shadow-indigo-200">
               {log.initials}
             </div>
           )}
           <div>
-            <p className="text-sm font-semibold text-slate-900">{log.name}</p>
-            <p className="text-xs text-slate-400">{log.role}</p>
+            <p className="text-sm font-semibold text-on-background">{log.name}</p>
+            <p className="text-xs text-outline">{log.role}</p>
           </div>
         </div>
       </td>
@@ -32,7 +32,7 @@ const ActivityLogsTableRow = ({ log }) => {
       <td className="px-8 py-4">
         <div className="flex items-center gap-2">
           <span className={`h-2 w-2 shrink-0 rounded-full ${log.dotClass} shadow-sm`} />
-          <span className="text-sm text-slate-600">{log.action}</span>
+          <span className="text-sm text-on-surface-variant">{log.action}</span>
         </div>
       </td>
 
@@ -45,14 +45,14 @@ const ActivityLogsTableRow = ({ log }) => {
 
       {/* Timestamp */}
       <td className="px-8 py-4">
-        <div className="font-mono text-sm text-slate-600">
+        <div className="font-mono text-sm text-on-surface-variant">
           {log.timestamp}
         </div>
       </td>
 
       {/* IP Address */}
       <td className="px-8 py-4 text-center">
-        <span className="inline-flex items-center rounded-lg bg-slate-50 px-2.5 py-1 font-mono text-xs font-medium text-slate-500 ring-1 ring-slate-200">
+        <span className="inline-flex items-center rounded-lg bg-surface-container-low px-2.5 py-1 font-mono text-xs font-medium text-on-surface-variant ring-1 ring-outline-variant">
           {log.ipAddress}
         </span>
       </td>

@@ -1,9 +1,9 @@
 import { FileText, Download, ExternalLink } from "lucide-react";
 
 const DOCUMENT_STATUS_STYLES = {
-  Valid: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
-  Expired: "bg-red-50 text-red-700 ring-1 ring-red-200",
-  "Pending": "bg-amber-50 text-amber-700 ring-1 ring-amber-200"
+  Valid: "bg-secondary-container text-on-secondary-fixed-variant ring-1 ring-secondary-fixed-dim",
+  Expired: "bg-error-container text-on-error-container ring-1 ring-error-container",
+  "Pending": "bg-tertiary-fixed text-on-tertiary-fixed-variant ring-1 ring-tertiary-fixed-dim"
 };
 
 const StaffDocuments = ({ staff }) => {
@@ -43,18 +43,18 @@ const StaffDocuments = ({ staff }) => {
   ];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+    <div className="overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+      <div className="flex items-center justify-between border-b border-outline-variant px-6 py-5">
         <div>
-          <h2 className="text-base font-bold text-slate-900">
+          <h2 className="text-base font-bold text-on-background">
             Staff Documents
           </h2>
-          <p className="mt-0.5 text-sm text-slate-500">
+          <p className="mt-0.5 text-sm text-on-surface-variant">
             Certifications and credentials for {staff.name}
           </p>
         </div>
 
-        <button className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-900">
+        <button className="inline-flex items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container-low px-3 py-1.5 text-xs font-semibold text-on-surface-variant transition hover:bg-surface-container hover:text-on-background">
           <FileText size={14} />
           <span>Upload</span>
         </button>
@@ -62,8 +62,8 @@ const StaffDocuments = ({ staff }) => {
 
       <div className="overflow-x-auto">
         <table className="min-w-full">
-          <thead className="bg-slate-50">
-            <tr className="text-xs text-slate-500">
+          <thead className="bg-surface-container-low">
+            <tr className="text-xs text-on-surface-variant">
               <th className="px-6 py-3.5 text-left font-semibold">Document</th>
               <th className="px-6 py-3.5 text-left font-semibold">Type</th>
               <th className="px-6 py-3.5 text-left font-semibold">Date</th>
@@ -80,21 +80,21 @@ const StaffDocuments = ({ staff }) => {
               >
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100">
-                      <FileText size={18} className="text-slate-500" />
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-surface-container">
+                      <FileText size={18} className="text-on-surface-variant" />
                     </div>
                     <div>
-                      <p className="font-semibold text-slate-800">
+                      <p className="font-semibold text-on-background">
                         {doc.name}
                       </p>
-                      <p className="font-mono text-xs text-slate-400">
+                      <p className="font-mono text-xs text-outline">
                         {doc.file}
                       </p>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-slate-600">{doc.type}</td>
-                <td className="px-6 py-4 text-sm text-slate-600">{doc.date}</td>
+                <td className="px-6 py-4 text-sm text-on-surface-variant">{doc.type}</td>
+                <td className="px-6 py-4 text-sm text-on-surface-variant">{doc.date}</td>
                 <td className="px-6 py-4 text-center">
                   <span
                     className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
@@ -107,10 +107,10 @@ const StaffDocuments = ({ staff }) => {
                 </td>
                 <td className="px-6 py-4 text-right">
                   <div className="flex items-center justify-end gap-1.5">
-                    <button className="rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700">
+                    <button className="rounded-lg p-1.5 text-on-surface-variant transition hover:bg-surface-container hover:text-on-surface-variant">
                       <Download size={14} />
                     </button>
-                    <button className="rounded-lg p-1.5 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700">
+                    <button className="rounded-lg p-1.5 text-on-surface-variant transition hover:bg-surface-container hover:text-on-surface-variant">
                       <ExternalLink size={14} />
                     </button>
                   </div>

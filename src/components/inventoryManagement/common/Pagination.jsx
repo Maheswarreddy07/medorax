@@ -17,18 +17,18 @@ const Pagination = ({ currentPage = 1, totalPages = 98, totalEntries = 14285, pa
   };
 
   return (
-    <div className="flex flex-col gap-4 border-t border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
-      <p className="text-sm text-slate-500">
-        Showing <span className="font-semibold text-slate-900">{startEntry}</span> to{" "}
-        <span className="font-semibold text-slate-900">{endEntry}</span> of{" "}
-        <span className="font-semibold text-slate-900">{totalEntries.toLocaleString()}</span> entries
+    <div className="flex flex-col gap-4 border-t border-outline-variant bg-surface-container-lowest p-4 sm:flex-row sm:items-center sm:justify-between">
+      <p className="text-sm text-on-surface-variant">
+        Showing <span className="font-semibold text-on-background">{startEntry}</span> to{" "}
+        <span className="font-semibold text-on-background">{endEntry}</span> of{" "}
+        <span className="font-semibold text-on-background">{totalEntries.toLocaleString()}</span> entries
       </p>
 
       <div className="flex items-center gap-1.5">
         <button
           type="button"
           disabled={currentPage === 1}
-          className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition hover:bg-slate-50 disabled:opacity-40"
+          className="flex h-8 w-8 items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant transition hover:bg-surface-container-low disabled:opacity-40"
           aria-label="Previous page"
         >
           <ChevronLeft size={18} />
@@ -36,7 +36,7 @@ const Pagination = ({ currentPage = 1, totalPages = 98, totalEntries = 14285, pa
 
         {getPageNumbers().map((page, index) =>
           page === "..." ? (
-            <span key={`ellipsis-${index}`} className="px-1 text-slate-400">
+            <span key={`ellipsis-${index}`} className="px-1 text-outline">
               ...
             </span>
           ) : (
@@ -45,8 +45,8 @@ const Pagination = ({ currentPage = 1, totalPages = 98, totalEntries = 14285, pa
               type="button"
               className={`flex h-8 w-8 items-center justify-center rounded-lg text-sm font-semibold transition ${
                 page === currentPage
-                  ? "bg-[#003C90] text-white shadow-sm"
-                  : "border border-slate-200 text-slate-600 hover:bg-slate-50"
+                  ? "bg-primary text-on-primary shadow-sm"
+                  : "border border-outline-variant text-on-surface-variant hover:bg-surface-container-low"
               }`}
             >
               {page}
@@ -57,7 +57,7 @@ const Pagination = ({ currentPage = 1, totalPages = 98, totalEntries = 14285, pa
         <button
           type="button"
           disabled={currentPage === totalPages}
-          className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-slate-500 transition hover:bg-slate-50 disabled:opacity-40"
+          className="flex h-8 w-8 items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant transition hover:bg-surface-container-low disabled:opacity-40"
           aria-label="Next page"
         >
           <ChevronRight size={18} />

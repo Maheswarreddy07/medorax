@@ -25,19 +25,19 @@ const columns = [
     key: "batchNumber",
     label: "Batch Number",
     render: (row) => (
-      <span className="font-semibold text-[#0F52BA]">{row.batchNumber}</span>
+      <span className="font-semibold text-primary">{row.batchNumber}</span>
     ),
   },
   { key: "itemName", label: "Item Name" },
   {
     key: "sku",
     label: "SKU / Code",
-    render: (row) => <span className="text-xs text-slate-500">{row.sku}</span>,
+    render: (row) => <span className="text-xs text-on-surface-variant">{row.sku}</span>,
   },
   {
     key: "mfgDate",
     label: "Mfg Date",
-    render: (row) => <span className="text-slate-500">{row.mfgDate}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.mfgDate}</span>,
   },
   {
     key: "expiryDate",
@@ -46,10 +46,10 @@ const columns = [
       <span
         className={
           row.status === "Expired"
-            ? "font-semibold text-rose-600"
+            ? "font-semibold text-error"
             : row.status === "Near Expiry"
-              ? "font-semibold text-amber-600"
-              : "text-slate-500"
+              ? "font-semibold text-tertiary"
+              : "text-on-surface-variant"
         }
       >
         {row.expiryDate}
@@ -61,7 +61,7 @@ const columns = [
     label: "Qty",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.quantity.toLocaleString()}
       </span>
     ),
@@ -69,7 +69,7 @@ const columns = [
   {
     key: "unit",
     label: "Unit",
-    render: (row) => <span className="text-slate-500">{row.unit}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.unit}</span>,
   },
   { key: "location", label: "Location" },
   {
@@ -88,10 +88,10 @@ const BatchManagement = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Batch Management
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Track and manage all product batches across facilities.
         </p>
       </div>
@@ -110,7 +110,7 @@ const BatchManagement = () => {
           subtitle="Requires attention"
           footerIcon={AlertTriangle}
           footerText="Warning"
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
         <StatCard
           title="Expired Batches"
@@ -118,7 +118,7 @@ const BatchManagement = () => {
           subtitle="Pending disposal"
           footerIcon={XCircle}
           footerText="Error"
-          footerClass="text-rose-600"
+          footerClass="text-error"
         />
       </div>
 

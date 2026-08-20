@@ -4,7 +4,7 @@ import { Eye } from "lucide-react";
 const SupplierRow = ({ supplier, index }) => {
   return (
     <tr
-      className={`group border-b border-slate-100 transition-colors hover:bg-blue-50/30 ${
+      className={`group border-b border-slate-100 transition-colors hover:bg-primary-fixed/30 ${
         index % 2 !== 0 ? "bg-[#F8FCFF]/50" : ""
       }`}
     >
@@ -16,15 +16,15 @@ const SupplierRow = ({ supplier, index }) => {
             {supplier.initial}
           </div>
 
-          <span className="font-semibold text-slate-800">{supplier.name}</span>
+          <span className="font-semibold text-on-background">{supplier.name}</span>
         </div>
       </td>
 
-      <td className="p-4 text-sm text-slate-600">
+      <td className="p-4 text-sm text-on-surface-variant">
         {supplier.contact}
       </td>
 
-      <td className="p-4 text-right font-mono text-sm font-semibold text-slate-800">
+      <td className="p-4 text-right font-mono text-sm font-semibold text-on-background">
         {supplier.balance}
       </td>
 
@@ -39,7 +39,7 @@ const SupplierRow = ({ supplier, index }) => {
       <td className="p-4 text-right">
         <Link
           to={`/suppliers/${supplier.id}`}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-teal-500 px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition hover:opacity-95 hover:shadow-md"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-2 text-xs font-semibold text-on-primary shadow-sm transition hover:opacity-95 hover:shadow-md"
         >
           <Eye size={13} />
           <span>View Details</span>

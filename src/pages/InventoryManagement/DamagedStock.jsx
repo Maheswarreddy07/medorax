@@ -22,14 +22,14 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   {
@@ -37,7 +37,7 @@ const columns = [
     label: "Damaged Qty",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.damagedQty.toLocaleString()}
       </span>
     ),
@@ -45,19 +45,19 @@ const columns = [
   {
     key: "unit",
     label: "Unit",
-    render: (row) => <span className="text-slate-500">{row.unit}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.unit}</span>,
   },
   { key: "location", label: "Warehouse / Location" },
   { key: "reason", label: "Reason" },
   {
     key: "reportedBy",
     label: "Reported By",
-    render: (row) => <span className="text-slate-500">{row.reportedBy}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.reportedBy}</span>,
   },
   {
     key: "date",
     label: "Date",
-    render: (row) => <span className="text-xs text-slate-500">{row.date}</span>,
+    render: (row) => <span className="text-xs text-on-surface-variant">{row.date}</span>,
   },
   {
     key: "status",
@@ -73,10 +73,10 @@ const DamagedStock = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Damaged Stock
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Track and manage damaged stock items for disposal.
         </p>
       </div>
@@ -99,7 +99,7 @@ const DamagedStock = () => {
           value="12"
           footerText="Requires immediate action"
           footerIcon={AlertTriangle}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
       </div>
 

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { X, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 
 const baseInput =
-  "h-11 w-full rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-[#0F52BA] focus:ring-2 focus:ring-[#0F52BA]/20";
+  "h-11 w-full rounded-xl border border-outline-variant bg-surface-container-lowest px-3 text-sm text-on-surface-variant outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20";
 
 const fieldClass = {
   text: baseInput,
@@ -10,7 +10,7 @@ const fieldClass = {
   date: baseInput,
   select: `${baseInput} cursor-pointer`,
   textarea:
-    "w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none transition focus:border-[#0F52BA] focus:ring-2 focus:ring-[#0F52BA]/20",
+    "w-full resize-none rounded-xl border border-outline-variant bg-surface-container-lowest px-3 py-2 text-sm text-on-surface-variant outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20",
 };
 
 const EntryModal = ({ open, onClose, title, submitLabel = "Save", fields = [], onSubmit }) => {
@@ -84,16 +84,16 @@ const EntryModal = ({ open, onClose, title, submitLabel = "Save", fields = [], o
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/50 p-4 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
       aria-label={title}
       onClick={closeOnBackdrop}
     >
-      <div className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl">
-        <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50 px-6 py-4">
-          <h2 className="text-lg font-bold text-slate-900">{title}</h2>
-          <button type="button" onClick={onClose} className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="Close modal">
+      <div className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-surface-container-lowest shadow-xl">
+        <div className="flex items-center justify-between border-b border-outline-variant bg-surface-container-low px-6 py-4">
+          <h2 className="text-lg font-bold text-on-background">{title}</h2>
+          <button type="button" onClick={onClose} className="rounded-lg p-1.5 text-outline transition hover:bg-surface-container hover:text-on-surface-variant" aria-label="Close modal">
             <X size={20} />
           </button>
         </div>
@@ -102,12 +102,12 @@ const EntryModal = ({ open, onClose, title, submitLabel = "Save", fields = [], o
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {fields.map((field) => {
               const hasError = Boolean(errors[field.name]);
-              const classes = `${fieldClass[field.type] ?? baseInput} ${hasError ? "border-rose-400 focus:border-rose-400 focus:ring-rose-200" : ""} ${field.disabled ? "cursor-not-allowed bg-slate-50 text-slate-500" : ""}`;
+              const classes = `${fieldClass[field.type] ?? baseInput} ${hasError ? "border-error focus:border-error focus:ring-error-container" : ""} ${field.disabled ? "cursor-not-allowed bg-surface-container-low text-on-surface-variant" : ""}`;
               return (
                 <div key={field.name} className={`${field.fullWidth ? "md:col-span-2" : ""} flex flex-col gap-1.5`}>
-                  <label htmlFor={`entry-${field.name}`} className="text-sm font-medium text-slate-600">
+                  <label htmlFor={`entry-${field.name}`} className="text-sm font-medium text-on-surface-variant">
                     {field.label}
-                    {field.required && <span className="ml-0.5 text-rose-500">*</span>}
+                    {field.required && <span className="ml-0.5 text-error">*</span>}
                   </label>
 
                   {field.type === "textarea" ? (
@@ -124,7 +124,7 @@ const EntryModal = ({ open, onClose, title, submitLabel = "Save", fields = [], o
                   )}
 
                   {hasError && (
-                    <p className="flex items-center gap-1 text-xs font-medium text-rose-600">
+                    <p className="flex items-center gap-1 text-xs font-medium text-error">
                       <AlertCircle size={13} />
                       {errors[field.name]}
                     </p>
@@ -135,18 +135,18 @@ const EntryModal = ({ open, onClose, title, submitLabel = "Save", fields = [], o
           </div>
 
           {feedback && (
-            <div className={`mt-4 flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium ${feedback.type === "success" ? "bg-emerald-50 text-emerald-700" : "bg-rose-50 text-rose-700"}`} role="status">
+            <div className={`mt-4 flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium ${feedback.type === "success" ? "bg-secondary-container text-on-secondary-fixed-variant" : "bg-error-container text-on-error-container"}`} role="status">
               {feedback.type === "success" ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
               {feedback.message}
             </div>
           )}
         </form>
 
-        <div className="flex justify-end gap-3 border-t border-slate-200 bg-slate-50 px-6 py-4">
-          <button type="button" onClick={onClose} disabled={submitting} className="h-11 rounded-xl border border-slate-200 bg-white px-5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 disabled:opacity-50">
+        <div className="flex justify-end gap-3 border-t border-outline-variant bg-surface-container-low px-6 py-4">
+          <button type="button" onClick={onClose} disabled={submitting} className="h-11 rounded-xl border border-outline-variant bg-surface-container-lowest px-5 text-sm font-medium text-on-surface-variant transition hover:bg-surface-container disabled:opacity-50">
             Cancel
           </button>
-          <button type="submit" form="entry-modal-form" disabled={submitting} className="flex h-11 items-center justify-center gap-2 rounded-xl bg-linear-to-r from-[#0F52BA] to-[#13B8A7] px-6 text-sm font-semibold text-white shadow-md shadow-blue-200/50 transition hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-60">
+          <button type="submit" form="entry-modal-form" disabled={submitting} className="flex h-11 items-center justify-center gap-2 rounded-xl bg-primary px-6 text-sm font-semibold text-on-primary shadow-md shadow-primary/20 transition hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-60">
             {submitting && <Loader2 size={16} className="animate-spin" />}
             {submitting ? "Saving..." : submitLabel}
           </button>

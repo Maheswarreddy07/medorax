@@ -14,42 +14,42 @@ const KpiCards = () => {
       title: "Total Outstanding Balance",
       value: "$1.24M",
       icon: Landmark,
-      iconBg: "bg-gradient-to-br from-red-50 to-rose-50",
-      iconColor: "text-[#BA1A1A]",
+      iconBg: "bg-gradient-to-br from-error-container to-error-container",
+      iconColor: "text-error",
       badge: "2.4%",
       badgeIcon: ArrowUp,
-      badgeBg: "bg-red-50",
-      badgeColor: "text-[#BA1A1A]",
-      accentBar: "from-red-400 to-rose-400",
-      glow: "from-red-100/40"
+      badgeBg: "bg-error-container",
+      badgeColor: "text-error",
+      accentBar: "from-error to-error-container",
+      glow: "from-error-container/40"
     },
     {
       id: 2,
       title: "Active Suppliers",
       value: "142",
       icon: Building2,
-      iconBg: "bg-gradient-to-br from-emerald-50 to-teal-50",
-      iconColor: "text-[#006B5F]",
+      iconBg: "bg-gradient-to-br from-secondary-container to-secondary-container",
+      iconColor: "text-secondary",
       badge: "Stable",
       badgeIcon: CheckCircle2,
-      badgeBg: "bg-emerald-50",
-      badgeColor: "text-[#006B5F]",
-      accentBar: "from-emerald-400 to-teal-400",
-      glow: "from-emerald-100/40"
+      badgeBg: "bg-secondary-container",
+      badgeColor: "text-secondary",
+      accentBar: "from-secondary to-secondary-container",
+      glow: "from-secondary-container/40"
     },
     {
       id: 3,
       title: "Pending Deliveries (Next 7 Days)",
       value: "38",
       icon: Truck,
-      iconBg: "bg-gradient-to-br from-blue-50 to-cyan-50",
-      iconColor: "text-[#2563EB]",
+      iconBg: "bg-gradient-to-br from-primary-fixed to-primary-fixed",
+      iconColor: "text-primary",
       badge: "On Track",
       badgeIcon: TrendingUp,
-      badgeBg: "bg-blue-50",
-      badgeColor: "text-[#2563EB]",
-      accentBar: "from-blue-400 to-cyan-400",
-      glow: "from-blue-100/40",
+      badgeBg: "bg-primary-fixed",
+      badgeColor: "text-primary",
+      accentBar: "from-primary to-primary-container",
+      glow: "from-primary-fixed/40",
       accent: true
     }
   ];
@@ -63,7 +63,7 @@ const KpiCards = () => {
         return (
           <div
             key={card.id}
-            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100/40"
+            className="group relative overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100/40"
           >
             {/* Top accent bar */}
             <div
@@ -91,11 +91,11 @@ const KpiCards = () => {
             </div>
 
             <div className="relative z-10">
-              <p className="mb-1 text-sm font-medium text-slate-500">
+              <p className="mb-1 text-sm font-medium text-on-surface-variant">
                 {card.title}
               </p>
 
-              <h3 className="text-[32px] font-bold leading-10 text-slate-900">
+              <h3 className="text-[32px] font-bold leading-10 text-on-background">
                 {card.value}
               </h3>
             </div>

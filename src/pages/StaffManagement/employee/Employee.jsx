@@ -216,14 +216,14 @@ const Employee = () => {
       <div className="relative">
         <Search
           size={18}
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-outline"
         />
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search staff by name, role, department, or ID..."
-          className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-11 pr-4 text-sm text-slate-700 shadow-sm outline-none transition-all duration-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
+          className="w-full rounded-xl border border-outline-variant bg-surface-container-lowest py-3 pl-11 pr-4 text-sm text-on-surface-variant shadow-sm outline-none transition-all duration-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
         />
       </div>
 
@@ -238,11 +238,11 @@ const Employee = () => {
       </div>
 
       {filteredStaff.length === 0 && (
-        <div className="rounded-2xl border border-dashed border-slate-300 bg-white/60 p-12 text-center">
-          <p className="text-base font-semibold text-slate-600">
+        <div className="rounded-2xl border border-dashed border-outline bg-surface-container-lowest/60 p-12 text-center">
+          <p className="text-base font-semibold text-on-surface-variant">
             No staff members found
           </p>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-outline">
             Try adjusting your search query.
           </p>
         </div>

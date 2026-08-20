@@ -19,14 +19,14 @@ const ROLE_ICONS = {
 };
 
 const STATUS_STYLES = {
-  Active: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
-  "On Leave": "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
-  Inactive: "bg-slate-100 text-slate-600 ring-1 ring-slate-200"
+  Active: "bg-secondary-container text-on-secondary-fixed-variant ring-1 ring-secondary-fixed-dim",
+  "On Leave": "bg-tertiary-fixed text-on-tertiary-fixed-variant ring-1 ring-tertiary-fixed-dim",
+  Inactive: "bg-surface-container text-on-surface-variant ring-1 ring-outline-variant"
 };
 
 const STATUS_DOT = {
-  Active: "bg-emerald-500",
-  "On Leave": "bg-amber-500",
+  Active: "bg-secondary-container0",
+  "On Leave": "bg-tertiary-fixed0",
   Inactive: "bg-slate-400"
 };
 
@@ -34,16 +34,16 @@ const StaffProfileHeader = ({ staff, onEditClick }) => {
   const RoleIcon = ROLE_ICONS[staff.role] || Shield;
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+    <div className="relative overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm sm:p-8">
       {/* Decorative gradient blobs */}
-      <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gradient-to-br from-blue-200/30 to-teal-200/30 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-200/20 to-cyan-200/20 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary-fixed/30 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-secondary-container/20 blur-3xl" />
 
       <div className="relative">
         {/* Back button */}
         <Link
           to="/staff"
-          className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition hover:text-slate-900"
+          className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-on-surface-variant transition hover:text-on-background"
         >
           <ArrowLeft size={16} />
           <span>Back to Staff Directory</span>
@@ -52,13 +52,13 @@ const StaffProfileHeader = ({ staff, onEditClick }) => {
         <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-start gap-6">
             {/* Avatar */}
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-600 to-teal-500 text-3xl font-bold text-white shadow-lg shadow-blue-200/50">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-2xl bg-primary text-3xl font-bold text-on-primary shadow-lg shadow-primary-fixed/50">
               {staff.name.charAt(0)}
             </div>
 
             <div>
               <div className="flex flex-wrap items-center gap-3">
-                <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+                <h1 className="text-2xl font-bold text-on-background sm:text-3xl">
                   {staff.name}
                 </h1>
 
@@ -75,46 +75,46 @@ const StaffProfileHeader = ({ staff, onEditClick }) => {
                   {staff.status}
                 </span>
 
-                <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-semibold text-amber-700 ring-1 ring-amber-200">
+                <span className="inline-flex items-center gap-1 rounded-full bg-tertiary-fixed px-2.5 py-0.5 text-xs font-semibold text-on-tertiary-fixed-variant ring-1 ring-tertiary-fixed-dim">
                   <Star size={12} className="fill-amber-400 text-amber-400" />
                   {staff.rating}
                 </span>
               </div>
 
               <div className="mt-2 flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-lg bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
-                  <RoleIcon size={14} className="text-blue-600" />
+                <span className="inline-flex items-center gap-1.5 rounded-lg bg-surface-container px-3 py-1 text-xs font-semibold text-on-surface-variant">
+                  <RoleIcon size={14} className="text-primary" />
                   {staff.role}
                 </span>
-                <span className="text-xs text-slate-400">•</span>
-                <span className="text-sm font-medium text-slate-600">
+                <span className="text-xs text-outline">•</span>
+                <span className="text-sm font-medium text-on-surface-variant">
                   {staff.department}
                 </span>
-                <span className="text-xs text-slate-400">•</span>
-                <span className="font-mono text-xs text-slate-500">
+                <span className="text-xs text-outline">•</span>
+                <span className="font-mono text-xs text-on-surface-variant">
                   {staff.code}
                 </span>
               </div>
 
-              <p className="mt-3 max-w-2xl text-sm text-slate-500">
+              <p className="mt-3 max-w-2xl text-sm text-on-surface-variant">
                 {staff.description}
               </p>
 
-              <div className="mt-4 flex flex-wrap gap-4 text-xs text-slate-500">
+              <div className="mt-4 flex flex-wrap gap-4 text-xs text-on-surface-variant">
                 <div className="flex items-center gap-1.5">
-                  <Mail size={13} className="text-blue-500" />
+                  <Mail size={13} className="text-primary" />
                   <span>{staff.email}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Phone size={13} className="text-blue-500" />
+                  <Phone size={13} className="text-primary" />
                   <span>{staff.phone}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <MapPin size={13} className="text-blue-500" />
+                  <MapPin size={13} className="text-primary" />
                   <span>{staff.address}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Calendar size={13} className="text-blue-500" />
+                  <Calendar size={13} className="text-primary" />
                   <span>License: {staff.license}</span>
                 </div>
               </div>
@@ -123,7 +123,7 @@ const StaffProfileHeader = ({ staff, onEditClick }) => {
 
           <button
             onClick={onEditClick}
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-teal-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200/50 transition hover:opacity-95 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary shadow-md shadow-primary-fixed/50 transition hover:opacity-95 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary/50"
           >
             <Edit size={16} />
             <span>Edit Profile</span>

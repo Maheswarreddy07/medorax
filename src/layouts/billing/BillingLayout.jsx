@@ -13,6 +13,7 @@ const BillingLayout = () => {
 
         <main className="flex-1 p-8">
           <Outlet />
+          
         </main>
       </div>
     </div>

@@ -24,10 +24,10 @@ const LiveClock = () => {
 
   return (
     <div className="mt-8 text-center">
-      <p className="text-5xl font-extrabold tracking-tighter text-blue-600">
+      <p className="text-5xl font-extrabold tracking-tighter text-primary">
         {timeString}
       </p>
-      <p className="mt-1 text-xs font-medium uppercase tracking-widest text-slate-500">
+      <p className="mt-1 text-xs font-medium uppercase tracking-widest text-on-surface-variant">
         {dateString}
       </p>
     </div>

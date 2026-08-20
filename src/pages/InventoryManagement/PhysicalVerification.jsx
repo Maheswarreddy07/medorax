@@ -22,14 +22,14 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   {
@@ -37,7 +37,7 @@ const columns = [
     label: "System Quantity",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.systemQty.toLocaleString()}
       </span>
     ),
@@ -47,7 +47,7 @@ const columns = [
     label: "Physically Counted",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.countedQty !== null ? row.countedQty.toLocaleString() : "-"}
       </span>
     ),
@@ -58,11 +58,11 @@ const columns = [
     align: "right",
     render: (row) =>
       row.difference === null ? (
-        <span className="text-slate-400">-</span>
+        <span className="text-outline">-</span>
       ) : (
         <span
           className={`font-semibold ${
-            row.difference === 0 ? "text-emerald-600" : "text-rose-600"
+            row.difference === 0 ? "text-secondary" : "text-error"
           }`}
         >
           {row.difference}
@@ -72,12 +72,12 @@ const columns = [
   {
     key: "verifiedBy",
     label: "Verified By",
-    render: (row) => <span className="text-slate-500">{row.verifiedBy}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.verifiedBy}</span>,
   },
   {
     key: "date",
     label: "Date",
-    render: (row) => <span className="text-xs text-slate-500">{row.date}</span>,
+    render: (row) => <span className="text-xs text-on-surface-variant">{row.date}</span>,
   },
   {
     key: "status",
@@ -93,10 +93,10 @@ const PhysicalVerification = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Physical Stock Verification
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Verify physical stock counts against system records.
         </p>
       </div>
@@ -115,7 +115,7 @@ const PhysicalVerification = () => {
           subtitle="85% completion rate"
           footerIcon={CheckCircle2}
           footerText="Completed"
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
         <StatCard
           title="Mismatches Found"
@@ -123,7 +123,7 @@ const PhysicalVerification = () => {
           subtitle="Requires immediate reconciliation"
           footerIcon={AlertTriangle}
           footerText="Warning"
-          footerClass="text-rose-600"
+          footerClass="text-error"
         />
       </div>
 

@@ -5,7 +5,7 @@ const DEPARTMENTS = ["Cardiology", "Neurology", "Orthopedics", "Pediatrics", "Ra
 const STATUS_OPTIONS = ["Active", "On Leave", "Inactive"];
 
 const INPUT_CLASSES =
-  "w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-700 placeholder:text-slate-400 transition focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100";
+  "w-full rounded-xl border border-outline-variant bg-surface-container-low px-4 py-2.5 text-sm text-on-surface-variant placeholder:text-outline transition focus:border-primary focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-primary-fixed";
 
 const StaffModal = ({
   isOpen,
@@ -24,17 +24,17 @@ const StaffModal = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/50 p-4">
-      <div className="relative w-full max-w-3xl rounded-2xl border border-slate-200 bg-white shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-inverse-surface/50 p-4">
+      <div className="relative w-full max-w-3xl rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+        <div className="flex items-center justify-between border-b border-outline-variant px-6 py-5">
           <div>
-            <h2 className="text-xl font-bold text-slate-900">{title}</h2>
-            <p className="mt-0.5 text-sm text-slate-500">{subtitle}</p>
+            <h2 className="text-xl font-bold text-on-background">{title}</h2>
+            <p className="mt-0.5 text-sm text-on-surface-variant">{subtitle}</p>
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
+            className="rounded-lg p-2 text-on-surface-variant transition hover:bg-surface-container hover:text-on-surface-variant"
           >
             <X size={20} />
           </button>
@@ -45,8 +45,8 @@ const StaffModal = ({
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {/* Name */}
             <div className="sm:col-span-2">
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <User size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <User size={14} className="text-primary" />
                 Full Name
               </label>
               <input
@@ -61,8 +61,8 @@ const StaffModal = ({
 
             {/* Staff Code */}
             <div>
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <FileText size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <FileText size={14} className="text-primary" />
                 Staff Code
               </label>
               <input
@@ -77,8 +77,8 @@ const StaffModal = ({
 
             {/* Role */}
             <div>
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <Shield size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <Shield size={14} className="text-primary" />
                 Role
               </label>
               <select
@@ -96,8 +96,8 @@ const StaffModal = ({
 
             {/* Email */}
             <div>
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <Mail size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <Mail size={14} className="text-primary" />
                 Email
               </label>
               <input
@@ -112,8 +112,8 @@ const StaffModal = ({
 
             {/* Phone */}
             <div>
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <Phone size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <Phone size={14} className="text-primary" />
                 Phone
               </label>
               <input
@@ -128,8 +128,8 @@ const StaffModal = ({
 
             {/* Department */}
             <div>
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <Stethoscope size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <Stethoscope size={14} className="text-primary" />
                 Department
               </label>
               <select
@@ -147,8 +147,8 @@ const StaffModal = ({
 
             {/* License */}
             <div>
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <Shield size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <Shield size={14} className="text-primary" />
                 License Number
               </label>
               <input
@@ -163,8 +163,8 @@ const StaffModal = ({
 
             {/* Status */}
             <div>
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <Calendar size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <Calendar size={14} className="text-primary" />
                 Status
               </label>
               <select
@@ -182,8 +182,8 @@ const StaffModal = ({
 
             {/* Address */}
             <div className="sm:col-span-2">
-              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-slate-600">
-                <MapPin size={14} className="text-blue-500" />
+              <label className="mb-1.5 flex items-center gap-2 text-xs font-semibold text-on-surface-variant">
+                <MapPin size={14} className="text-primary" />
                 Address
               </label>
               <input
@@ -197,17 +197,17 @@ const StaffModal = ({
           </div>
 
           {/* Actions */}
-          <div className="mt-8 flex items-center justify-end gap-3 border-t border-slate-200 pt-6">
+          <div className="mt-8 flex items-center justify-end gap-3 border-t border-outline-variant pt-6">
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+              className="rounded-xl border border-outline-variant bg-surface-container-lowest px-5 py-2.5 text-sm font-semibold text-on-surface-variant transition hover:bg-surface-container-low"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-teal-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-200/50 transition hover:opacity-95 hover:shadow-lg"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-on-primary shadow-md shadow-primary-fixed/50 transition hover:opacity-95 hover:shadow-lg"
             >
               <Save size={16} />
               <span>{submitLabel}</span>

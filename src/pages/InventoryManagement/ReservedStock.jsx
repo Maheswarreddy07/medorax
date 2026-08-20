@@ -25,14 +25,14 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   { key: "category", label: "Category" },
@@ -41,7 +41,7 @@ const columns = [
     label: "Reserved Quantity",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.reservedQty.toLocaleString()}
       </span>
     ),
@@ -50,13 +50,13 @@ const columns = [
   {
     key: "unit",
     label: "Unit",
-    render: (row) => <span className="text-slate-500">{row.unit}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.unit}</span>,
   },
   { key: "location", label: "Warehouse / Location" },
   {
     key: "reservationDate",
     label: "Reservation Date",
-    render: (row) => <span className="text-xs text-slate-500">{row.reservationDate}</span>,
+    render: (row) => <span className="text-xs text-on-surface-variant">{row.reservationDate}</span>,
   },
   {
     key: "status",
@@ -74,10 +74,10 @@ const ReservedStock = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Reserved Stock
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Track stock reserved for pending orders and commitments.
         </p>
       </div>
@@ -90,21 +90,21 @@ const ReservedStock = () => {
           value="14,285"
           footerText="2.4% vs last month"
           footerIcon={ArrowUp}
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
         <StatCard
           title="Total Reserved Stock Value"
           value="$2.4M"
           footerText="Inventory healthy"
           footerIcon={TrendingUp}
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
         <StatCard
           title="Pending Orders/Reservations"
           value="Oct 31, 2023"
           footerText="No action required"
           footerIcon={Info}
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
       </div>
 

@@ -21,14 +21,14 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   {
@@ -36,7 +36,7 @@ const columns = [
     label: "Current Quantity",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.currentQty.toLocaleString()}
       </span>
     ),
@@ -46,7 +46,7 @@ const columns = [
     label: "Reorder Threshold",
     align: "right",
     render: (row) => (
-      <span className="text-slate-600">{row.reorderThreshold.toLocaleString()}</span>
+      <span className="text-on-surface-variant">{row.reorderThreshold.toLocaleString()}</span>
     ),
   },
   {
@@ -54,7 +54,7 @@ const columns = [
     label: "Shortage Amount",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-rose-600">
+      <span className="font-semibold text-error">
         {row.shortageAmount.toLocaleString()}
       </span>
     ),
@@ -62,7 +62,7 @@ const columns = [
   {
     key: "unit",
     label: "Unit",
-    render: (row) => <span className="text-slate-500">{row.unit}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.unit}</span>,
   },
   { key: "location", label: "Warehouse / Location" },
   {
@@ -79,10 +79,10 @@ const LowStockAlerts = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Low Stock Alerts
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Identify items below recommended stock thresholds.
         </p>
       </div>
@@ -93,21 +93,21 @@ const LowStockAlerts = () => {
           value="148"
           footerText="Items below recommended threshold"
           footerIcon={TrendingDown}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
         <StatCard
           title="Critical Items"
           value="32"
           footerText="Requires immediate reordering"
           footerIcon={AlertTriangle}
-          footerClass="text-rose-600"
+          footerClass="text-error"
         />
         <StatCard
           title="Items Pending Reorder"
           value="24"
           footerText="Currently in procurement queue"
           footerIcon={ShoppingCart}
-          footerClass="text-blue-600"
+          footerClass="text-primary"
         />
       </div>
 

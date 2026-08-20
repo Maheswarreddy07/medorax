@@ -1,10 +1,10 @@
 ﻿import { Package, ArrowUpRight } from "lucide-react";
 
 const ORDER_STATUS_STYLES = {
-  Delivered: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
-  Processing: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
-  Shipped: "bg-blue-50 text-blue-700 ring-1 ring-blue-200",
-  Pending: "bg-slate-100 text-slate-600 ring-1 ring-slate-200"
+  Delivered: "bg-secondary-container text-on-secondary-fixed-variant ring-1 ring-secondary-fixed-dim",
+  Processing: "bg-tertiary-fixed text-on-tertiary-fixed-variant ring-1 ring-tertiary-fixed-dim",
+  Shipped: "bg-primary-fixed text-primary ring-1 ring-primary-fixed-dim",
+  Pending: "bg-surface-container text-on-surface-variant ring-1 ring-outline-variant"
 };
 
 const SupplierPurchaseOrders = ({ supplier }) => {
@@ -40,18 +40,18 @@ const SupplierPurchaseOrders = ({ supplier }) => {
   ];
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-      <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5">
+    <div className="overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+      <div className="flex items-center justify-between border-b border-outline-variant px-6 py-5">
         <div>
-          <h2 className="text-base font-bold text-slate-900">
+          <h2 className="text-base font-bold text-on-background">
             Recent Purchase Orders
           </h2>
-          <p className="mt-0.5 text-sm text-slate-500">
+          <p className="mt-0.5 text-sm text-on-surface-variant">
             Latest transactions with {supplier.name}
           </p>
         </div>
 
-        <button className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100 hover:text-slate-900">
+        <button className="inline-flex items-center gap-1.5 rounded-lg border border-outline-variant bg-surface-container-low px-3 py-1.5 text-xs font-semibold text-on-surface-variant transition hover:bg-surface-container hover:text-on-background">
           <Package size={14} />
           <span>View All</span>
         </button>
@@ -59,8 +59,8 @@ const SupplierPurchaseOrders = ({ supplier }) => {
 
       <div className="overflow-x-auto">
         <table className="min-w-full">
-          <thead className="bg-slate-50">
-            <tr className="text-xs text-slate-500">
+          <thead className="bg-surface-container-low">
+            <tr className="text-xs text-on-surface-variant">
               <th className="px-6 py-3.5 text-left font-semibold">Order ID</th>
               <th className="px-6 py-3.5 text-left font-semibold">Date</th>
               <th className="px-6 py-3.5 text-left font-semibold">Items</th>
@@ -76,12 +76,12 @@ const SupplierPurchaseOrders = ({ supplier }) => {
                 key={order.id}
                 className="group border-b border-slate-100 transition-colors last:border-b-0 hover:bg-[#F8FCFF]/60"
               >
-                <td className="px-6 py-4 font-mono text-xs font-semibold text-blue-700">
+                <td className="px-6 py-4 font-mono text-xs font-semibold text-primary">
                   {order.id}
                 </td>
-                <td className="px-6 py-4 text-sm text-slate-600">{order.date}</td>
-                <td className="px-6 py-4 text-sm text-slate-600">{order.items}</td>
-                <td className="px-6 py-4 text-right font-mono text-sm font-semibold text-slate-800">
+                <td className="px-6 py-4 text-sm text-on-surface-variant">{order.date}</td>
+                <td className="px-6 py-4 text-sm text-on-surface-variant">{order.items}</td>
+                <td className="px-6 py-4 text-right font-mono text-sm font-semibold text-on-background">
                   {order.amount}
                 </td>
                 <td className="px-6 py-4 text-center">
@@ -94,7 +94,7 @@ const SupplierPurchaseOrders = ({ supplier }) => {
                   </span>
                 </td>
                 <td className="px-6 py-4 text-right">
-                  <button className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 opacity-0 transition-opacity group-hover:opacity-100 hover:text-blue-700">
+                  <button className="inline-flex items-center gap-1 text-xs font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100 hover:text-primary">
                     <span>Details</span>
                     <ArrowUpRight size={13} />
                   </button>

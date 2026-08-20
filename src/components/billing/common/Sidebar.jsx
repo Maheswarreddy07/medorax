@@ -27,7 +27,7 @@ const navSections = [
 
 const Sidebar = () => {
   return (
-    <aside className="fixed left-0 top-0 z-50 hidden h-screen w-70 flex-col bg-linear-to-br from-[#2563EB] via-[#14B8A6] to-[#10B981] px-6 py-8 text-white shadow-2xl md:flex">
+    <aside className="fixed left-0 top-0 z-50 hidden h-screen w-70 flex-col border-r border-[#003a8a] bg-primary px-6 py-8 text-on-primary shadow-2xl md:flex">
       <div className="mb-8">
         <div className="flex items-center gap-3">
           <img
@@ -37,7 +37,7 @@ const Sidebar = () => {
           />
           <div>
             <h1 className="text-2xl font-extrabold tracking-tight">Medorax</h1>
-            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.25em] text-white/70">
+            <p className="mt-1 text-xs font-semibold uppercase tracking-[0.25em] text-on-primary/60">
               Billing (POS)
             </p>
           </div>
@@ -51,8 +51,8 @@ const Sidebar = () => {
           className={({ isActive }) =>
             `flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium transition-all duration-200 ${
               isActive
-                ? "bg-white/20 font-semibold text-white shadow-md"
-                : "text-white/80 hover:bg-white/10 hover:text-white"
+                ? "bg-surface-container-lowest/20 font-semibold text-on-primary shadow-md"
+                : "text-on-primary/80 hover:bg-surface-container-lowest/10 hover:text-on-primary"
             }`
           }
         >
@@ -65,8 +65,8 @@ const Sidebar = () => {
           className={({ isActive }) =>
             `flex items-center gap-3 rounded-xl px-4 py-3 text-[15px] font-medium transition-all duration-200 ${
               isActive
-                ? "bg-white/20 font-semibold text-white shadow-md"
-                : "text-white/80 hover:bg-white/10 hover:text-white"
+                ? "bg-surface-container-lowest/20 font-semibold text-on-primary shadow-md"
+                : "text-on-primary/80 hover:bg-surface-container-lowest/10 hover:text-on-primary"
             }`
           }
         >
@@ -76,7 +76,7 @@ const Sidebar = () => {
 
         {navSections.map((section) => (
           <div key={section.label}>
-            <p className="mb-2 px-4 text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">
+            <p className="mb-2 px-4 text-[11px] font-bold uppercase tracking-[0.2em] text-on-primary/50">
               {section.label}
             </p>
             <div className="space-y-1">
@@ -89,8 +89,8 @@ const Sidebar = () => {
                     className={({ isActive }) =>
                       `flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200 ${
                         isActive
-                          ? "bg-white/20 font-semibold text-white shadow-md"
-                          : "text-white/80 hover:bg-white/10 hover:text-white"
+                          ? "bg-surface-container-lowest/20 font-semibold text-on-primary shadow-md"
+                          : "text-on-primary/80 hover:bg-surface-container-lowest/10 hover:text-on-primary"
                       }`
                     }
                   >
@@ -104,8 +104,8 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      <div className="mt-6 space-y-1 border-t border-white/20 pt-4">
-        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white">
+      <div className="mt-6 space-y-1 border-t border-on-primary/20 pt-4">
+        <button className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-on-primary/80 transition hover:bg-surface-container-lowest/10 hover:text-on-primary">
           <LogOut size={20} strokeWidth={2.2} />
           <span>Logout</span>
         </button>
