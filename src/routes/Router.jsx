@@ -5,6 +5,11 @@ import SupplierLayout from "../layouts/supplierManagement/SupplierManagemetnLayo
 import StaffManagementLayout from "../layouts/staffManagement/StaffManagementLayout";
 import InventoryLayout from "../layouts/inventoryManagement/InventoryLayout";
 import BillingLayout from "../layouts/billing/BillingLayout";
+import PharmacySettingsLayout from "../layouts/pharmacySettings/PharmacySettingsLayout";
+
+import PharmacyDashboard from "../pages/PharmacySettings/Dashboard";
+import PharmacySettingsPage from "../pages/PharmacySettings/Settings";
+import PharmacyDirectory from "../pages/PharmacySettings/Directory";
 
 import Login from "../pages/Authentication/Login";
 import SearchPage from "../pages/Search/SearchPage";
@@ -147,6 +152,24 @@ const router = createBrowserRouter([
       {
         path: "prescription",
         element: <PrescriptionBilling />,
+      },
+    ],
+  },
+  {
+    path: "/pharmacy",
+    element: <PharmacySettingsLayout />,
+    children: [
+      {
+        index: true,
+        element: <PharmacyDashboard />,
+      },
+      {
+        path: "settings",
+        element: <PharmacySettingsPage />,
+      },
+      {
+        path: "directory",
+        element: <PharmacyDirectory />,
       },
     ],
   },
