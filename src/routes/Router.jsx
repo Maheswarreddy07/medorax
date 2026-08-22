@@ -1,9 +1,17 @@
 import { createBrowserRouter } from "react-router-dom";
 
+import DashboardLayout from "../layouts/dashboard/DashboardLayout";
 import SupplierLayout from "../layouts/supplierManagement/SupplierManagemetnLayout";
 import StaffManagementLayout from "../layouts/staffManagement/StaffManagementLayout";
 import InventoryLayout from "../layouts/inventoryManagement/InventoryLayout";
 import BillingLayout from "../layouts/billing/BillingLayout";
+
+import Login from "../pages/Authentication/Login";
+import SearchPage from "../pages/Search/SearchPage";
+import ReportsPage from "../pages/Reports/ReportsPage";
+import ImportExportPage from "../pages/ImportExport/ImportExportPage";
+import PurchaseOrderPage from "../pages/Purchases/PurchaseOrderPage";
+import PurchaseInvoicePage from "../pages/Purchases/PurchaseInvoicePage";
 
 import Dashboard from "../pages/SupplierManagement/Dashboard";
 import Suppliers from "../pages/SupplierManagement/Suppliers";
@@ -39,6 +47,10 @@ import PrescriptionBilling from "../pages/Billing/PrescriptionBilling";
 
 const router = createBrowserRouter([
   {
+    path: "/login",
+    element: <Login />,
+  },
+  {
     path: "/",
     element: <SupplierLayout />,
     children: [
@@ -53,6 +65,32 @@ const router = createBrowserRouter([
       {
         path: "suppliers/:supplierId",
         element: <SupplierInformation />,
+      },
+    ],
+  },
+  {
+    path: "/",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "search",
+        element: <SearchPage />,
+      },
+      {
+        path: "reports",
+        element: <ReportsPage />,
+      },
+      {
+        path: "import-export",
+        element: <ImportExportPage />,
+      },
+      {
+        path: "purchases/order",
+        element: <PurchaseOrderPage />,
+      },
+      {
+        path: "purchases/invoice",
+        element: <PurchaseInvoicePage />,
       },
     ],
   },
