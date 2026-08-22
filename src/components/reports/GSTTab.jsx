@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { gstData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
@@ -81,7 +81,7 @@ export function GSTTable({ gstFromDate, gstToDate, page, setPage, search }) {
 }
 
 // Main default export
-export default function GSTTab({ gstFromDate, gstToDate, setGstFromDate, setGstToDate, page, setPage, search }) {
+export default function GSTTab({ gstFromDate, gstToDate, page, setPage, search }) {
   return (
     <>
       <GSTStats />
