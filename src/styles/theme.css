@@ -111,14 +111,12 @@
   --font-weight-label-sm: 600;
 
   /* ── Spacing ──────────────────────────────────────────────── */
+  /* NOTE: Do NOT define --spacing-sm/md/lg/xl/2xl/3xl here.
+     Tailwind v4 maps max-w-* utilities to these tokens, which
+     would break modal/container widths. Use the default Tailwind
+     spacing scale instead. */
   --spacing-base: 4px;
   --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
   --spacing-gutter: 24px;
   --spacing-margin-mobile: 16px;
   --spacing-margin-desktop: 32px;

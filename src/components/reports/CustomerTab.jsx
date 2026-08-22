@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { customerData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
@@ -74,7 +74,7 @@ export function CustomerTable({ customerType, page, setPage, search }) {
 }
 
 // Main default export
-export default function CustomerTab({ customerType, setCustomerType, page, setPage, search }) {
+export default function CustomerTab({ customerType, page, setPage, search }) {
   return (
     <>
       <CustomerStats />
