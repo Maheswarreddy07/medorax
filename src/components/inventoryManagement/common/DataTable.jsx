@@ -1,10 +1,10 @@
 const DataTable = ({ columns, rows, rowKey = "id" }) => {
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest shadow-sm">
       <div className="overflow-x-auto">
         <table className="min-w-full">
-          <thead className="bg-slate-50">
-            <tr className="text-sm text-slate-500">
+          <thead className="bg-surface-container-low">
+            <tr className="text-sm text-on-surface-variant">
               {columns.map((column) => (
                 <th
                   key={column.key}
@@ -21,11 +21,11 @@ const DataTable = ({ columns, rows, rowKey = "id" }) => {
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-outline-variant">
             {rows.map((row, index) => (
               <tr
                 key={row[rowKey] ?? index}
-                className="transition-colors hover:bg-slate-50"
+                className="transition-colors hover:bg-surface-container-low"
               >
                 {columns.map((column) => (
                   <td

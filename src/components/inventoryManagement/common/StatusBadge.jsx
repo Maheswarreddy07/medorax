@@ -1,9 +1,9 @@
 const variantStyles = {
-  success: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
-  warning: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
-  danger: "bg-rose-50 text-rose-700 ring-1 ring-rose-200",
-  info: "bg-blue-50 text-blue-700 ring-1 ring-blue-200",
-  neutral: "bg-slate-100 text-slate-600 ring-1 ring-slate-200",
+  success: "bg-secondary-container text-on-secondary-fixed-variant ring-1 ring-secondary-fixed-dim",
+  warning: "bg-tertiary-fixed text-on-tertiary-fixed-variant ring-1 ring-tertiary-fixed-dim",
+  danger: "bg-error-container text-on-error-container ring-1 ring-error-container",
+  info: "bg-primary-fixed text-primary ring-1 ring-primary-fixed-dim",
+  neutral: "bg-surface-container text-on-surface-variant ring-1 ring-outline-variant",
 };
 
 const StatusBadge = ({ status, variant = "neutral", className = "" }) => {

@@ -22,14 +22,14 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   {
@@ -37,7 +37,7 @@ const columns = [
     label: "Transfer Quantity",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.transferQty.toLocaleString()}
       </span>
     ),
@@ -47,12 +47,12 @@ const columns = [
   {
     key: "transferredBy",
     label: "Transferred By",
-    render: (row) => <span className="text-slate-500">{row.transferredBy}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.transferredBy}</span>,
   },
   {
     key: "date",
     label: "Date",
-    render: (row) => <span className="text-xs text-slate-500">{row.date}</span>,
+    render: (row) => <span className="text-xs text-on-surface-variant">{row.date}</span>,
   },
   {
     key: "status",
@@ -68,10 +68,10 @@ const StockTransfer = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Stock Transfer
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Manage stock transfers between warehouses and facilities.
         </p>
       </div>
@@ -82,14 +82,14 @@ const StockTransfer = () => {
           value="14,285"
           footerText="2.4% vs last month"
           footerIcon={ArrowUp}
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
         <StatCard
           title="Pending Transfers"
           value="12"
           footerText="Requires immediate attention"
           footerIcon={AlertTriangle}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
         <StatCard
           title="Total Quantity Transferred"
@@ -97,7 +97,7 @@ const StockTransfer = () => {
           subtitle="Net transfers for the period"
           footerIcon={AlertTriangle}
           footerText="Warning"
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
       </div>
 

@@ -13,51 +13,51 @@ const paymentMethods = [
 
 const CartSummary = ({ subtotal, tax, discount, total, onPay }) => {
   return (
-    <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-      <div className="border-b border-slate-200 p-6">
-        <h3 className="text-lg font-semibold text-slate-900">Billing Summary</h3>
+    <div className="overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+      <div className="border-b border-outline-variant p-6">
+        <h3 className="text-lg font-semibold text-on-background">Billing Summary</h3>
       </div>
 
       <div className="space-y-4 p-6">
-        <div className="flex justify-between text-sm text-slate-600">
+        <div className="flex justify-between text-sm text-on-surface-variant">
           <span>Subtotal</span>
-          <span className="font-semibold text-slate-900">
+          <span className="font-semibold text-on-background">
             ${subtotal.toFixed(2)}
           </span>
         </div>
-        <div className="flex justify-between text-sm text-slate-600">
+        <div className="flex justify-between text-sm text-on-surface-variant">
           <span>Discount</span>
-          <span className="font-semibold text-emerald-600">
+          <span className="font-semibold text-secondary">
             -${discount.toFixed(2)}
           </span>
         </div>
-        <div className="flex justify-between text-sm text-slate-600">
+        <div className="flex justify-between text-sm text-on-surface-variant">
           <span>Tax (GST)</span>
-          <span className="font-semibold text-slate-900">${tax.toFixed(2)}</span>
+          <span className="font-semibold text-on-background">${tax.toFixed(2)}</span>
         </div>
 
-        <div className="flex items-center justify-between border-t border-slate-200 pt-4">
-          <span className="text-base font-semibold text-slate-900">
+        <div className="flex items-center justify-between border-t border-outline-variant pt-4">
+          <span className="text-base font-semibold text-on-background">
             Grand Total
           </span>
-          <span className="text-2xl font-bold text-[#0F52BA]">
+          <span className="text-2xl font-bold text-primary">
             ${total.toFixed(2)}
           </span>
         </div>
       </div>
 
       <div className="px-6">
-        <p className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-400">
+        <p className="mb-3 text-xs font-bold uppercase tracking-wider text-outline">
           Payment Method
         </p>
-        <div className="grid grid-cols-3 gap-2 rounded-lg bg-slate-100 p-1">
+        <div className="grid grid-cols-3 gap-2 rounded-lg bg-surface-container p-1">
           {paymentMethods.map((method) => {
             const Icon = method.icon;
             return (
               <button
                 key={method.id}
                 type="button"
-                className="flex flex-col items-center gap-1 rounded-md px-2 py-3 text-xs font-semibold text-slate-600 transition hover:bg-white hover:text-[#0F52BA] hover:shadow-sm"
+                className="flex flex-col items-center gap-1 rounded-md px-2 py-3 text-xs font-semibold text-on-surface-variant transition hover:bg-surface-container-lowest hover:text-primary hover:shadow-sm"
               >
                 <Icon size={18} />
                 {method.label}
@@ -71,7 +71,7 @@ const CartSummary = ({ subtotal, tax, discount, total, onPay }) => {
         <button
           type="button"
           onClick={onPay}
-          className="flex w-full items-center justify-center gap-3 rounded-xl bg-linear-to-br from-[#0F52BA] via-[#14B8A6] to-[#10B981] py-4 text-base font-bold text-white shadow-lg transition-transform duration-200 hover:scale-[1.02] active:scale-95"
+          className="flex w-full items-center justify-center gap-3 rounded-xl bg-primary py-4 text-base font-bold text-on-primary shadow-lg transition-transform duration-200 hover:scale-[1.02] active:scale-95"
         >
           <span>Pay Now</span>
           <ArrowRight size={20} />

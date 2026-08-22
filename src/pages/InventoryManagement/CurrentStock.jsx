@@ -26,14 +26,14 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   { key: "category", label: "Category" },
@@ -42,7 +42,7 @@ const columns = [
     label: "Qty",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.quantity.toLocaleString()}
       </span>
     ),
@@ -50,7 +50,7 @@ const columns = [
   {
     key: "unit",
     label: "Unit",
-    render: (row) => <span className="text-slate-500">{row.unit}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.unit}</span>,
   },
   { key: "location", label: "Location" },
   {
@@ -64,7 +64,7 @@ const columns = [
   {
     key: "lastUpdated",
     label: "Last Updated",
-    render: (row) => <span className="text-xs text-slate-500">{row.lastUpdated}</span>,
+    render: (row) => <span className="text-xs text-on-surface-variant">{row.lastUpdated}</span>,
   },
   {
     key: "actions",
@@ -73,7 +73,7 @@ const columns = [
     render: () => (
       <button
         type="button"
-        className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-[#0F52BA]"
+        className="rounded-lg p-1.5 text-outline transition hover:bg-surface-container hover:text-primary"
         aria-label="More actions"
       >
         <MoreVertical size={18} />
@@ -88,10 +88,10 @@ const CurrentStock = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Current Stock
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Monitor real-time inventory levels across all warehouses.
         </p>
       </div>
@@ -104,21 +104,21 @@ const CurrentStock = () => {
           value="14,285"
           footerText="2.4% vs last month"
           footerIcon={ArrowUp}
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
         <StatCard
           title="Total Stock Value"
           value="$2.4M"
           footerText="Inventory healthy"
           footerIcon={TrendingUp}
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
         <StatCard
           title="Low Stock Items"
           value="342"
           footerText="Action required on 12"
           footerIcon={AlertTriangle}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
       </div>
 

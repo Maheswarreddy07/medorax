@@ -10,7 +10,7 @@ const stockTabs = [
 
 const StockTabs = () => {
   return (
-    <div className="mb-6 overflow-x-auto border-b border-slate-200 bg-white">
+    <div className="mb-6 overflow-x-auto border-b border-outline-variant bg-surface-container-lowest">
       <div className="flex gap-6 whitespace-nowrap px-6 py-3">
         {stockTabs.map((tab) => (
           <NavLink
@@ -20,8 +20,8 @@ const StockTabs = () => {
             className={({ isActive }) =>
               `relative pb-2 text-sm font-semibold transition-colors ${
                 isActive
-                  ? "text-[#0F52BA]"
-                  : "text-slate-500 hover:text-slate-800"
+                  ? "text-primary"
+                  : "text-on-surface-variant hover:text-on-background"
               }`
             }
           >
@@ -29,7 +29,7 @@ const StockTabs = () => {
               <>
                 {tab.label}
                 {isActive && (
-                  <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-linear-to-r from-[#0F52BA] to-[#13B8A7]" />
+                  <span className="absolute inset-x-0 -bottom-px h-0.5 rounded-full bg-primary" />
                 )}
               </>
             )}

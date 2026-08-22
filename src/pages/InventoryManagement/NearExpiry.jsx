@@ -22,33 +22,33 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   { key: "batchNumber", label: "Batch Number" },
   {
     key: "expiryDate",
     label: "Expiry Date",
-    render: (row) => <span className="text-xs text-slate-500">{row.expiryDate}</span>,
+    render: (row) => <span className="text-xs text-on-surface-variant">{row.expiryDate}</span>,
   },
   {
     key: "timeRemaining",
     label: "Time Remaining",
-    render: (row) => <span className="text-slate-600">{row.timeRemaining}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.timeRemaining}</span>,
   },
   {
     key: "quantity",
     label: "Quantity",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.quantity.toLocaleString()}
       </span>
     ),
@@ -56,7 +56,7 @@ const columns = [
   {
     key: "unit",
     label: "Unit",
-    render: (row) => <span className="text-slate-500">{row.unit}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.unit}</span>,
   },
   { key: "location", label: "Warehouse / Location" },
   {
@@ -73,10 +73,10 @@ const NearExpiry = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Near Expiry Stock
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Monitor stock approaching expiry to minimize waste.
         </p>
       </div>
@@ -87,21 +87,21 @@ const NearExpiry = () => {
           value="14,285"
           footerText="Items requiring attention"
           footerIcon={AlertTriangle}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
         <StatCard
           title="Expiring in 30 Days"
           value="$32.8K"
           footerText="High priority disposal risk"
           footerIcon={DollarSign}
-          footerClass="text-rose-600"
+          footerClass="text-error"
         />
         <StatCard
           title="Total Value at Risk"
           value="24"
           footerText="Estimated loss if not utilized"
           footerIcon={Clock}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
       </div>
 

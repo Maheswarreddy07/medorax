@@ -7,7 +7,7 @@ const ActionButtons = ({ onCheckIn, onCheckOut, disabled }) => {
         type="button"
         onClick={onCheckIn}
         disabled={disabled}
-        className="flex flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 py-6 text-white shadow-md transition-all hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex flex-col items-center justify-center gap-2 rounded-xl bg-primary py-6 text-on-primary shadow-md transition-all hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
       >
         <LogIn size={32} strokeWidth={2.2} fill="currentColor" />
         <span className="text-2xl font-bold">Check In</span>
@@ -16,7 +16,7 @@ const ActionButtons = ({ onCheckIn, onCheckOut, disabled }) => {
         type="button"
         onClick={onCheckOut}
         disabled={disabled}
-        className="flex flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 py-6 text-white shadow-md transition-all hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex flex-col items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 py-6 text-on-primary shadow-md transition-all hover:brightness-110 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
       >
         <LogOut size={32} strokeWidth={2.2} fill="currentColor" />
         <span className="text-2xl font-bold">Check Out</span>

@@ -2,17 +2,17 @@ import { Search, Bell, ChevronDown } from "lucide-react";
 
 const Topbar = () => {
   return (
-    <header className="sticky top-0 z-40 flex h-20 items-center justify-between border-b border-slate-200 bg-white px-8 shadow-sm">
+    <header className="sticky top-0 z-40 flex h-20 items-center justify-between border-b border-outline-variant bg-surface-container-lowest px-8 shadow-sm">
       <div className="w-full max-w-lg">
         <div className="relative">
           <Search
             size={18}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-outline"
           />
           <input
             type="text"
             placeholder="Search inventory, batches, items..."
-            className="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-11 pr-4 text-sm text-slate-700 placeholder:text-slate-400 transition-all duration-200 focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-100"
+            className="h-11 w-full rounded-xl border border-outline-variant bg-surface-container-low pl-11 pr-4 text-sm text-on-surface-variant placeholder:text-outline transition-all duration-200 focus:border-primary focus:bg-surface-container-lowest focus:outline-none focus:ring-4 focus:ring-primary/10"
           />
         </div>
       </div>
@@ -20,26 +20,26 @@ const Topbar = () => {
       <div className="ml-8 flex items-center gap-5">
         <button
           type="button"
-          className="relative rounded-full p-2 text-slate-500 transition hover:bg-slate-100"
+          className="relative rounded-full p-2 text-on-surface-variant transition hover:bg-surface-container"
           aria-label="Notifications"
         >
           <Bell size={20} />
-          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white" />
+          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-error-container0 ring-2 ring-on-primary" />
         </button>
 
-        <div className="h-8 w-px bg-slate-200" />
+        <div className="h-8 w-px bg-surface-container-high" />
 
-        <button className="flex items-center gap-3 rounded-xl px-2 py-1 transition hover:bg-slate-50">
+        <button className="flex items-center gap-3 rounded-xl px-2 py-1 transition hover:bg-surface-container-low">
           <img
             src="https://i.pravatar.cc/100?img=12"
             alt="Profile"
-            className="h-11 w-11 rounded-full object-cover ring-2 ring-slate-200"
+            className="h-11 w-11 rounded-full object-cover ring-2 ring-outline-variant"
           />
           <div className="hidden text-left lg:block">
-            <p className="text-sm font-semibold text-slate-800">Admin User</p>
-            <p className="text-xs text-slate-500">Inventory Manager</p>
+            <p className="text-sm font-semibold text-on-background">Admin User</p>
+            <p className="text-xs text-on-surface-variant">Inventory Manager</p>
           </div>
-          <ChevronDown size={18} className="hidden text-slate-500 lg:block" />
+          <ChevronDown size={18} className="hidden text-on-surface-variant lg:block" />
         </button>
       </div>
     </header>

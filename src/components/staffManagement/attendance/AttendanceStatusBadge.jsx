@@ -2,27 +2,27 @@ import { CheckCircle2, Clock4, XCircle } from "lucide-react";
 
 const STATUS_STYLES = {
   Present: {
-    badgeClass: "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200",
+    badgeClass: "bg-secondary-container text-on-secondary-fixed-variant ring-1 ring-secondary-fixed-dim",
     icon: CheckCircle2,
-    iconClass: "text-emerald-500"
+    iconClass: "text-secondary"
   },
   Late: {
-    badgeClass: "bg-amber-50 text-amber-700 ring-1 ring-amber-200",
+    badgeClass: "bg-tertiary-fixed text-on-tertiary-fixed-variant ring-1 ring-tertiary-fixed-dim",
     icon: Clock4,
-    iconClass: "text-amber-500"
+    iconClass: "text-tertiary"
   },
   Absent: {
-    badgeClass: "bg-rose-50 text-rose-700 ring-1 ring-rose-200",
+    badgeClass: "bg-error-container text-on-error-container ring-1 ring-error-container",
     icon: XCircle,
-    iconClass: "text-rose-500"
+    iconClass: "text-error"
   }
 };
 
 const AttendanceStatusBadge = ({ status }) => {
   const style = STATUS_STYLES[status] || {
-    badgeClass: "bg-slate-50 text-slate-600 ring-1 ring-slate-200",
+    badgeClass: "bg-surface-container-low text-on-surface-variant ring-1 ring-outline-variant",
     icon: null,
-    iconClass: "text-slate-400"
+    iconClass: "text-outline"
   };
   const Icon = style.icon;
 

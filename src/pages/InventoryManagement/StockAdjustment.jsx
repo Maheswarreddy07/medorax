@@ -23,14 +23,14 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   {
@@ -38,7 +38,7 @@ const columns = [
     label: "Current Stock",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.currentStock.toLocaleString()}
       </span>
     ),
@@ -50,7 +50,7 @@ const columns = [
     render: (row) => (
       <span
         className={`font-semibold ${
-          row.adjQty < 0 ? "text-rose-600" : "text-emerald-600"
+          row.adjQty < 0 ? "text-error" : "text-secondary"
         }`}
       >
         {row.adjQty > 0 ? `+${row.adjQty}` : row.adjQty}
@@ -60,13 +60,13 @@ const columns = [
   {
     key: "adjustedBy",
     label: "Adjusted By",
-    render: (row) => <span className="text-slate-500">{row.adjustedBy}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.adjustedBy}</span>,
   },
   { key: "reason", label: "Reason" },
   {
     key: "date",
     label: "Date",
-    render: (row) => <span className="text-xs text-slate-500">{row.date}</span>,
+    render: (row) => <span className="text-xs text-on-surface-variant">{row.date}</span>,
   },
   {
     key: "status",
@@ -84,10 +84,10 @@ const StockAdjustment = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Stock Adjustment
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Manage stock quantity adjustments and approvals.
         </p>
       </div>
@@ -98,14 +98,14 @@ const StockAdjustment = () => {
           value="14,285"
           footerText="2.4% vs last month"
           footerIcon={ArrowUp}
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
         <StatCard
           title="Pending Approvals"
           value="12"
           footerText="Requires immediate attention"
           footerIcon={AlertTriangle}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
         <StatCard
           title="Total Quantity Adjusted"
@@ -113,7 +113,7 @@ const StockAdjustment = () => {
           subtitle="Net adjustment for the period"
           footerIcon={AlertTriangle}
           footerText="Warning"
-          footerClass="text-rose-600"
+          footerClass="text-error"
         />
       </div>
 
@@ -133,16 +133,16 @@ const StockAdjustment = () => {
       <Pagination />
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm">
-          <div className="w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl">
-            <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
-              <h2 className="text-lg font-bold text-slate-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/50 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-lg overflow-hidden rounded-2xl bg-surface-container-lowest shadow-xl">
+            <div className="flex items-center justify-between border-b border-outline-variant px-6 py-4">
+              <h2 className="text-lg font-bold text-on-background">
                 New Stock Adjustment
               </h2>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="rounded-lg p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+                className="rounded-lg p-1 text-outline transition hover:bg-surface-container hover:text-on-surface-variant"
                 aria-label="Close"
               >
                 <X size={20} />
@@ -151,10 +151,10 @@ const StockAdjustment = () => {
 
             <div className="space-y-4 p-6">
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-slate-600">
+                <label className="text-sm font-medium text-on-surface-variant">
                   Item Name / SKU
                 </label>
-                <select className="h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                <select className="h-11 rounded-xl border border-outline-variant bg-surface-container-lowest px-3 text-sm text-on-surface-variant outline-none transition focus:border-primary focus:ring-2 focus:ring-primary-fixed">
                   <option>Amoxicillin 500mg Caps - MED-AMX-050</option>
                   <option>Ibuprofen 400mg Tabs - MED-IBU-400</option>
                   <option>Lisinopril 10mg Tabs - MED-LIS-010</option>
@@ -162,36 +162,36 @@ const StockAdjustment = () => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-slate-600">
+                <label className="text-sm font-medium text-on-surface-variant">
                   Current Stock Quantity
                 </label>
                 <input
                   type="text"
                   readOnly
                   value="12,400"
-                  className="h-11 cursor-not-allowed rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-slate-500 outline-none"
+                  className="h-11 cursor-not-allowed rounded-xl border border-outline-variant bg-surface-container-low px-3 text-sm text-on-surface-variant outline-none"
                 />
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-slate-600">
+                <label className="text-sm font-medium text-on-surface-variant">
                   Adjustment Type
                 </label>
                 <div className="flex items-center gap-4">
-                  <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
+                  <label className="flex cursor-pointer items-center gap-2 text-sm text-on-surface-variant">
                     <input
                       type="radio"
                       name="adj_type"
                       defaultChecked
-                      className="text-[#0F52BA] focus:ring-[#0F52BA]"
+                      className="text-primary focus:ring-primary"
                     />
                     Decrease
                   </label>
-                  <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
+                  <label className="flex cursor-pointer items-center gap-2 text-sm text-on-surface-variant">
                     <input
                       type="radio"
                       name="adj_type"
-                      className="text-[#0F52BA] focus:ring-[#0F52BA]"
+                      className="text-primary focus:ring-primary"
                     />
                     Increase
                   </label>
@@ -199,22 +199,22 @@ const StockAdjustment = () => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-slate-600">
+                <label className="text-sm font-medium text-on-surface-variant">
                   Adjustment Quantity
                 </label>
                 <input
                   type="number"
                   min="1"
                   placeholder="e.g. 50"
-                  className="h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="h-11 rounded-xl border border-outline-variant bg-surface-container-lowest px-3 text-sm text-on-surface-variant outline-none transition focus:border-primary focus:ring-2 focus:ring-primary-fixed"
                 />
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-slate-600">
+                <label className="text-sm font-medium text-on-surface-variant">
                   Reason
                 </label>
-                <select className="h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100">
+                <select className="h-11 rounded-xl border border-outline-variant bg-surface-container-lowest px-3 text-sm text-on-surface-variant outline-none transition focus:border-primary focus:ring-2 focus:ring-primary-fixed">
                   <option>Damaged</option>
                   <option>Miscount</option>
                   <option>Return</option>
@@ -224,28 +224,28 @@ const StockAdjustment = () => {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="text-sm font-medium text-slate-600">
+                <label className="text-sm font-medium text-on-surface-variant">
                   Notes
                 </label>
                 <textarea
                   rows="3"
                   placeholder="Add any relevant details..."
-                  className="resize-none rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                  className="resize-none rounded-xl border border-outline-variant bg-surface-container-lowest px-3 py-2 text-sm text-on-surface-variant outline-none transition focus:border-primary focus:ring-2 focus:ring-primary-fixed"
                 />
               </div>
             </div>
 
-            <div className="flex justify-end gap-3 border-t border-slate-200 bg-white px-6 py-4">
+            <div className="flex justify-end gap-3 border-t border-outline-variant bg-surface-container-lowest px-6 py-4">
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="h-11 rounded-xl border border-slate-200 px-5 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
+                className="h-11 rounded-xl border border-outline-variant px-5 text-sm font-medium text-on-surface-variant transition hover:bg-surface-container-low"
               >
                 Cancel
               </button>
               <button
                 type="button"
-                className="h-11 rounded-xl bg-linear-to-r from-[#0F52BA] to-[#13B8A7] px-6 text-sm font-semibold text-white shadow-md shadow-blue-200/50 transition hover:opacity-95"
+                className="h-11 rounded-xl bg-linear-to-r from-primary to-primary-container px-6 text-sm font-semibold text-on-primary shadow-md shadow-primary-fixed/50 transition hover:opacity-95"
               >
                 Submit Adjustment
               </button>

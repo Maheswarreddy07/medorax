@@ -22,21 +22,21 @@ const columns = [
     key: "dateTime",
     label: "Date & Time",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.dateTime}</span>
+      <span className="text-xs text-on-surface-variant">{row.dateTime}</span>
     ),
   },
   {
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   {
@@ -57,8 +57,8 @@ const columns = [
       <span
         className={`font-semibold ${
           row.quantityChanged >= 0
-            ? "text-emerald-700"
-            : "text-rose-700"
+            ? "text-on-secondary-fixed-variant"
+            : "text-on-error-container"
         }`}
       >
         {row.quantityChanged >= 0 ? "+" : ""}
@@ -71,7 +71,7 @@ const columns = [
     label: "Balance After",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.balanceAfter.toLocaleString()}
       </span>
     ),
@@ -84,10 +84,10 @@ const StockLedger = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Stock Ledger
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Audit trail of all stock transactions across warehouses.
         </p>
       </div>
@@ -104,14 +104,14 @@ const StockLedger = () => {
           value="8,450"
           footerText="Total items received across all categories"
           footerIcon={TrendingUp}
-          footerClass="text-emerald-600"
+          footerClass="text-secondary"
         />
         <StatCard
           title="Stock Out (Total)"
           value="7,166"
           footerText="Total items dispatched or consumed"
           footerIcon={TrendingDown}
-          footerClass="text-rose-600"
+          footerClass="text-error"
         />
       </div>
 

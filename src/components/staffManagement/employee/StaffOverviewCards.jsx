@@ -7,20 +7,20 @@ const StaffOverviewCards = ({ staff }) => {
       title: "Years of Service",
       value: staff.yearsOfService,
       icon: Clock,
-      iconBg: "bg-gradient-to-br from-blue-50 to-cyan-50",
-      iconColor: "text-blue-600",
-      accentBar: "from-blue-400 to-cyan-400",
-      glow: "from-blue-100/40"
+      iconBg: "bg-gradient-to-br from-primary-fixed to-primary-fixed",
+      iconColor: "text-primary",
+      accentBar: "from-primary to-primary-container",
+      glow: "from-primary-fixed/40"
     },
     {
       id: 2,
       title: "Certifications",
       value: staff.certifications,
       icon: Award,
-      iconBg: "bg-gradient-to-br from-emerald-50 to-teal-50",
-      iconColor: "text-emerald-600",
-      accentBar: "from-emerald-400 to-teal-400",
-      glow: "from-emerald-100/40"
+      iconBg: "bg-gradient-to-br from-secondary-container to-secondary-container",
+      iconColor: "text-secondary",
+      accentBar: "from-secondary to-secondary-container",
+      glow: "from-secondary-container/40"
     },
     {
       id: 3,
@@ -38,7 +38,7 @@ const StaffOverviewCards = ({ staff }) => {
       value: staff.documents,
       icon: FileText,
       iconBg: "bg-gradient-to-br from-amber-50 to-orange-50",
-      iconColor: "text-amber-600",
+      iconColor: "text-tertiary",
       accentBar: "from-amber-400 to-orange-400",
       glow: "from-amber-100/40"
     }
@@ -52,7 +52,7 @@ const StaffOverviewCards = ({ staff }) => {
         return (
           <div
             key={card.id}
-            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100/40"
+            className="group relative overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-100/40"
           >
             {/* Top accent bar */}
             <div
@@ -73,10 +73,10 @@ const StaffOverviewCards = ({ staff }) => {
             </div>
 
             <div className="relative z-10 mt-4">
-              <p className="mb-1 text-sm font-medium text-slate-500">
+              <p className="mb-1 text-sm font-medium text-on-surface-variant">
                 {card.title}
               </p>
-              <h3 className="text-2xl font-bold text-slate-900">
+              <h3 className="text-2xl font-bold text-on-background">
                 {card.value}
               </h3>
             </div>

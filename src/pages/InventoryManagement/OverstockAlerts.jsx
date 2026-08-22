@@ -21,14 +21,14 @@ const columns = [
     key: "name",
     label: "Item Name",
     render: (row) => (
-      <span className="font-medium text-slate-900">{row.name}</span>
+      <span className="font-medium text-on-background">{row.name}</span>
     ),
   },
   {
     key: "sku",
     label: "SKU / Item Code",
     render: (row) => (
-      <span className="text-xs text-slate-500">{row.sku}</span>
+      <span className="text-xs text-on-surface-variant">{row.sku}</span>
     ),
   },
   {
@@ -36,7 +36,7 @@ const columns = [
     label: "Current Quantity",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-slate-900">
+      <span className="font-semibold text-on-background">
         {row.currentQty.toLocaleString()}
       </span>
     ),
@@ -46,7 +46,7 @@ const columns = [
     label: "Ideal Max Threshold",
     align: "right",
     render: (row) => (
-      <span className="text-slate-600">
+      <span className="text-on-surface-variant">
         {row.idealMaxThreshold.toLocaleString()}
       </span>
     ),
@@ -56,7 +56,7 @@ const columns = [
     label: "Excess Quantity",
     align: "right",
     render: (row) => (
-      <span className="font-semibold text-amber-700">
+      <span className="font-semibold text-on-tertiary-fixed-variant">
         +{row.excessQty.toLocaleString()}
       </span>
     ),
@@ -64,7 +64,7 @@ const columns = [
   {
     key: "unit",
     label: "Unit",
-    render: (row) => <span className="text-slate-500">{row.unit}</span>,
+    render: (row) => <span className="text-on-surface-variant">{row.unit}</span>,
   },
   { key: "location", label: "Warehouse / Location" },
   {
@@ -81,10 +81,10 @@ const OverstockAlerts = () => {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
+        <h1 className="text-2xl font-bold tracking-tight text-on-background">
           Overstock Alerts
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Identify items exceeding ideal maximum stock thresholds.
         </p>
       </div>
@@ -95,21 +95,21 @@ const OverstockAlerts = () => {
           value="148"
           footerText="Items exceeding ideal max thresholds"
           footerIcon={PackageCheck}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
         <StatCard
           title="Severely Overstocked"
           value="32"
           footerText="Critical excess requiring redistribution"
           footerIcon={AlertTriangle}
-          footerClass="text-rose-600"
+          footerClass="text-error"
         />
         <StatCard
           title="Excess Stock Value"
           value="$245k"
           footerText="Total capital tied in surplus inventory"
           footerIcon={DollarSign}
-          footerClass="text-amber-600"
+          footerClass="text-tertiary"
         />
       </div>
 

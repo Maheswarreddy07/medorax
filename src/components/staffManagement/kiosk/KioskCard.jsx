@@ -13,12 +13,12 @@ const KioskCard = ({
   status,
 }) => {
   return (
-    <div className="relative z-10 w-full max-w-2xl rounded-xl border border-slate-200 bg-white/80 p-8 shadow-lg backdrop-blur-xl">
+    <div className="relative z-10 w-full max-w-2xl rounded-xl border border-outline-variant bg-surface-container-lowest/80 p-8 shadow-lg backdrop-blur-xl">
       <div className="mb-8 text-center">
-        <h2 className="mb-1 text-3xl font-bold text-slate-900">
+        <h2 className="mb-1 text-3xl font-bold text-on-background">
           Attendance Kiosk
         </h2>
-        <p className="text-base text-slate-500">
+        <p className="text-base text-on-surface-variant">
           Please verify your identity to log your shift status.
         </p>
       </div>
