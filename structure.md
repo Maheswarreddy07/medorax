@@ -289,6 +289,22 @@ Renders the billing `Sidebar`, `Topbar`, and the `<Outlet />` for billing child 
 
 ---
 
+## layouts/pharmacySettings/
+
+### PharmacySettingsLayout.jsx
+
+**Location:**
+
+`src/layouts/pharmacySettings/PharmacySettingsLayout.jsx`
+
+**Purpose:**
+
+Common layout for Pharmacy Settings module pages (base path `/pharmacy`).
+
+Renders the pharmacy `Sidebar`, `Topbar`, main content `<Outlet />`, and a shared footer.
+
+---
+
 # components/
 
 Reusable UI components, grouped by feature.
@@ -528,6 +544,82 @@ Components for the Billing module (active: `/billing`).
 
 ---
 
+## components/pharmacySettings/
+
+Components for the Pharmacy Settings module (active: `/pharmacy`).
+
+Converted from the Medorax HTML screens (Admin Dashboard, Pharmacy Settings,
+Pharmacy & Branch Directory) using the project's Core Professional theme tokens.
+Each file contains a single-responsibility component; larger screens are composed
+from these parts by their page-level "section" composers.
+
+- `Sidebar.jsx` — pharmacy module sidebar navigation (`NavLink` based)
+- `Topbar.jsx` — pharmacy module top navigation bar (search, notifications, profile)
+
+### common/
+
+Shared primitives reused across all three screens.
+
+- `PageHeader.jsx` — page title + description + optional action buttons
+- `FormField.jsx` — labeled input/select field with focus styling
+- `FormActions.jsx` — Cancel / Save button row used at the bottom of forms
+- `ToggleSwitch.jsx` — accessible on/off switch (`role="switch"`)
+- `TabBar.jsx` — underline-style tab navigation driven by state
+- `StatusChip.jsx` — status pill built on the `cp-chip-*` theme utilities
+
+### dashboard/
+
+Dashboard screen components (`/pharmacy`).
+
+- `DashboardHeader.jsx` — "System Overview" header with New Prescription / Export actions
+- `KpiCards.jsx` — 11 KPI summary cards (sales, revenue, stock alerts, branches, etc.)
+- `AnalyticsSection.jsx` — composer for the analytics block below
+- `RevenueChart.jsx` — bar chart with Monthly/Quarterly/Yearly period toggle
+- `BranchPerformanceCard.jsx` — branch score progress bars
+- `CategoryDistributionCard.jsx` — SKU category donut + legend
+- `RecentOrdersTable.jsx` — recent orders table with status chips
+- `SidePanels.jsx` — composer for the right-hand column panels
+- `QuickActionsPanel.jsx` — quick action tile grid
+- `LowStockPanel.jsx` — critical inventory alert list with restock buttons
+- `ActivityFeed.jsx` — recent activity timeline feed
+
+### settings/
+
+Settings screen components (`/pharmacy/settings`).
+
+- `SettingsNavCards.jsx` — Pharmacy Profile vs Branch Management selector cards
+- `PharmacyProfileSection.jsx` — composer for the six profile tabs
+- `BranchManagementSection.jsx` — composer for the four branch tabs
+
+#### settings/tabs/
+
+- `BusinessInfoTab.jsx` — business information form (name, GST, license, logo, description)
+- `OwnerDetailsTab.jsx` — owner details form (name, DOB, Aadhaar/PAN, contacts)
+- `AddressTab.jsx` — pharmacy address form (address, city/state/PIN, time zone)
+- `LicenseTab.jsx` — license & registration form with document upload slots
+- `ContactInfoTab.jsx` — contact information form (phones, email, hours)
+- `DocumentsTab.jsx` — documents table with verification status and upload action
+- `CreateBranchTab.jsx` — new branch creation form
+- `EditBranchTab.jsx` — branch selection dropdown + editable branch form
+- `BranchSettingsTab.jsx` — per-branch toggles, threshold, tax configuration
+- `BranchStatusTab.jsx` — branch status cards with activate/deactivate actions
+
+### directory/
+
+Directory screen components (`/pharmacy/directory`).
+
+- `DirectorySummary.jsx` — composer for the summary cards + license cards
+- `PharmacyInfoCard.jsx` — verified/active pharmacy identity card (GST, license, PAN)
+- `OwnerInfoCard.jsx` — owner card with masked Aadhaar/PAN reveal affordance
+- `ContactAddressCard.jsx` — registered address, website, map preview placeholder
+- `LicenseCards.jsx` — drug license / GST certificate / registration download cards
+- `BranchDirectory.jsx` — composer for search panel, branch cards, deep-dive
+- `DirectorySearchPanel.jsx` — pharmacy/branch search inputs + quick filter chips
+- `BranchCards.jsx` — selectable branch cards (selected/inactive visual states)
+- `BranchDeepDive.jsx` — selected branch statistics, configuration toggles, timeline
+
+---
+
 # data/
 
 Static/mock data used by the frontend.
@@ -584,6 +676,21 @@ Data used across the Inventory Management module.
 ### billingData.js
 
 Billing module data (product catalogue, pricing, etc.).
+
+---
+
+## data/pharmacySettings/
+
+### pharmacySettingsData.js
+
+All mock data for the Pharmacy Settings module:
+
+- `kpiSummary`, `revenueOverview`, `branchPerformance`, `categoryDistribution`,
+  `recentOrders`, `quickActions`, `lowStockAlerts`, `recentActivity` — dashboard
+- `pharmacyProfile` (business/owner/address/license/contact/documents), `branches` — settings
+- `directorySummary`, `directoryBranches`, `branchDeepDive` — directory
+
+When backend/API integration is introduced, these exports map naturally to API responses.
 
 ---
 
@@ -764,6 +871,28 @@ Prescription billing screen (`/billing/prescription`).
 
 ---
 
+## pages/PharmacySettings/
+
+Pharmacy Settings module screens (active: `/pharmacy`). Each page composes
+components from `components/pharmacySettings/`.
+
+### Dashboard.jsx
+
+System overview dashboard (`/pharmacy`) — KPI cards, analytics, recent orders,
+quick actions, low-stock alerts, activity feed.
+
+### Settings.jsx
+
+Pharmacy settings screen (`/pharmacy/settings`) — section switcher between
+Pharmacy Profile (6 tabs) and Branch Management (4 tabs).
+
+### Directory.jsx
+
+Pharmacy & Branch Directory screen (`/pharmacy/directory`) — search panel,
+summary cards, license cards, selectable branch cards, branch deep-dive.
+
+---
+
 # routes/
 
 Contains application routing configuration.
@@ -780,7 +909,7 @@ Central data-router configuration built with `createBrowserRouter` (react-router
 
 This is the **active** router wired in `src/main.jsx` via `RouterProvider`.
 
-It organizes routes under six top-level layouts / screens:
+It organizes routes under seven top-level layouts / screens:
 
 1. Authentication (Login) — `/login`
 2. Legacy dashboard pages — `/` (`DashboardLayout`)
@@ -788,5 +917,6 @@ It organizes routes under six top-level layouts / screens:
 4. Staff Management — `/staff`
 5. Inventory Management — `/inventory`
 6. Billing — `/billing`
+7. Pharmacy Settings — `/pharmacy` (`/pharmacy`, `/pharmacy/settings`, `/pharmacy/directory`)
 
 See `routing.md` for the complete route map.
