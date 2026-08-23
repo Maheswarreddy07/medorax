@@ -1,43 +1,43 @@
-import "./AuthFooter.css";
 
 export default function AuthFooter() {
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="auth-footer">
-
-      <div className="auth-footer-container">
-
-        <div className="footer-brand">
+    <footer className="bg-[#f8f9ff] border-t border-[#c2c6d3] flex-shrink-0">
+      <div className="w-full py-3 px-2 flex flex-col md:flex-row justify-between items-center gap-2 max-w-[1440px] mx-auto">
+        <span className="text-[14px] leading-[20px] font-semibold tracking-[0.01em] text-[#004287]">
           Medorax
-        </div>
-
-        <div className="footer-links">
-
-          <a href="/privacy-policy">
+        </span>
+        
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-1">
+          <a
+            className="text-[12px] leading-[16px] font-semibold text-[#424751] hover:text-[#004287] transition-colors duration-200"
+            href="#"
+          >
             Privacy Policy
           </a>
-
-          <a href="/terms">
+          <a
+            className="text-[12px] leading-[16px] font-semibold text-[#424751] hover:text-[#004287] transition-colors duration-200"
+            href="#"
+          >
             Terms of Service
           </a>
-
-          <a href="/security">
+          <a
+            className="text-[12px] leading-[16px] font-semibold text-[#424751] hover:text-[#004287] transition-colors duration-200"
+            href="#"
+          >
             Security
           </a>
-
-          <a href="/help">
+          <a
+            className="text-[12px] leading-[16px] font-semibold text-[#424751] hover:text-[#004287] transition-colors duration-200"
+            href="#"
+          >
             Help Center
           </a>
-
         </div>
-
-        <div className="footer-copy">
-          © {year} Medorax. All rights reserved.
-        </div>
-
+        
+        <p className="text-[12px] leading-[16px] font-normal text-[#424751]">
+          © 2024 Medorax. All rights reserved.
+        </p>
       </div>
-
     </footer>
   );
 }

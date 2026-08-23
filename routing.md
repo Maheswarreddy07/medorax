@@ -28,6 +28,11 @@ Standalone route (no layout wrapper).
 | Path | Component | File |
 | --- | --- | --- |
 | `/login` | `Login` | `src/pages/Authentication/Login.jsx` |
+| `/forgot-password` | `ForgotPassword` | `src/pages/Authentication/ForgotPassword.jsx` |
+| `/verify-email` | `VerifyEmail` | `src/pages/Authentication/VerifyEmail.jsx` |
+| `/change-password` | `ChangePassword` | `src/pages/Authentication/ChangePassword.jsx` |
+| `/login-history` | `LoginHistory` | `src/pages/LoginHistory/LoginHistory.jsx` |
+| `/sessions` | `SessionManagement` | `src/pages/SessionManagement/SessionManagement.jsx` |
 
 Renders the self-contained `LoginForm` component (`src/components/authentication/login/LoginForm/LoginForm.jsx`).
 
