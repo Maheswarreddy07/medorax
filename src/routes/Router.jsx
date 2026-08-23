@@ -7,6 +7,10 @@ import InventoryLayout from "../layouts/inventoryManagement/InventoryLayout";
 import BillingLayout from "../layouts/billing/BillingLayout";
 
 import Login from "../pages/Authentication/Login";
+import ForgotPassword from "../pages/Authentication/ForgotPassword";
+import VerifyEmail from "../pages/Authentication/VerifyEmail";
+import ChangePassword from "../pages/Authentication/ChangePassword";
+
 import SearchPage from "../pages/Search/SearchPage";
 import ReportsPage from "../pages/Reports/ReportsPage";
 import ImportExportPage from "../pages/ImportExport/ImportExportPage";
@@ -44,11 +48,33 @@ import BarcodeBilling from "../pages/Billing/BarcodeBilling";
 import ManualBilling from "../pages/Billing/ManualBilling";
 import QuickBilling from "../pages/Billing/QuickBilling";
 import PrescriptionBilling from "../pages/Billing/PrescriptionBilling";
+import SessionManagement from "../pages/SessionManagement/SessionManagement";
+import LoginHistory from "../pages/LoginHistory/LoginHistory";
 
 const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
+  },
+  {
+    path: "/verify-email",
+    element: <VerifyEmail/>,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePassword/>,
+  },
+  {
+    path: "/sessions",
+    element: <SessionManagement/>,
+  },
+  {
+    path: "/login-history",
+    element: <LoginHistory/>,
   },
   {
     path: "/",

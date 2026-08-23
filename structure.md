@@ -22,7 +22,6 @@ The purpose of this structure is to keep pages, reusable components, data, and l
 >
 
 ---
-
 # src/
 
 The main source directory of the application.
