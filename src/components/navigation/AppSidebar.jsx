@@ -10,8 +10,8 @@ import {
 const linkClasses = (isActive) =>
   `flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors ${
     isActive
-      ? "bg-white/20 font-semibold text-white"
-      : "text-white/75 hover:bg-white/10 hover:text-white"
+      ? "bg-secondary-container font-semibold text-on-secondary-fixed-variant shadow-sm"
+      : "text-on-surface-variant hover:bg-surface-container-low hover:text-primary"
   }`;
 
 const NavigationLink = ({ item, pathname, onNavigate }) => {
@@ -48,7 +48,7 @@ const AppSidebar = ({ isOpen, onClose }) => {
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-[260px] flex-col border-r border-[#003a8a] bg-primary px-5 py-6 text-on-primary shadow-2xl transition-transform duration-200 md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 flex w-[260px] flex-col border-r border-outline-variant bg-surface-container-lowest px-5 py-6 text-on-surface shadow-xl transition-transform duration-200 md:translate-x-0 ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -60,8 +60,8 @@ const AppSidebar = ({ isOpen, onClose }) => {
               className="h-14 w-14 rounded-xl object-contain"
             />
             <div>
-              <p className="text-xl font-extrabold tracking-tight text-white">MEDORAX</p>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
+              <p className="text-xl font-extrabold tracking-tight text-primary">MEDORAX</p>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-on-surface-variant">
                 Pharma Management
               </p>
             </div>
@@ -71,7 +71,7 @@ const AppSidebar = ({ isOpen, onClose }) => {
             type="button"
             aria-label="Close navigation"
             onClick={onClose}
-            className="rounded-lg p-2 text-white/75 hover:bg-white/10 hover:text-white md:hidden"
+            className="rounded-lg p-2 text-on-surface-variant hover:bg-surface-container-low hover:text-primary md:hidden"
           >
             <X size={20} />
           </button>
@@ -79,7 +79,7 @@ const AppSidebar = ({ isOpen, onClose }) => {
 
         <nav className="flex-1 space-y-6 overflow-y-auto pr-1">
           <div className="space-y-1">
-            <p className="mb-2 px-4 text-[11px] font-bold uppercase tracking-[0.2em] text-white/45">
+            <p className="mb-2 px-4 text-[11px] font-bold uppercase tracking-[0.2em] text-outline">
               Modules
             </p>
             {primaryNavigation.map((item) => (
@@ -93,7 +93,7 @@ const AppSidebar = ({ isOpen, onClose }) => {
           </div>
 
           <div className="space-y-1">
-            <p className="mb-2 px-4 text-[11px] font-bold uppercase tracking-[0.2em] text-white/45">
+            <p className="mb-2 px-4 text-[11px] font-bold uppercase tracking-[0.2em] text-outline">
               Tools
             </p>
             {utilityNavigation.map((item) => (
@@ -107,11 +107,11 @@ const AppSidebar = ({ isOpen, onClose }) => {
           </div>
         </nav>
 
-        <div className="mt-5 border-t border-white/15 pt-4">
+        <div className="mt-5 border-t border-outline-variant pt-4">
           <NavLink
             to="/login"
             onClick={onClose}
-            className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+            className="flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium text-on-surface-variant transition-colors hover:bg-error-container hover:text-error"
           >
             <LogOut size={20} strokeWidth={2.2} />
             <span>Logout</span>
