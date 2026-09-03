@@ -21,23 +21,29 @@ const toneClasses = {
 };
 
 const ActivityFeed = () => (
-  <div className="flex h-[480px] flex-col overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm">
-    <div className="border-b border-outline-variant bg-primary/5 px-4 py-3 text-sm font-bold text-primary">
-      Recent Activity
+  <section className="overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest p-5 shadow-sm md:p-6">
+    <div className="mb-5 flex items-center justify-between">
+      <div>
+        <h4 className="text-lg font-bold text-on-background">Recent activity</h4>
+        <p className="mt-1 text-xs text-on-surface-variant">Latest workspace updates</p>
+      </div>
+      <button type="button" className="text-xs font-bold text-primary hover:underline">
+        View all
+      </button>
     </div>
-    <div className="flex-1 space-y-6 overflow-y-auto p-6">
+    <div className="space-y-5">
       {recentActivity.map(({ title, detail, meta, tone, icon }) => {
         const Icon = activityIconMap[icon] ?? ShoppingCart;
 
         return (
-          <div key={meta} className="flex gap-4">
+          <div key={meta} className="flex gap-3">
             <span
-              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border ${toneClasses[tone]}`}
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${toneClasses[tone]}`}
             >
               <Icon size={16} />
             </span>
             <div>
-              <p className="text-sm text-on-background">
+              <p className="text-sm leading-5 text-on-background">
                 <span className="font-bold">{title}</span> {detail}
               </p>
               <p className="text-[11px] font-medium text-on-surface-variant">{meta}</p>
@@ -46,7 +52,7 @@ const ActivityFeed = () => (
         );
       })}
     </div>
-  </div>
+  </section>
 );
 
 export default ActivityFeed;

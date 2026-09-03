@@ -10,9 +10,12 @@ const statusTone = {
 
 const RecentOrdersTable = () => {
   return (
-    <div className="overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm">
-      <div className="flex items-center justify-between border-b border-outline-variant p-6">
-        <h4 className="text-xl font-semibold text-on-background">Recent Orders</h4>
+    <section className="overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+      <div className="flex items-center justify-between border-b border-outline-variant px-5 py-4 md:px-6">
+        <div>
+          <h4 className="text-lg font-bold text-on-background">Recent orders</h4>
+          <p className="mt-1 text-xs text-on-surface-variant">Latest transactions across branches</p>
+        </div>
         <button
           type="button"
           className="text-sm font-bold text-primary transition-colors hover:underline"
@@ -59,7 +62,7 @@ const RecentOrdersTable = () => {
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
   );
 };
 

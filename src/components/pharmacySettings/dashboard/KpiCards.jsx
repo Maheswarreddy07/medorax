@@ -14,6 +14,13 @@ import {
 } from "lucide-react";
 import { kpiSummary } from "../../../data/pharmacySettings/pharmacySettingsData";
 
+const featuredMetricIds = [
+  "todays-sales",
+  "total-orders",
+  "active-branches",
+  "low-stock",
+];
+
 const iconMap = {
   payments: Wallet,
   wallet: Wallet,
@@ -35,12 +42,20 @@ const KpiCard = ({ label, value, icon, trend, accent }) => {
 
   return (
     <div
-      className={`rounded-xl border border-outline-variant bg-surface-container-lowest p-4 transition-shadow hover:shadow-md ${
-        isAccentError ? "border-l-4 border-l-error" : accent ? "border-l-4 border-l-primary" : ""
-      }`}
+      className="group rounded-xl border border-outline-variant bg-surface-container-lowest p-5 transition-all hover:-translate-y-0.5 hover:shadow-md"
     >
-      <div className="mb-2 flex items-center justify-between">
-        <Icon size={20} className={isAccentError ? "text-error" : "text-primary"} />
+      <div className="mb-5 flex items-center justify-between">
+        <span
+          className={`flex h-10 w-10 items-center justify-center rounded-lg ${
+            isAccentError
+              ? "bg-error-container text-error"
+              : accent
+                ? "bg-primary text-on-primary"
+                : "bg-primary-fixed text-primary"
+          }`}
+        >
+          <Icon size={20} />
+        </span>
         {trend && (
           <span
             className={`flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-bold ${
@@ -54,18 +69,20 @@ const KpiCard = ({ label, value, icon, trend, accent }) => {
           </span>
         )}
       </div>
-      <p className="text-xs font-semibold uppercase tracking-wide text-on-surface-variant">
-        {label}
-      </p>
-      <h3 className="mt-1 text-2xl font-bold text-on-background">{value}</h3>
+      <h3 className="text-3xl font-bold tracking-tight text-on-background">{value}</h3>
+      <p className="mt-1 text-sm font-medium text-on-surface-variant">{label}</p>
     </div>
   );
 };
 
 const KpiCards = () => {
+  const featuredMetrics = featuredMetricIds.map((id) =>
+    kpiSummary.find((metric) => metric.id === id),
+  );
+
   return (
-    <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
-      {kpiSummary.map((metric) => (
+    <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      {featuredMetrics.map((metric) => (
         <KpiCard key={metric.id} {...metric} />
       ))}
     </section>

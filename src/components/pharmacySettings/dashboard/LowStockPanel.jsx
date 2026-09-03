@@ -2,30 +2,38 @@ import { TriangleAlert } from "lucide-react";
 import { lowStockAlerts } from "../../../data/pharmacySettings/pharmacySettingsData";
 
 const LowStockPanel = () => (
-  <div className="overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm">
-    <div className="flex items-center gap-2 border-b border-error/10 bg-error/5 p-4 text-sm font-bold text-error">
-      <TriangleAlert size={18} />
-      Critical Inventory
+  <section className="h-full overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest p-5 shadow-sm md:p-6">
+    <div className="flex items-start justify-between border-b border-outline-variant pb-5">
+      <div>
+        <h4 className="text-lg font-bold text-on-background">Critical inventory</h4>
+        <p className="mt-1 text-xs text-on-surface-variant">Items that need attention today</p>
+      </div>
+      <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-error-container text-error">
+        <TriangleAlert size={20} />
+      </span>
     </div>
-    <div className="space-y-4 p-4">
+    <div className="divide-y divide-outline-variant">
       {lowStockAlerts.map(({ medicine, location, quantity }) => (
-        <div key={medicine} className="flex items-center justify-between">
+        <div key={medicine} className="flex items-center justify-between gap-4 py-5">
           <div>
-            <p className="text-sm font-bold text-on-background">{medicine}</p>
-            <p className="text-[10px] uppercase tracking-wide text-on-surface-variant">
-              {location} • <span className="font-bold text-error">{quantity} left</span>
+            <p className="text-sm font-semibold text-on-background">{medicine}</p>
+            <p className="mt-1 text-xs text-on-surface-variant">
+              {location} · <span className="font-bold text-error">{quantity} remaining</span>
             </p>
           </div>
           <button
             type="button"
-            className="rounded-lg bg-primary px-3 py-1.5 text-[10px] font-bold uppercase text-on-primary shadow-sm transition-colors hover:bg-primary-container"
+            className="rounded-lg border border-outline-variant px-3 py-2 text-xs font-bold text-primary transition-colors hover:border-primary hover:bg-primary-fixed"
           >
             Restock
           </button>
         </div>
       ))}
     </div>
-  </div>
+    <button type="button" className="mt-2 text-sm font-bold text-primary hover:underline">
+      View inventory alerts
+    </button>
+  </section>
 );
 
 export default LowStockPanel;
