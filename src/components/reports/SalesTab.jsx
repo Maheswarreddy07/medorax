@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { MoreVertical } from "lucide-react";
 import { salesData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
@@ -83,7 +83,7 @@ export function SalesTable({ period, branch, page, setPage, search }) {
 }
 
 // Main default export (for backward compatibility)
-export default function SalesTab({ period, branch, setPeriod, setBranch, page, setPage, search }) {
+export default function SalesTab({ period, branch, page, setPage, search }) {
   return (
     <>
       <SalesStats period={period} />

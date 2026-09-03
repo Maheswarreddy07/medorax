@@ -6,7 +6,6 @@ import FilterBar from "../../components/inventoryManagement/common/FilterBar";
 import DataTable from "../../components/inventoryManagement/common/DataTable";
 import Pagination from "../../components/inventoryManagement/common/Pagination";
 import StatusBadge from "../../components/inventoryManagement/common/StatusBadge";
-import StockTabs from "../../components/inventoryManagement/common/StockTabs";
 import EntryModal from "../../components/inventoryManagement/common/EntryModal";
 import { addStockFields } from "../../components/inventoryManagement/common/entryModalConfigs";
 import {
@@ -96,7 +95,6 @@ const CurrentStock = () => {
         </p>
       </div>
 
-      <StockTabs />
 
       <div className="mb-6 grid grid-cols-1 gap-5 md:grid-cols-3">
         <StatCard

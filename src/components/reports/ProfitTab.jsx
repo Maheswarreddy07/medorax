@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { profitData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
@@ -79,7 +79,7 @@ export function ProfitTable({ period, profitProduct, page, setPage, search }) {
 }
 
 // Main default export
-export default function ProfitTab({ period, profitProduct, setPeriod, setProfitProduct, page, setPage, search }) {
+export default function ProfitTab({ period, profitProduct, page, setPage, search }) {
   return (
     <>
       <ProfitStats period={period} />

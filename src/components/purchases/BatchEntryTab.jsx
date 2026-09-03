@@ -1,4 +1,3 @@
-import React from "react";
 import { ChevronDown, Plus, Trash2, CheckCircle, AlertTriangle, Info } from "lucide-react";
 import { Th, Td } from "./Shared";
 

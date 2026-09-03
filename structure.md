@@ -8,20 +8,13 @@ This document describes the frontend folder structure of the Medorax ERP applica
 - `components/` — reusable UI components belonging to a feature
 - `data/` — static/mock data used by pages and components
 - `layouts/` — common page layouts
-- `routes/` — application routing (data router)
-- `hooks/` — reusable React hooks
-- `store/` — Redux/RTK state management
-- `services/` — API/service layer (currently empty)
-- `utils/` — utility helpers (currently empty)
-- `styles/` — global theme and style tokens
+- `routes/` — application routing
 - `assets/` — images and other static assets
 
 The purpose of this structure is to keep pages, reusable components, data, and layouts separated so that backend/API integration can be introduced without restructuring the frontend.
 
-> **Note on routing:** All routes are defined in `src/routes/Router.jsx` (data router, `createBrowserRouter`) and wired in `src/main.jsx` via `RouterProvider`. This includes the previously-legacy routes (Login, Search, Reports, Import/Export, Purchases), which have been migrated into the data router. `src/App.jsx` is retained for reference only.
->
-
 ---
+
 # src/
 
 The main source directory of the application.
@@ -34,20 +27,18 @@ The main source directory of the application.
 
 **Purpose:**
 
-Legacy application route configuration using `Routes`/`Route` (`react-router-dom`).
+Main application route configuration.
 
 Currently defines routes for:
 
-- `Login` — `/`
-- `Search` — `/search`
-- `Reports` — `/reports`
-- `Import/Export` — `/import-export`
-- `Purchase Order` — `/purchases/order`
-- `Purchase Invoice` — `/purchases/invoice`
+- Login
+- Search
+- Reports
+- Import / Export
+- Purchase Order
+- Purchase Invoice
 
-These dashboard-related pages are rendered through `DashboardLayout`.
-
-> **Note:** These routes have been migrated into `src/routes/Router.jsx` (data router). `App.jsx` is retained for reference only — the actual routing is handled by `src/routes/Router.jsx`, mounted in `src/main.jsx` via `RouterProvider`.
+The dashboard-related pages are rendered through `DashboardLayout`.
 
 ---
 
@@ -61,7 +52,7 @@ These dashboard-related pages are rendered through `DashboardLayout`.
 
 Application entry point.
 
-Initializes the React application inside `StrictMode` and renders the root component via `RouterProvider`, passing the router defined in `src/routes/Router.jsx`.
+It initializes the React application and renders the root application component.
 
 ---
 
@@ -73,138 +64,237 @@ Initializes the React application inside `StrictMode` and renders the root compo
 
 **Purpose:**
 
-Global base CSS styles used throughout the application.
+Global CSS styles used throughout the application.
 
 ---
 
-## hooks/
+# components/
 
-Reusable React hooks extracted for shared logic.
+Reusable UI components.
 
-### useCart.js
-
-**Location:**
-
-`src/hooks/useCart.js`
-
-**Purpose:**
-
-Manages the cart state and cart operations used by the Billing module (add, remove, update quantities, totals, etc.).
-
-### useLogin.js
-
-**Location:**
-
-`src/hooks/useLogin.js`
-
-**Purpose:**
-
-Handles the login form logic/state for the Authentication module.
+Components are grouped according to the feature they belong to.
 
 ---
 
-## styles/
+## components/navbar/
 
-### theme.css
-
-**Location:**
-
-`src/styles/theme.css`
-
-**Purpose:**
-
-Design-system/theme tokens used across the application (colors, spacing, typography, etc.).
-
----
-
-## store/
-
-State management (Redux Toolkit).
-
-### store.js
-
-Redux store configuration.
-
-### authSlice.js
-
-Authentication slice (state + reducers).
-
-### authThunk.js
-
-Authentication async thunk actions.
-
-### authService.js
-
-Authentication API calls.
-
----
-
-## services/
+### Navbar.jsx
 
 **Location:**
 
-`src/services/`
+`src/components/navbar/Navbar.jsx`
 
 **Purpose:**
 
-API/service layer.
-
-Currently empty; reserved for backend integration.
+Top navigation/header component used inside the dashboard layout.
 
 ---
 
-## utils/
+## components/sidebar/
 
-**Location:**
+Contains the dashboard sidebar and its smaller supporting components.
 
-`src/utils/`
+### Sidebar.jsx
 
-**Purpose:**
+Main sidebar component.
 
-Utility helpers.
+### SidebarBrand.jsx
 
-Currently empty.
+Handles the branding/logo section of the sidebar.
+
+### SidebarDropdown.jsx
+
+Handles expandable/collapsible sidebar navigation groups.
+
+### SidebarFooter.jsx
+
+Handles the footer section of the sidebar.
+
+### SidebarLink.jsx
+
+Reusable individual navigation link.
+
+### SidebarNav.jsx
+
+Controls and renders the sidebar navigation items.
 
 ---
 
-## assets/
+# components/reports/
 
-**Location:**
+Reusable components used by the Reports module.
 
-`src/assets/`
+### Shared.jsx
 
-**Purpose:**
+Contains shared UI elements used across report tabs, such as:
 
-Static assets (e.g. `WhatsApp_Image_...png` brand/logo asset).
+- statistical cards
+- table elements
+- pagination-related UI
+
+### SalesTab.jsx
+
+Sales report UI and sales-specific statistics/table.
+
+### PurchaseTab.jsx
+
+Purchase report UI and purchase-specific statistics/table.
+
+### InventoryTab.jsx
+
+Inventory report UI and inventory-specific statistics/table.
+
+### GSTTab.jsx
+
+GST-related reporting UI and statistics/table.
+
+### ProfitTab.jsx
+
+Profit reporting UI and statistics/table.
+
+### CustomerTab.jsx
+
+Customer reporting UI and customer statistics/table.
+
+### SupplierTab.jsx
+
+Supplier reporting UI and supplier statistics/table.
+
+---
+
+# components/purchases/
+
+Reusable components used by the Purchases module.
+
+### BatchEntryTab.jsx
+
+UI for batch-related purchase entry information.
+
+### CreditNotesTab.jsx
+
+UI for managing/displaying credit note information.
+
+### ExpiryEntryTab.jsx
+
+UI for expiry-related purchase information.
+
+### LineItemsTable.jsx
+
+Reusable table for purchase line items.
+
+### NotesAndSummary.jsx
+
+Displays purchase notes and summary information.
+
+### OrderDetailsSection.jsx
+
+Displays and handles purchase order details.
+
+### PurchaseReturnTab.jsx
+
+UI for purchase return information.
+
+### ReceiveGoodsTab.jsx
+
+UI for receiving goods against purchase information.
+
+### Shared.jsx
+
+Shared purchase-related UI utilities/components.
+
+---
+
+# components/importExport/
+
+Reusable components used by the Import/Export module.
+
+### ImportPage.jsx
+
+Handles the import interface.
+
+### ExportPage.jsx
+
+Handles the export interface.
+
+### Shared.jsx
+
+Shared UI components used by Import/Export functionality.
+
+---
+
+# data/
+
+Contains static/mock data used by the frontend.
+
+When backend/API integration is introduced, these files are potential locations to replace or supplement with API/service data.
+
+---
+
+## data/reports/
+
+### data.js
+
+Contains report configuration and report-related data such as:
+
+- report tabs
+- table configuration
+- statistics configuration
+- pagination-related constants
+
+### mockData.js
+
+Contains mock report records used while backend data is not connected.
+
+---
+
+## data/purchases/
+
+### data.js
+
+Contains purchase-related static/mock data, including data used by:
+
+- purchase orders
+- purchase invoices
+- purchase returns
+- receiving goods
+- credit notes
+- product/order options
+
+---
+
+## data/importExport/
+
+### data.js
+
+Contains Import/Export-related configuration and mock data.
+
+This includes data required by the import and export interfaces.
+
+---
+
+## data/inventoryManagement/
+
+Contains inventory-management data used by the inventory functionality.
+
+---
+
+## data/staffManagement/
+
+Contains staff-management data.
+
+### activityLogsData.js
+
+Data used by the staff activity logs functionality.
+
+### attendanceData.js
+
+Data used by the staff attendance functionality.
 
 ---
 
 # layouts/
 
 Layouts provide common page structures shared by multiple pages.
-
-Each layout typically composes a module-specific:
-
-- `Sidebar`
-- `Topbar`
-- Main content area
-- Footer (where applicable)
-
----
-
-## layouts/authentication/
-
-### AuthLayout.jsx
-
-**Location:**
-
-`src/layouts/authentication/AuthLayout.jsx`
-
-**Purpose:**
-
-Layout for authentication screens (Login).
-
-Includes `AuthLayout.css` and composes authentication shared components (auth navbar, banner, footer).
 
 ---
 
@@ -218,25 +308,26 @@ Includes `AuthLayout.css` and composes authentication shared components (auth na
 
 **Purpose:**
 
-General dashboard layout (base path `/`) used by the Search, Reports, Import/Export, and Purchases routes in the data router.
+Main authenticated/dashboard layout.
 
-Composes `Navbar`, `Sidebar`, and the main content area.
+It provides the common dashboard structure, including:
+
+- Sidebar
+- Navbar
+- Main content area
+- React Router outlet for rendering child pages
+
+Pages that belong to the dashboard are rendered inside this layout.
 
 ---
 
-## layouts/supplierManagement/
+## layouts/inventoryManagement/
 
-### SupplierManagemetnLayout.jsx
+Contains the layout used by Inventory Management functionality.
 
-**Location:**
+### InventoryLayout.jsx
 
-`src/layouts/supplierManagement/SupplierManagemetnLayout.jsx`
-
-**Purpose:**
-
-Common layout for Supplier Management pages (base path `/`).
-
-Renders the supplier `Sidebar`, `Topbar`, and the `<Outlet />` for supplier child routes.
+Provides the common layout for inventory-management pages.
 
 ---
 
@@ -244,452 +335,15 @@ Renders the supplier `Sidebar`, `Topbar`, and the `<Outlet />` for supplier chil
 
 ### StaffManagementLayout.jsx
 
-**Location:**
-
-`src/layouts/staffManagement/StaffManagementLayout.jsx`
-
-**Purpose:**
-
-Common layout for Staff Management pages (base path `/staff`).
-
-Renders the staff `Sidebar`, `Topbar`, and the `<Outlet />` for staff child routes.
+Provides the common layout for staff-management pages.
 
 ---
 
-## layouts/inventoryManagement/
+## layouts/supplierManagement/
 
-### InventoryLayout.jsx
+### SupplierManagemetnLayout.jsx
 
-**Location:**
-
-`src/layouts/inventoryManagement/InventoryLayout.jsx`
-
-**Purpose:**
-
-Common layout for Inventory Management pages (base path `/inventory`).
-
-Renders the inventory `Sidebar`, `Topbar`, and the `<Outlet />` for inventory child routes.
-
----
-
-## layouts/billing/
-
-### BillingLayout.jsx
-
-**Location:**
-
-`src/layouts/billing/BillingLayout.jsx`
-
-**Purpose:**
-
-Common layout for Billing pages (base path `/billing`).
-
-Renders the billing `Sidebar`, `Topbar`, and the `<Outlet />` for billing child routes.
-
----
-
-## layouts/pharmacySettings/
-
-### PharmacySettingsLayout.jsx
-
-**Location:**
-
-`src/layouts/pharmacySettings/PharmacySettingsLayout.jsx`
-
-**Purpose:**
-
-Common layout for Pharmacy Settings module pages (base path `/pharmacy`).
-
-Renders the pharmacy `Sidebar`, `Topbar`, main content `<Outlet />`, and a shared footer.
-
----
-
-# components/
-
-Reusable UI components, grouped by feature.
-
----
-
-## components/authentication/
-
-Components for the Authentication module.
-
-### login/
-
-- `LoginForm/` — wraps `LoginForm.jsx`, `validation.js`, `index.js`, `LoginForm.css`
-- `LoginHeader/` — wraps `LoginHeader.jsx`, `index.js`, `LoginHeader.css`
-- `LoginFooter/` — wraps `LoginFooter.jsx`, `index.js`, `LoginFooter.css`
-- `LoginIllustration/` — wraps `LoginIllustration.jsx`, `index.js`, `LoginIllustration.css`
-
-### shared/
-
-Shared auth components.
-
-- `AuthBanner/` — wraps `AuthBanner.jsx`, `index.js`, `AuthBanner.css`
-- `AuthFooter/` — wraps `AuthFooter.jsx`, `index.js`, `AuthFooter.css`
-- `AuthNavbar/` — wraps `AuthNavbar.jsx`, `index.js`, `AuthNavbar.css`
-
----
-
-## components/navbar/
-
-### Navbar.jsx
-
-Top navigation/header component used inside the legacy dashboard layout (`DashboardLayout`).
-
----
-
-## components/sidebar/
-
-Components for the legacy dashboard sidebar.
-
-- `Sidebar.jsx` — main sidebar
-- `SidebarBrand.jsx` — branding/logo section
-- `SidebarDropdown.jsx` — expandable/collapsible nav groups
-- `SidebarFooter.jsx` — footer section
-- `SidebarLink.jsx` — individual navigation link
-- `SidebarNav.jsx` — renders the navigation items
-
----
-
-## components/reports/
-
-Reusable components for the Reports module.
-
-### Shared.jsx
-
-Shared UI elements across report tabs (stat cards, tables, pagination).
-
-### SalesTab.jsx
-
-Sales report UI.
-
-### PurchaseTab.jsx
-
-Purchase report UI.
-
-### InventoryTab.jsx
-
-Inventory report UI.
-
-### GSTTab.jsx
-
-GST reporting UI.
-
-### ProfitTab.jsx
-
-Profit reporting UI.
-
-### CustomerTab.jsx
-
-Customer reporting UI.
-
-### SupplierTab.jsx
-
-Supplier reporting UI.
-
----
-
-## components/purchases/
-
-Reusable components for the Purchases module.
-
-### BatchEntryTab.jsx
-
-Batch purchase entry info.
-
-### CreditNotesTab.jsx
-
-Credit note management.
-
-### ExpiryEntryTab.jsx
-
-Expiry purchase info.
-
-### LineItemsTable.jsx
-
-Reusable line items table.
-
-### NotesAndSummary.jsx
-
-Purchase notes + summary.
-
-### OrderDetailsSection.jsx
-
-Purchase order details.
-
-### PurchaseReturnTab.jsx
-
-Purchase return UI.
-
-### ReceiveGoodsTab.jsx
-
-Goods receipt UI.
-
-### Shared.jsx
-
-Shared purchase UI utilities/components.
-
----
-
-## components/importExport/
-
-Reusable components for the Import/Export module.
-
-- `ImportPage.jsx` — import interface
-- `ExportPage.jsx` — export interface
-- `Shared.jsx` — shared UI components
-
----
-
-## components/supplierManagement/
-
-Components for the Supplier Management module (active router).
-
-### dashboard/
-
-- `DashboardHeader.jsx` — dashboard page header
-- `KpiCards.jsx` — KPI / summary stat cards
-- `SupplierRow.jsx` — single supplier table row
-- `SupplierTable.jsx` — supplier listing table
-- `Sidebar.jsx` — supplier module sidebar navigation
-- `Topbar.jsx` — supplier module top navigation bar
-
-### suppliers/
-
-- `SupplierHeader.jsx` — suppliers page header
-- `SupplierModal.jsx` — add/edit supplier modal
-- `SupplierProfileHeader.jsx` — supplier profile header
-- `SupplierOverviewCards.jsx` — supplier overview summary cards
-- `SupplierContactCard.jsx` — supplier contact information card
-- `SupplierPurchaseOrders.jsx` — supplier purchase orders card/section
-- `SupplierCard.jsx` — reusable supplier card
-
----
-
-## components/staffManagement/
-
-Components for the Staff Management module (active: `/staff`).
-
-- `Sidebar.jsx` — staff module sidebar navigation
-- `Topbar.jsx` — staff module top navigation bar
-
-### dashboard/
-
-Components used on the Staff Management dashboard screen.
-
-### employee/
-
-- `StaffHeader.jsx` — employee directory page header
-- `StaffCard.jsx` — reusable employee/staff card
-
-### attendance/
-
-- `AttendanceHeader.jsx` — attendance page header
-- `AttendanceFilters.jsx` — attendance filter controls
-- `AttendanceStatsCards.jsx` — attendance summary stat cards
-- `AttendanceStatusBadge.jsx` — attendance status badge
-- `AttendanceTable.jsx` — attendance table
-- `AttendanceTableRow.jsx` — single attendance row
-
-### activityLogs/
-
-- `ActivityLogsHeader.jsx` — activity logs page header
-- `ActivityLogsStatsCards.jsx` — activity logs summary cards
-- `ActivityLogsFilters.jsx` — activity logs filter controls
-- `ActivityLogsTable.jsx` — activity logs table
-- `ActivityLogsTableRow.jsx` — single activity log row
-
-### kiosk/
-
-- `LiveClock.jsx` — live clock display
-- `EmployeeIdInput.jsx` — employee ID input card
-- `ConfirmationDisplay.jsx` — attendance confirmation display
-- `KioskCard.jsx` — reusable kiosk card wrapper
-- `ActionButtons.jsx` — kiosk action buttons (check-in / check-out)
-- `KioskFooter.jsx` — kiosk screen footer
-
----
-
-## components/inventoryManagement/
-
-Components for the Inventory Management module (active: `/inventory`).
-
-### common/
-
-Shared components used across inventory screens.
-
-- `Sidebar.jsx` — inventory module sidebar navigation
-- `Topbar.jsx` — inventory module top navigation bar
-- `StatusBadge.jsx` — reusable status badge
-- `StatCard.jsx` — reusable summary stat card
-- `FilterBar.jsx` — reusable filter/sort bar
-- `StockTabs.jsx` — reusable stock tab navigation
-- `EntryModal.jsx` — reusable modal for entries
-- `Pagination.jsx` — reusable pagination controls
-- `DataTable.jsx` — reusable data table
-
----
-
-## components/billing/
-
-Components for the Billing module (active: `/billing`).
-
-### common/
-
-- `Sidebar.jsx` — billing module sidebar navigation
-- `Topbar.jsx` — billing module top navigation bar
-- `CartSummary.jsx` — cart summary panel
-
----
-
-## components/pharmacySettings/
-
-Components for the Pharmacy Settings module (active: `/pharmacy`).
-
-Converted from the Medorax HTML screens (Admin Dashboard, Pharmacy Settings,
-Pharmacy & Branch Directory) using the project's Core Professional theme tokens.
-Each file contains a single-responsibility component; larger screens are composed
-from these parts by their page-level "section" composers.
-
-- `Sidebar.jsx` — pharmacy module sidebar navigation (`NavLink` based)
-- `Topbar.jsx` — pharmacy module top navigation bar (search, notifications, profile)
-
-### common/
-
-Shared primitives reused across all three screens.
-
-- `PageHeader.jsx` — page title + description + optional action buttons
-- `FormField.jsx` — labeled input/select field with focus styling
-- `FormActions.jsx` — Cancel / Save button row used at the bottom of forms
-- `ToggleSwitch.jsx` — accessible on/off switch (`role="switch"`)
-- `TabBar.jsx` — underline-style tab navigation driven by state
-- `StatusChip.jsx` — status pill built on the `cp-chip-*` theme utilities
-
-### dashboard/
-
-Dashboard screen components (`/pharmacy`).
-
-- `DashboardHeader.jsx` — "System Overview" header with New Prescription / Export actions
-- `KpiCards.jsx` — 11 KPI summary cards (sales, revenue, stock alerts, branches, etc.)
-- `AnalyticsSection.jsx` — composer for the analytics block below
-- `RevenueChart.jsx` — bar chart with Monthly/Quarterly/Yearly period toggle
-- `BranchPerformanceCard.jsx` — branch score progress bars
-- `CategoryDistributionCard.jsx` — SKU category donut + legend
-- `RecentOrdersTable.jsx` — recent orders table with status chips
-- `SidePanels.jsx` — composer for the right-hand column panels
-- `QuickActionsPanel.jsx` — quick action tile grid
-- `LowStockPanel.jsx` — critical inventory alert list with restock buttons
-- `ActivityFeed.jsx` — recent activity timeline feed
-
-### settings/
-
-Settings screen components (`/pharmacy/settings`).
-
-- `SettingsNavCards.jsx` — Pharmacy Profile vs Branch Management selector cards
-- `PharmacyProfileSection.jsx` — composer for the six profile tabs
-- `BranchManagementSection.jsx` — composer for the four branch tabs
-
-#### settings/tabs/
-
-- `BusinessInfoTab.jsx` — business information form (name, GST, license, logo, description)
-- `OwnerDetailsTab.jsx` — owner details form (name, DOB, Aadhaar/PAN, contacts)
-- `AddressTab.jsx` — pharmacy address form (address, city/state/PIN, time zone)
-- `LicenseTab.jsx` — license & registration form with document upload slots
-- `ContactInfoTab.jsx` — contact information form (phones, email, hours)
-- `DocumentsTab.jsx` — documents table with verification status and upload action
-- `CreateBranchTab.jsx` — new branch creation form
-- `EditBranchTab.jsx` — branch selection dropdown + editable branch form
-- `BranchSettingsTab.jsx` — per-branch toggles, threshold, tax configuration
-- `BranchStatusTab.jsx` — branch status cards with activate/deactivate actions
-
-### directory/
-
-Directory screen components (`/pharmacy/directory`).
-
-- `DirectorySummary.jsx` — composer for the summary cards + license cards
-- `PharmacyInfoCard.jsx` — verified/active pharmacy identity card (GST, license, PAN)
-- `OwnerInfoCard.jsx` — owner card with masked Aadhaar/PAN reveal affordance
-- `ContactAddressCard.jsx` — registered address, website, map preview placeholder
-- `LicenseCards.jsx` — drug license / GST certificate / registration download cards
-- `BranchDirectory.jsx` — composer for search panel, branch cards, deep-dive
-- `DirectorySearchPanel.jsx` — pharmacy/branch search inputs + quick filter chips
-- `BranchCards.jsx` — selectable branch cards (selected/inactive visual states)
-- `BranchDeepDive.jsx` — selected branch statistics, configuration toggles, timeline
-
----
-
-# data/
-
-Static/mock data used by the frontend.
-
-When backend/API integration is introduced, these files are potential locations to replace or supplement with API/service data.
-
----
-
-## data/reports/
-
-### data.js
-
-Report configuration/data (tabs, tables, statistics, pagination constants).
-
-### mockData.js
-
-Mock report records used while backend data is not connected.
-
----
-
-## data/purchases/
-
-### data.js
-
-Purchase-related static/mock data (orders, invoices, returns, receive goods, credit notes, options).
-
----
-
-## data/importExport/
-
-### data.js
-
-Import/Export configuration and mock data.
-
----
-
-## data/inventoryManagement/
-
-### inventoryData.js
-
-Data used across the Inventory Management module.
-
----
-
-## data/staffManagement/
-
-- `activityLogsData.js` — data for staff activity logs
-- `attendanceData.js` — data for staff attendance
-
----
-
-## data/billing/
-
-### billingData.js
-
-Billing module data (product catalogue, pricing, etc.).
-
----
-
-## data/pharmacySettings/
-
-### pharmacySettingsData.js
-
-All mock data for the Pharmacy Settings module:
-
-- `kpiSummary`, `revenueOverview`, `branchPerformance`, `categoryDistribution`,
-  `recentOrders`, `quickActions`, `lowStockAlerts`, `recentActivity` — dashboard
-- `pharmacyProfile` (business/owner/address/license/contact/documents), `branches` — settings
-- `directorySummary`, `directoryBranches`, `branchDeepDive` — directory
-
-When backend/API integration is introduced, these exports map naturally to API responses.
+Provides the common layout for supplier-management functionality.
 
 ---
 
@@ -701,49 +355,15 @@ A page represents a complete route or major screen rather than a small reusable 
 
 ---
 
-## pages/Authentication/
-
-### Login.jsx
-
-**Location:**
-
-`src/pages/Authentication/Login.jsx`
-
-**Purpose:**
-
-Login screen (route `/login`).
-
-Renders the self-contained `LoginForm` component. Companion CSS: `Login.css`.
-
----
-
-## pages/Search/
-
-### SearchPage.jsx
-
-**Location:**
-
-`src/pages/Search/SearchPage.jsx`
-
-**Purpose:**
-
-Search screen (legacy route `/search`).
-
----
-
 ## pages/Reports/
 
 ### ReportsPage.jsx
 
-**Location:**
+Main Reports page.
 
-`src/pages/Reports/ReportsPage.jsx`
+Combines the report tabs and shared reporting UI.
 
-**Purpose:**
-
-Main Reports page (legacy route `/reports`).
-
-Combines report tabs and shared reporting UI:
+Available reporting areas include:
 
 - Sales
 - Purchases
@@ -757,8 +377,13 @@ Combines report tabs and shared reporting UI:
 
 ## pages/Purchases/
 
-- `PurchaseOrderPage.jsx` — Purchase Order screen (legacy route `/purchases/order`)
-- `PurchaseInvoicePage.jsx` — Purchase Invoice screen (legacy route `/purchases/invoice`)
+### PurchaseOrderPage.jsx
+
+Purchase Order screen.
+
+### PurchaseInvoicePage.jsx
+
+Purchase Invoice screen.
 
 ---
 
@@ -766,129 +391,91 @@ Combines report tabs and shared reporting UI:
 
 ### ImportExportPage.jsx
 
-**Location:**
+Main Import/Export screen.
 
-`src/pages/ImportExport/ImportExportPage.jsx`
-
-**Purpose:**
-
-Main Import/Export screen (legacy route `/import-export`).
+Provides access to the import and export functionality.
 
 ---
 
-## pages/SupplierManagement/
+## pages/Search/
 
-Supplier Management screens (active: `/`).
+### SearchPage.jsx
 
-### Dashboard.jsx
-
-Supplier management dashboard (landing screen for `/`).
-
-### Suppliers.jsx
-
-Supplier listing/management screen (`/suppliers`).
-
-### SupplierInformation.jsx
-
-Supplier profile/details screen (`/suppliers/:supplierId`).
-
----
-
-## pages/StaffManagement/
-
-Staff Management screens (active: `/staff`).
-
-### dashboard/Dashboard.jsx
-
-Staff management dashboard (`/staff`).
-
-### employee/Employee.jsx
-
-Employee directory screen (`/staff/directory`).
-
-### StaffInformation.jsx
-
-Staff profile/details screen (`/staff/:staffId`).
-
-### attendance/Attendance.jsx
-
-Attendance management screen (`/staff/attendance`).
-
-### activityLogs/ActivityLogs.jsx
-
-Activity logs screen (`/staff/activity-logs`).
-
-### kiosk/Kiosk.jsx
-
-Employee/staff kiosk screen (`/staff/kiosk`).
+Main search screen.
 
 ---
 
 ## pages/InventoryManagement/
 
-Inventory Management screens (active: `/inventory`).
+Contains the Inventory Management screens.
 
-- `AvailableStock.jsx`
-- `BatchManagement.jsx`
-- `ClosingStock.jsx`
-- `CurrentStock.jsx`
-- `DamagedStock.jsx`
-- `ExpiredStock.jsx`
-- `LowStockAlerts.jsx`
-- `NearExpiry.jsx`
-- `OpeningStock.jsx`
-- `OverstockAlerts.jsx`
-- `PhysicalVerification.jsx`
-- `ReservedStock.jsx`
-- `StockAdjustment.jsx`
-- `StockLedger.jsx`
-- `StockTransfer.jsx`
+Current pages include:
 
-Each file is a child route of the `/inventory` layout.
+- AvailableStock.jsx
+- BatchManagement.jsx
+- ClosingStock.jsx
+- CurrentStock.jsx
+- DamagedStock.jsx
+- ExpiredStock.jsx
+- LowStockAlerts.jsx
+- NearExpiry.jsx
+- OpeningStock.jsx
+- OverstockAlerts.jsx
+- PhysicalVerification.jsx
+- ReservedStock.jsx
+- StockAdjustment.jsx
+- StockLedger.jsx
+- StockTransfer.jsx
 
----
-
-## pages/Billing/
-
-Billing screens (active: `/billing`).
-
-### BarcodeBilling.jsx
-
-Barcode billing screen (routes `/billing` and `/billing/barcode`).
-
-### ManualBilling.jsx
-
-Manual billing screen (`/billing/manual`).
-
-### QuickBilling.jsx
-
-Quick billing screen (`/billing/quick`).
-
-### PrescriptionBilling.jsx
-
-Prescription billing screen (`/billing/prescription`).
+Each file represents a separate Inventory Management screen.
 
 ---
 
-## pages/PharmacySettings/
+## pages/StaffManagement/
 
-Pharmacy Settings module screens (active: `/pharmacy`). Each page composes
-components from `components/pharmacySettings/`.
+Contains Staff Management screens.
+
+### StaffInformation.jsx
+
+Staff information screen.
+
+### activityLogs/ActivityLogs.jsx
+
+Activity logs screen.
+
+### attendance/Attendance.jsx
+
+Attendance screen.
+
+### dashboard/Dashboard.jsx
+
+Staff management dashboard.
+
+### employee/Employee.jsx
+
+Employee management screen.
+
+### kiosk/Kiosk.jsx
+
+Employee/staff kiosk screen.
+
+---
+
+## pages/SupplierManagement/
+
+Contains Supplier Management screens.
 
 ### Dashboard.jsx
 
-System overview dashboard (`/pharmacy`) — KPI cards, analytics, recent orders,
-quick actions, low-stock alerts, activity feed.
+Supplier management dashboard.
 
-### Settings.jsx
+### SupplierInformation.jsx
 
-Pharmacy settings screen (`/pharmacy/settings`) — section switcher between
-Pharmacy Profile (6 tabs) and Branch Management (4 tabs).
+Supplier information screen.
 
-### Directory.jsx
+### Suppliers.jsx
 
-Pharmacy & Branch Directory screen (`/pharmacy/directory`) — search panel,
-summary cards, license cards, selectable branch cards, branch deep-dive.
+Supplier listing/management screen.
 
 ---
 
@@ -898,24 +485,20 @@ Contains application routing configuration.
 
 ## routes/Router.jsx
 
-**Location:**
+Central routing configuration for the application.
 
-`src/routes/Router.jsx`
+Routes can be defined and organized here as the application expands.
 
-**Purpose:**
+---
 
-Central data-router configuration built with `createBrowserRouter` (react-router-dom v6+).
+# assets/
 
-This is the **active** router wired in `src/main.jsx` via `RouterProvider`.
+Contains static assets used by the application.
 
-It organizes routes under seven top-level layouts / screens:
+Examples include:
 
-1. Authentication (Login) — `/login`
-2. Legacy dashboard pages — `/` (`DashboardLayout`)
-3. Supplier Management — `/`
-4. Staff Management — `/staff`
-5. Inventory Management — `/inventory`
-6. Billing — `/billing`
-7. Pharmacy Settings — `/pharmacy` (`/pharmacy`, `/pharmacy/settings`, `/pharmacy/directory`)
+- logos
+- images
+- other frontend assets
 
-See `routing.md` for the complete route map.
+---

@@ -1,19 +1,8 @@
-import { Outlet } from "react-router-dom";
-import Sidebar from "../../components/staffManagement/Sidebar";
-import Topbar from "../../components/staffManagement/Topbar";
+import { moduleNavigation } from "../../data/navigation/navigationData";
+import ModuleLayout from "../shared/ModuleLayout";
 
 const StaffManagementLayout = () => {
-  return (
-    <div className="min-h-screen bg-[#F8FCFF]">
-      <Sidebar />
-      <Topbar />
-      <main className="ml-[260px] pt-24 min-h-screen p-8">
-        <div className="mx-auto max-w-[1440px]">
-          <Outlet />
-        </div>
-      </main>
-    </div>
-  );
+  return <ModuleLayout navigation={moduleNavigation.staff} />;
 };
 
 export default StaffManagementLayout;

@@ -1,4 +1,3 @@
-import React from "react";
 import { Receipt, CloudUpload } from "lucide-react";
 import { Th, Td } from "./Shared";
 import { creditNotes } from "../../data/purchases/data";

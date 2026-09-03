@@ -1,4 +1,3 @@
-import React from "react";
 import { ChevronLeft, ChevronRight, ArrowUp, TrendingUp, Info } from "lucide-react";
 
 export function StatCard({ label, value, trendIcon, trendText, trendClass }) {

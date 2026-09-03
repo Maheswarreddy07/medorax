@@ -1,4 +1,3 @@
-import React from "react";
 import { Trash2, Plus } from "lucide-react";
 import { Th, Td } from "./Shared";
 

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { purchaseData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
@@ -84,7 +84,7 @@ export function PurchaseTable({ status, supplier, page, setPage, search }) {
 }
 
 // Main default export
-export default function PurchaseTab({ status, supplier, setStatus, setSupplier, page, setPage, search }) {
+export default function PurchaseTab({ status, supplier, page, setPage, search }) {
   return (
     <>
       <PurchaseStats />

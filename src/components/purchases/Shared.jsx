@@ -1,4 +1,3 @@
-import React from "react";
 import { ChevronDown, CheckCircle, AlertTriangle, Info, X } from "lucide-react";
 
 export function StatCard({ label, value, subtext, icon: Icon, iconColor = "text-[#004287]" }) {

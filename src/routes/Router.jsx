@@ -1,11 +1,12 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import DashboardLayout from "../layouts/dashboard/DashboardLayout";
-import SupplierLayout from "../layouts/supplierManagement/SupplierManagemetnLayout";
+import SupplierLayout from "../layouts/supplierManagement/SupplierManagementLayout";
 import StaffManagementLayout from "../layouts/staffManagement/StaffManagementLayout";
 import InventoryLayout from "../layouts/inventoryManagement/InventoryLayout";
 import BillingLayout from "../layouts/billing/BillingLayout";
 import PharmacySettingsLayout from "../layouts/pharmacySettings/PharmacySettingsLayout";
+import PurchaseLayout from "../layouts/purchases/PurchaseLayout";
 
 import PharmacyDashboard from "../pages/PharmacySettings/Dashboard";
 import PharmacySettingsPage from "../pages/PharmacySettings/Settings";
@@ -83,26 +84,25 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <SupplierLayout />,
-    children: [
-      {
-        index: true,
-        element: <Dashboard />,
-      },
-      {
-        path: "suppliers",
-        element: <Suppliers />,
-      },
-      {
-        path: "suppliers/:supplierId",
-        element: <SupplierInformation />,
-      },
-    ],
-  },
-  {
-    path: "/",
     element: <DashboardLayout />,
     children: [
+      {
+        element: <SupplierLayout />,
+        children: [
+          {
+            index: true,
+            element: <Dashboard />,
+          },
+          {
+            path: "suppliers",
+            element: <Suppliers />,
+          },
+          {
+            path: "suppliers/:supplierId",
+            element: <SupplierInformation />,
+          },
+        ],
+      },
       {
         path: "search",
         element: <SearchPage />,
@@ -116,155 +116,160 @@ const router = createBrowserRouter([
         element: <ImportExportPage />,
       },
       {
-        path: "purchases/order",
-        element: <PurchaseOrderPage />,
+        path: "purchases",
+        element: <PurchaseLayout />,
+        children: [
+          {
+            path: "order",
+            element: <PurchaseOrderPage />,
+          },
+          {
+            path: "invoice",
+            element: <PurchaseInvoicePage />,
+          },
+        ],
       },
       {
-        path: "purchases/invoice",
-        element: <PurchaseInvoicePage />,
+        path: "staff",
+        element: <StaffManagementLayout />,
+        children: [
+          {
+            index: true,
+            element: <StaffDashboard />,
+          },
+          {
+            path: "directory",
+            element: <Employee />,
+          },
+          {
+            path: "attendance",
+            element: <Attendance />,
+          },
+          {
+            path: "kiosk",
+            element: <Kiosk />,
+          },
+          {
+            path: "activity-logs",
+            element: <ActivityLogs />,
+          },
+          {
+            path: ":staffId",
+            element: <StaffInformation />,
+          },
+        ],
+      },
+      {
+        path: "billing",
+        element: <BillingLayout />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="barcode" replace />,
+          },
+          {
+            path: "barcode",
+            element: <BarcodeBilling />,
+          },
+          {
+            path: "manual",
+            element: <ManualBilling />,
+          },
+          {
+            path: "quick",
+            element: <QuickBilling />,
+          },
+          {
+            path: "prescription",
+            element: <PrescriptionBilling />,
+          },
+        ],
+      },
+      {
+        path: "pharmacy",
+        element: <PharmacySettingsLayout />,
+        children: [
+          {
+            index: true,
+            element: <PharmacyDashboard />,
+          },
+          {
+            path: "settings",
+            element: <PharmacySettingsPage />,
+          },
+          {
+            path: "directory",
+            element: <PharmacyDirectory />,
+          },
+        ],
+      },
+      {
+        path: "inventory",
+        element: <InventoryLayout />,
+        children: [
+          {
+            index: true,
+            element: <CurrentStock />,
+          },
+          {
+            path: "opening",
+            element: <OpeningStock />,
+          },
+          {
+            path: "closing",
+            element: <ClosingStock />,
+          },
+          {
+            path: "available",
+            element: <AvailableStock />,
+          },
+          {
+            path: "reserved",
+            element: <ReservedStock />,
+          },
+          {
+            path: "batches",
+            element: <BatchManagement />,
+          },
+          {
+            path: "adjustments",
+            element: <StockAdjustment />,
+          },
+          {
+            path: "transfers",
+            element: <StockTransfer />,
+          },
+          {
+            path: "verification",
+            element: <PhysicalVerification />,
+          },
+          {
+            path: "damaged",
+            element: <DamagedStock />,
+          },
+          {
+            path: "expired",
+            element: <ExpiredStock />,
+          },
+          {
+            path: "near-expiry",
+            element: <NearExpiry />,
+          },
+          {
+            path: "low-stock",
+            element: <LowStockAlerts />,
+          },
+          {
+            path: "overstock",
+            element: <OverstockAlerts />,
+          },
+          {
+            path: "stock-ledger",
+            element: <StockLedger />,
+          },
+        ],
       },
     ],
-  },
-  {
-    path: "/staff",
-    element: <StaffManagementLayout />,
-    children: [
-      {
-        index: true,
-        element: <StaffDashboard />,
-      },
-      {
-        path: "directory",
-        element: <Employee />,
-      },
-      {
-        path: "attendance",
-        element: <Attendance />,
-      },
-      {
-        path: "kiosk",
-        element: <Kiosk />,
-      },
-      {
-        path: "activity-logs",
-        element: <ActivityLogs />,
-      },
-      {
-        path: ":staffId",
-        element: <StaffInformation />,
-      },
-    ],
-  },
-  {
-    path: "/billing",
-    element: <BillingLayout />,
-    children: [
-      {
-        index: true,
-        element: <BarcodeBilling />,
-      },
-      {
-        path: "barcode",
-        element: <BarcodeBilling />,
-      },
-      {
-        path: "manual",
-        element: <ManualBilling />,
-      },
-      {
-        path: "quick",
-        element: <QuickBilling />,
-      },
-      {
-        path: "prescription",
-        element: <PrescriptionBilling />,
-      },
-    ],
-  },
-  {
-    path: "/pharmacy",
-    element: <PharmacySettingsLayout />,
-    children: [
-      {
-        index: true,
-        element: <PharmacyDashboard />,
-      },
-      {
-        path: "settings",
-        element: <PharmacySettingsPage />,
-      },
-      {
-        path: "directory",
-        element: <PharmacyDirectory />,
-      },
-    ],
-  },
-  {
-    path: "/inventory",
-    element: <InventoryLayout />,
-    children: [
-      {
-        index: true,
-        element: <CurrentStock />,
-      },
-      {
-        path: "opening",
-        element: <OpeningStock />,
-      },
-      {
-        path: "closing",
-        element: <ClosingStock />,
-      },
-      {
-        path: "available",
-        element: <AvailableStock />,
-      },
-      {
-        path: "reserved",
-        element: <ReservedStock />,
-      },
-      {
-        path: "batches",
-        element: <BatchManagement />,
-      },
-      {
-        path: "adjustments",
-        element: <StockAdjustment />,
-      },
-      {
-        path: "transfers",
-        element: <StockTransfer />,
-      },
-      {
-        path: "verification",
-        element: <PhysicalVerification />,
-      },
-      {
-        path: "damaged",
-        element: <DamagedStock />,
-      },
-      {
-        path: "expired",
-        element: <ExpiredStock />,
-      },
-      {
-        path: "near-expiry",
-        element: <NearExpiry />,
-      },
-      {
-        path: "low-stock",
-        element: <LowStockAlerts />,
-      },
-      {
-        path: "overstock",
-        element: <OverstockAlerts />,
-      },
-      {
-        path: "stock-ledger",
-        element: <StockLedger />,
-      },
-    ],
-
   },
 ]);
 

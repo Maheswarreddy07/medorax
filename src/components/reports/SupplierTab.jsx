@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { supplierData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
@@ -80,7 +80,7 @@ export function SupplierTable({ supplierFilter, page, setPage, search }) {
 }
 
 // Main default export
-export default function SupplierTab({ supplierFilter, setSupplierFilter, page, setPage, search }) {
+export default function SupplierTab({ supplierFilter, page, setPage, search }) {
   return (
     <>
       <SupplierStats />

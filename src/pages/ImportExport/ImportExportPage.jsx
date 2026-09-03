@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Upload, Download } from "lucide-react";
 import { Toast } from "../../components/importExport/Shared";
 import ImportPage from "../../components/importExport/ImportPage";
@@ -40,6 +40,7 @@ export default function ImportExportPage() {
                         activeTab === t.key ? "font-bold opacity-100" : "opacity-80 hover:opacity-100"
                       }`}
                     >
+                      <Icon size={16} />
                       {t.label}
                       <div
                         className={`absolute -bottom-2.5 left-0 right-0 h-1 rounded-t-full ${

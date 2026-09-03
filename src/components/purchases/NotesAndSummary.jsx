@@ -1,6 +1,3 @@
-import React from "react";
-import { StatCard } from "./Shared";
-
 export default function NotesAndSummary({ notes, setNotes, totals }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">

@@ -1,4 +1,3 @@
-import React from "react";
 import { Package, AlertTriangle, X } from "lucide-react";
 import { Th, Td, StatCard } from "./Shared";
 

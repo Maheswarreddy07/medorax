@@ -1,17 +1,23 @@
-import { Outlet } from 'react-router-dom';
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+
+import AppSidebar from "../../components/navigation/AppSidebar";
+import AppTopbar from "../../components/navigation/AppTopbar";
 
 export default function DashboardLayout() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1 md:ml-64">
-        <Navbar />
-        <main className="pt-16 min-h-screen bg-[#f8f9ff]">
-          <div className="p-6">
-            <Outlet />
-          </div>
+    <div className="min-h-screen bg-background">
+      <AppSidebar
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
+
+      <div className="min-h-screen md:ml-[260px]">
+        <AppTopbar onMenuClick={() => setIsSidebarOpen(true)} />
+        <main className="min-h-screen px-4 pb-8 pt-20 md:px-8 md:pt-24">
+          <Outlet />
         </main>
       </div>
     </div>

@@ -101,7 +101,7 @@ export default function LoginHistory() {
   const startIndex = (currentPage - 1) * entriesPerPage;
   const paginatedData = filteredData.slice(startIndex, startIndex + entriesPerPage);
 
-  const handleLogout = (id) => {
+  const handleLogout = () => {
     if (confirm("Are you sure you want to sign out of this session?")) {
       alert("Session terminated successfully.");
     }

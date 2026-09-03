@@ -1,22 +1,8 @@
-import { Outlet } from "react-router-dom";
-
-import Sidebar from "../../components/inventoryManagement/common/Sidebar";
-import Topbar from "../../components/inventoryManagement/common/Topbar";
+import { moduleNavigation } from "../../data/navigation/navigationData";
+import ModuleLayout from "../shared/ModuleLayout";
 
 const InventoryLayout = () => {
-  return (
-    <div className="flex min-h-screen bg-[#F8FCFF]">
-      <Sidebar />
-
-      <div className="ml-70 flex flex-1 flex-col">
-        <Topbar />
-
-        <main className="flex-1 p-8">
-          <Outlet />
-        </main>
-      </div>
-    </div>
-  );
+  return <ModuleLayout navigation={moduleNavigation.inventory} />;
 };
 
 export default InventoryLayout;

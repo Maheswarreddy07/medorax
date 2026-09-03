@@ -1,4 +1,3 @@
-import React from "react";
 import { ChevronDown, Undo2 } from "lucide-react";
 import { Th, Td, Pagination } from "./Shared";
 import { returnReasons } from "../../data/purchases/data";

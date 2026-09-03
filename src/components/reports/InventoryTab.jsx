@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { inventoryData, STAT_LABELS, ROWS_PER_PAGE } from "../../data/reports/data";
 import { StatCard, Pagination, Th, Td } from "./Shared";
 
@@ -99,7 +99,7 @@ export function InventoryTable({ inventorySubtype, page, setPage, search }) {
 }
 
 // Main default export
-export default function InventoryTab({ inventorySubtype, setInventorySubtype, page, setPage, search }) {
+export default function InventoryTab({ inventorySubtype, page, setPage, search }) {
   return (
     <>
       <InventoryStats />

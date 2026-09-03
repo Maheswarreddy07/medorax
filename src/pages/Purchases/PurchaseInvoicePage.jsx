@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo } from "react";
 import {
   Save,
   CheckCircle,
@@ -26,6 +26,14 @@ const TAB_LIST = [
   { key: "credit-notes", label: "Credit Notes" },
 ];
 
+const createInitialBatches = () =>
+  Object.fromEntries(
+    initialReceivedItems.map((item) => [
+      item.id,
+      [{ batchNo: item.batch || "", qty: item.received }],
+    ]),
+  );
+
 const PurchasePageInvoice = () => {
   const [activeTab, setActiveTab] = useState("receive-goods");
   const [selectedPO, setSelectedPO] = useState("PO-2026-0141 (MedLife Solutions)");
@@ -37,7 +45,7 @@ const PurchasePageInvoice = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [toast, setToast] = useState(null);
   const [currentBatchItemId, setCurrentBatchItemId] = useState(null);
-  const [itemBatches, setItemBatches] = useState({});
+  const [itemBatches, setItemBatches] = useState(createInitialBatches);
   const [creditNoteNumber, setCreditNoteNumber] = useState("");
   const [creditNoteAmount, setCreditNoteAmount] = useState("");
   const [returnReason, setReturnReason] = useState("Damaged Goods");
@@ -45,15 +53,6 @@ const PurchasePageInvoice = () => {
   const [returnQuantities, setReturnQuantities] = useState({});
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    const initialBatches = {};
-    receivedItems.forEach((item) => {
-      initialBatches[item.id] = [{ batchNo: item.batch || "", qty: item.received }];
-    });
-    setItemBatches(initialBatches);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const totals = useMemo(() => {
     let totalOrdered = 0;

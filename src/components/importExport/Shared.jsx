@@ -1,4 +1,3 @@
-import React from "react";
 import { AlertCircle, CheckCircle, XCircle, X } from "lucide-react";
 
 export function Th({ children, className = "" }) {

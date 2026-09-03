@@ -1,8 +1,8 @@
 import { moduleNavigation } from "../../data/navigation/navigationData";
 import ModuleLayout from "../shared/ModuleLayout";
 
-const BillingLayout = () => {
-  return <ModuleLayout navigation={moduleNavigation.billing} />;
+const PurchaseLayout = () => {
+  return <ModuleLayout navigation={moduleNavigation.purchases} />;
 };
 
-export default BillingLayout;
+export default PurchaseLayout;
